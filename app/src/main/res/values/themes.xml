@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.CspRefactor" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#f44336</item>
-        <item name="colorPrimaryVariant">#d32f2f</item>
+        <item name="colorPrimary">@color/md_red_700</item>
+        <item name="colorPrimaryVariant">@color/md_red_800</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
