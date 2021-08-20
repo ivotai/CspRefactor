@@ -1,0 +1,46 @@
+创建项目
+取名
+重新生成登录用 token
+分享项目并上传，创建项目成功，push失败，多次重启加速器后成功
+
+如何在 module 中获取 context?
+The androidContext() & androidApplication() functions allows you to get the Context
+instance in a Koin module
+
+by inject() 懒加载
+get() 直接创建
+
+如何注入参数
+class Presenter(val view : View)
+
+val myModule = module {
+    single{ (view : View) -> Presenter(view) }
+}
+
+val presenter : Presenter by inject { parametersOf(view) }
+参考 https://insert-koin.io/docs/reference/koin-core/injection-parameters
+
+如何在 Fragment 外使用 inject() 和 get()?
+参考 https://insert-koin.io/docs/reference/koin-core/koin-component
+
+class MyComponent : KoinComponent {
+
+    // lazy inject Koin instance
+    val myService : MyService by inject()
+
+    // or
+    // eager inject Koin instance
+    val myService : MyService = get()
+}
+
+置换了 300 rmb 的顶级翻墙套餐
+
+开始迁移项目 Aero
+
+Material 组件研究，特别是颜色的研究。
+
+----
+
+https://stackoverflow.com/questions/66475730/in-android-studio-arctic-fox-canary-8-the-app-level-build-gradle-does-not-gener
+
+
