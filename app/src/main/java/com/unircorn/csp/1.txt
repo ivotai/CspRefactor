@@ -45,6 +45,8 @@ https://stackoverflow.com/questions/66475730/in-android-studio-arctic-fox-canary
 
 图片应该放在哪个目录下 todo
 
+----
 
+重写登录界面，添加了图标，账号有一键清空，密码添加了眼睛，登录界面支持系统自带暗色主题。
 
 
