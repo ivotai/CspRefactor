@@ -43,4 +43,8 @@ Material 组件研究，特别是颜色的研究。
 
 https://stackoverflow.com/questions/66475730/in-android-studio-arctic-fox-canary-8-the-app-level-build-gradle-does-not-gener
 
+图片应该放在哪个目录下 todo
+
+
+
 
