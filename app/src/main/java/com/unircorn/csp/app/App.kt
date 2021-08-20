@@ -14,7 +14,7 @@ class App : MultiDexApplication() {
 
         startKoin {
             androidContext(this@App)
-            val modules = modules(appModule, networkModule, apiModule)
+            modules(appModule, networkModule, apiModule)
         }
     }
 
