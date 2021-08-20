@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CspRefactor">
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.act.LoginAct"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

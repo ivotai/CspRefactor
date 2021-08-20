@@ -1,10 +1,11 @@
-package com.unircorn.csp.ui
+package com.unircorn.csp.ui.base
 
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import com.unircorn.csp.app.MyComponent
+import com.unircorn.csp.ui.UI
 
 abstract class BaseFra(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId), UI {
 

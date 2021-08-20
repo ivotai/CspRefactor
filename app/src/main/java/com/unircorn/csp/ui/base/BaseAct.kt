@@ -1,4 +1,4 @@
-package com.unircorn.csp.ui
+package com.unircorn.csp.ui.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

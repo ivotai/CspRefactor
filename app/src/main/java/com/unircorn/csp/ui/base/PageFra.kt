@@ -1,4 +1,4 @@
-package com.unircorn.csp.ui
+package com.unircorn.csp.ui.base
 
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.LinearLayoutManager
