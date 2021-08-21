@@ -55,10 +55,10 @@ https://stackoverflow.com/questions/66475730/in-android-studio-arctic-fox-canary
 
 更新下载 apk 已测试，安装覆盖未测试 todo 需测试
 
-我的，修改密码
-
-搜索，文章，文章详情
-
 my_fra 界面没有调整 todo 不急
+修改密码界面没有调整 todo 不急
+搜索暂时隐藏 待恢复 todo 不急
+
+文章，文章详情
 
 
