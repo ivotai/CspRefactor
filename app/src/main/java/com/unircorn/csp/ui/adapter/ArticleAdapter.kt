@@ -1,5 +1,6 @@
 package com.unircorn.csp.ui.adapter
 
+import android.content.Intent
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
@@ -8,12 +9,14 @@ import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.unircorn.csp.R
+import com.unircorn.csp.app.Param
 import com.unircorn.csp.app.displayDateFormat
 import com.unircorn.csp.app.safeClicks
 import com.unircorn.csp.data.model.ArticleNormal
 import com.unircorn.csp.data.model.ArticleWithImage
 import com.unircorn.csp.data.model.normal
 import com.unircorn.csp.data.model.withImage
+import com.unircorn.csp.ui.act.CommentAct
 import org.joda.time.DateTime
 import java.util.*
 
@@ -38,9 +41,9 @@ class ArticleAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder
                 holder.setText(R.id.tvReadCount,"阅读 ${item.article.readCount}")
                 holder.setText(R.id.tvCommentCount,"评论 ${item.article.commentCount}")
                 holder.getView<View>(R.id.root).safeClicks().subscribe {
-//                    Intent(mContext, getActClassByArticle(item.article)).apply {
-//                        putExtra(Param, article.objectId)
-//                    }.let { mContext.startActivity(it) }
+                    Intent(context, CommentAct::class.java).apply {
+                        putExtra(Param, article)
+                    }.let { context.startActivity(it) }
                 }
             }
             withImage -> {
@@ -56,9 +59,9 @@ class ArticleAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder
                 holder.setText(R.id.tvReadCount,"阅读 ${item.article.readCount}")
                 holder.setText(R.id.tvCommentCount,"评论 ${item.article.commentCount}")
                 holder.getView<View>(R.id.root).safeClicks().subscribe {
-//                    Intent(mContext, getActClassByArticle(item.article)).apply {
-//                        putExtra(Param, article.objectId)
-//                    }.let { mContext.startActivity(it) }
+                    Intent(context, CommentAct::class.java).apply {
+                        putExtra(Param, article)
+                    }.let { context.startActivity(it) }
                 }
             }
 

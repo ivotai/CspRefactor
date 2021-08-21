@@ -27,7 +27,8 @@
         </activity>
         <activity android:name=".ui.act.MainAct" />
         <activity android:name=".ui.act.my.MyAct" />
-        <activity android:name=".ui.act.my.ChangePasswordAct"/>
+        <activity android:name=".ui.act.my.ChangePasswordAct" />
+        <activity android:name=".ui.act.CommentAct" />
     </application>
 
 </manifest>

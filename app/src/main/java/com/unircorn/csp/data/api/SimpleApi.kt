@@ -44,4 +44,11 @@ interface SimpleApi {
         @Query("keyword") keyword: String = ""
     ): Single<Response<Page<Article>>>
 
+    @GET("api/v1/app/article/{articleId}/comment")
+    fun getComment(
+        @Path("articleId") articleId: String,
+        @Query("page") page: Int,
+        @Query("pageSize") pageSize: Int = defaultPageSize
+    ): Single<Response<Page<Comment>>>
+
 }
