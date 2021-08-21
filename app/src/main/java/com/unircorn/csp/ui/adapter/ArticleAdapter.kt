@@ -53,6 +53,8 @@ class ArticleAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder
                     R.id.tvPublishTime,
                     DateTime(article.publishTime).toString(displayDateFormat)
                 )
+                holder.setText(R.id.tvReadCount,"阅读 ${item.article.readCount}")
+                holder.setText(R.id.tvCommentCount,"评论 ${item.article.commentCount}")
                 holder.getView<View>(R.id.root).safeClicks().subscribe {
 //                    Intent(mContext, getActClassByArticle(item.article)).apply {
 //                        putExtra(Param, article.objectId)
