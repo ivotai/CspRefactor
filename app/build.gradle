@@ -12,7 +12,7 @@ android {
         minSdk 21
         targetSdk 30
         versionCode 1
-        versionName "1.1"
+        versionName "1.0"
     }
     signingConfigs {
         release {
@@ -43,8 +43,8 @@ android {
     }
     kapt {
         arguments {
-            arg("rxhttp_rxjava", "rxjava3")  //can pass in RxJava2, RxJava3
-            arg("rxhttp_package", "rxhttp")  //Specifies the RxHttp class package
+            arg("rxhttp_rxjava", "rxjava3")
+            arg("rxhttp_package", "rxhttp")
         }
     }
 }

@@ -42,7 +42,7 @@ class LoginFra : BaseFra(R.layout.fra_login) {
         }
 
         // 自动登录
-        if (UserInfo.username.isNotEmpty() && !Globals.isLogout) loginX()
+//        if (UserInfo.username.isNotEmpty() && !Globals.isLogout) loginX()
 
     }
 
