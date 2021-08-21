@@ -19,7 +19,7 @@ import com.unircorn.csp.app.*
 import com.unircorn.csp.data.event.LogoutEvent
 import com.unircorn.csp.databinding.FraMainBinding
 import com.unircorn.csp.ui.act.LoginAct
-import com.unircorn.csp.ui.act.MyAct
+import com.unircorn.csp.ui.act.my.MyAct
 import com.unircorn.csp.ui.base.BaseFra
 import com.unircorn.csp.ui.fragmentStateAdapter.MainFragmentStateAdapter
 import io.reactivex.rxjava3.functions.Consumer

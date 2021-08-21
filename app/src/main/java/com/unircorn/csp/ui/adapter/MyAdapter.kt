@@ -7,8 +7,10 @@ import com.unircorn.csp.R
 import com.unircorn.csp.app.Globals
 import com.unircorn.csp.app.RxBus
 import com.unircorn.csp.app.safeClicks
+import com.unircorn.csp.app.startAct
 import com.unircorn.csp.data.event.LogoutEvent
 import com.unircorn.csp.data.model.MyMenu
+import com.unircorn.csp.ui.act.my.ChangePasswordAct
 
 class MyAdapter : BaseQuickAdapter<MyMenu, BaseViewHolder>(R.layout.item_my) {
 
@@ -21,8 +23,7 @@ class MyAdapter : BaseQuickAdapter<MyMenu, BaseViewHolder>(R.layout.item_my) {
                         Globals.isLogout = true
                         RxBus.post(LogoutEvent(clearPassword = false))
                     }
-                    MyMenu.ChangePassword -> "" //
-                    // todo 修改密码
+                    MyMenu.ChangePassword -> context.startAct(ChangePasswordAct::class.java)
                     else -> {
                     }
                 }

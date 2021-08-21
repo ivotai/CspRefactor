@@ -21,11 +21,6 @@ import com.unircorn.csp.ui.base.BaseFra
 class MyFra : BaseFra(R.layout.fra_my) {
 
     override fun initViews() = with(binding) {
-//        constraintLayout1.background = GradientDrawable(
-//            GradientDrawable.Orientation.TOP_BOTTOM,
-//            intArrayOf(colorPrimary, red300)
-//        )
-
         tvUsername.text = Globals.user.username
         chipCourtName.text = Globals.user.courtName
 
@@ -75,9 +70,6 @@ class MyFra : BaseFra(R.layout.fra_my) {
     }
 
     private val simpleAdapter = MyAdapter()
-
-    private val colorPrimary = ColorUtils.getColor(R.color.md_red_700)
-    private val red300 = ColorUtils.getColor(R.color.md_red_300)
 
 // ----
 
