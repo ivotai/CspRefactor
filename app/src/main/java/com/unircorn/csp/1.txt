@@ -43,19 +43,22 @@ Material 组件研究，特别是颜色的研究。
 
 https://stackoverflow.com/questions/66475730/in-android-studio-arctic-fox-canary-8-the-app-level-build-gradle-does-not-gener
 
-图片应该放在哪个目录下 todo
+图片应该放在哪个目录下 todo 不急
 
 ----
 
 重写登录界面，添加了图标，账号有一键清空，密码添加了眼睛，登录界面支持系统自带暗色主题。
 
-登录超时待测试 todo
+登录超时待测试 todo 需测试
 
 切换 retrofit 适配器到 rxjava3
 
-更新下载 apk 已测试，安装覆盖未测试 todo
+更新下载 apk 已测试，安装覆盖未测试 todo 需测试
 
 我的，修改密码
 
 搜索，文章，文章详情
+
+my_fra 界面没有调整 todo 不急
+
 

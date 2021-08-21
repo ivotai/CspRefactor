@@ -1,9 +1,11 @@
 package com.unircorn.csp.ui.fra
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ColorUtils
 import com.hjq.bar.OnTitleBarListener
 import com.mikepenz.iconics.IconicsDrawable
@@ -11,13 +13,16 @@ import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
 import com.mikepenz.iconics.utils.colorInt
 import com.mikepenz.iconics.utils.sizeDp
+import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.R
-import com.unircorn.csp.app.removeEdgeEffect
-import com.unircorn.csp.app.startAct
+import com.unircorn.csp.app.*
+import com.unircorn.csp.data.event.LogoutEvent
 import com.unircorn.csp.databinding.FraMainBinding
+import com.unircorn.csp.ui.act.LoginAct
 import com.unircorn.csp.ui.act.MyAct
 import com.unircorn.csp.ui.base.BaseFra
 import com.unircorn.csp.ui.fragmentStateAdapter.MainFragmentStateAdapter
+import io.reactivex.rxjava3.functions.Consumer
 import me.majiajie.pagerbottomtabstrip.NavigationController
 import me.majiajie.pagerbottomtabstrip.item.NormalItemView
 
@@ -127,6 +132,25 @@ class MainFra : BaseFra(R.layout.fra_main) {
 
             })
         }
+    }
+
+    override fun initEvents() {
+        fun logout(logoutEvent: LogoutEvent) {
+            api.logout()
+                .lifeOnMain(this)
+                .subscribe({ response ->
+                    if (response.failed) return@subscribe
+                    ActivityUtils.finishAllActivities()
+                    Intent(requireContext(), LoginAct::class.java).apply {
+                        putExtra(Param, logoutEvent.clearPassword)
+                    }.let { startActivity(it) }
+                },
+                    { it.toast() }
+                )
+        }
+        RxBus.registerEvent(this, LogoutEvent::class.java, Consumer {
+            logout(it)
+        })
     }
 
     // ----

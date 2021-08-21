@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/root"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -9,8 +9,8 @@
         android:id="@+id/constraintLayout1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -19,14 +19,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
-            app:backButton="true"
-            app:barStyle="night"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/constraintLayout1"
             app:title="我的"
-            app:titleColor="@color/md_white"
-            app:titleSize="18dp" />
+            app:barStyle="night"
+            app:leftColor="@color/md_white"
+            app:titleColor="@color/md_white" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/circleImageView"
@@ -35,6 +34,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="32dp"
             android:layout_marginBottom="96dp"
+            android:src="@mipmap/my"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleBar" />
@@ -45,10 +45,22 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:textColor="@color/md_white"
+            android:text="用户名"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
             app:layout_constraintStart_toEndOf="@+id/circleImageView"
             app:layout_constraintTop_toTopOf="@+id/circleImageView" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chipCourtName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="法院名"
+            android:textSize="12dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvUsername"
+            app:layout_constraintStart_toEndOf="@+id/tvUsername"
+            app:layout_constraintTop_toTopOf="@+id/tvUsername" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
