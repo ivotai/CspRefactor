@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <com.hjq.bar.TitleBar
         android:id="@+id/titleBar"
@@ -29,26 +29,26 @@
         android:layout_height="wrap_content" />
 
     <LinearLayout
-        android:padding="12dp"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:layout_height="wrap_content">
+        android:orientation="horizontal"
+        android:padding="12dp">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:textSize="16dp"
             android:id="@+id/etContent"
             android:layout_width="0dp"
-            android:hint="发表评论"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
-            android:layout_height="wrap_content"/>
+            android:hint="发表评论"
+            android:textSize="16dp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_create_comment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="发表"/>
+            android:text="发表" />
 
     </LinearLayout>
 

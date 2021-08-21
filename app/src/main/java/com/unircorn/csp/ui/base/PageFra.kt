@@ -76,7 +76,7 @@ abstract class PageFra<T>(@LayoutRes contentLayoutId: Int = R.layout.ui_swipe) :
         loadStartPage()
     }
 
-    open protected fun loadStartPage() {
+    protected open fun loadStartPage() {
         mSwipeRefreshLayout.isRefreshing = true
         loadPage(startPage)
             .lifeOnMain(this)
