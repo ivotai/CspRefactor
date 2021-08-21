@@ -51,4 +51,10 @@ interface SimpleApi {
         @Query("pageSize") pageSize: Int = defaultPageSize
     ): Single<Response<Page<Comment>>>
 
+    @POST("api/v1/app/article/{articleId}/comment")
+    fun createComment(
+        @Path("articleId") articleId: String,
+        @Body createCommentParam: CreateCommentParam
+    ): Single<Response<Any>>
+
 }

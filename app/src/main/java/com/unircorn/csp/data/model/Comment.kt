@@ -1,4 +1,10 @@
 package com.unircorn.csp.data.model
 
-class Comment {
-}
+data class Comment(
+    val content: String,
+    val issueTime: Long,
+    val issuer: String,
+    val objectId: String
+)
+
+data class CreateCommentParam(val content:String)
