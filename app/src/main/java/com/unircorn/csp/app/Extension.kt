@@ -21,7 +21,7 @@ fun View.safeClicks(): Observable<Unit> = this.clicks()
 fun Context.startAct(cls: Class<*>) = startActivity(Intent(this, cls))
 
 fun Fragment.startAct(cls: Class<*>, finishAct: Boolean = false) {
-    startAct(cls)
+    requireActivity().startAct(cls)
     if (finishAct) activity?.finish()
 }
 

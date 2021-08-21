@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.unircorn.csp.app.Category
-import com.unircorn.csp.app.Title
 import com.unircorn.csp.ui.fra.TestFra
 
 class MainFragmentStateAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {

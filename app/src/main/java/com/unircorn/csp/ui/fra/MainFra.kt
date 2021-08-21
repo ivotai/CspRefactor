@@ -13,7 +13,9 @@ import com.mikepenz.iconics.utils.colorInt
 import com.mikepenz.iconics.utils.sizeDp
 import com.unircorn.csp.R
 import com.unircorn.csp.app.removeEdgeEffect
+import com.unircorn.csp.app.startAct
 import com.unircorn.csp.databinding.FraMainBinding
+import com.unircorn.csp.ui.act.MyAct
 import com.unircorn.csp.ui.base.BaseFra
 import com.unircorn.csp.ui.fragmentStateAdapter.MainFragmentStateAdapter
 import me.majiajie.pagerbottomtabstrip.NavigationController
@@ -116,11 +118,11 @@ class MainFra : BaseFra(R.layout.fra_main) {
                 }
 
                 override fun onTitleClick(view: View?) {
-                    // todo 我的
+
                 }
 
                 override fun onRightClick(view: View?) {
-
+                    startAct(MyAct::class.java)
                 }
 
             })

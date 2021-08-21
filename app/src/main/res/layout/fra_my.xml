@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.hjq.bar.TitleBar
+            android:id="@+id/titleBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            app:backButton="true"
+            app:barStyle="night"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/constraintLayout1"
+            app:title="我的"
+            app:titleColor="@color/md_white"
+            app:titleSize="18dp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circleImageView"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="96dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/titleBar" />
+
+        <TextView
+            android:id="@+id/tvUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:textColor="@color/md_white"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
+            app:layout_constraintStart_toEndOf="@+id/circleImageView"
+            app:layout_constraintTop_toTopOf="@+id/circleImageView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="1dp"
+        app:layout_constraintBottom_toBottomOf="@+id/constraintLayout1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout1">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvReadCount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="28dp"
+                app:layout_constraintEnd_toStartOf="@+id/divider1"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="1px"
+                android:layout_height="16dp"
+                android:background="@color/md_grey_400"
+                app:layout_constraintBottom_toBottomOf="@+id/tvReadCount"
+                app:layout_constraintEnd_toStartOf="@+id/tvTopicCount"
+                app:layout_constraintStart_toEndOf="@+id/tvReadCount"
+                app:layout_constraintTop_toTopOf="@+id/tvReadCount" />
+
+            <TextView
+                android:id="@+id/tvTopicCount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="28dp"
+                app:layout_constraintEnd_toStartOf="@+id/divider2"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@+id/divider1"
+                app:layout_constraintTop_toTopOf="@+id/tvReadCount" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="1px"
+                android:layout_height="16dp"
+                android:background="@color/md_grey_400"
+                app:layout_constraintBottom_toBottomOf="@+id/tvTopicCount"
+                app:layout_constraintEnd_toStartOf="@+id/tvReplyCount"
+                app:layout_constraintStart_toEndOf="@+id/tvTopicCount"
+                app:layout_constraintTop_toTopOf="@+id/tvTopicCount" />
+
+            <TextView
+                android:id="@+id/tvReplyCount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="28dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@+id/divider2"
+                app:layout_constraintTop_toTopOf="@+id/tvTopicCount" />
+
+            <TextView
+                android:id="@+id/tvLabel1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="32dp"
+                android:text="浏览历史"
+                android:textColor="@color/md_grey_400"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tvReadCount"
+                app:layout_constraintStart_toStartOf="@+id/tvReadCount"
+                app:layout_constraintTop_toBottomOf="@+id/tvReadCount" />
+
+            <TextView
+                android:id="@+id/tvLabel2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的发帖"
+                android:textColor="@color/md_grey_400"
+                android:textSize="14dp"
+                app:layout_constraintEnd_toEndOf="@+id/tvTopicCount"
+                app:layout_constraintStart_toStartOf="@+id/tvTopicCount"
+                app:layout_constraintTop_toTopOf="@+id/tvLabel1" />
+
+            <TextView
+                android:id="@+id/tvLabel3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="我的回复"
+                android:textColor="@color/md_grey_400"
+                android:textSize="14dp"
+                app:layout_constraintEnd_toEndOf="@+id/tvReplyCount"
+                app:layout_constraintStart_toStartOf="@+id/tvReplyCount"
+                app:layout_constraintTop_toTopOf="@+id/tvLabel2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView2">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

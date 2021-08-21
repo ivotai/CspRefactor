@@ -26,6 +26,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.act.MainAct" />
+        <activity android:name=".ui.act.MyAct" />
     </application>
 
 </manifest>
