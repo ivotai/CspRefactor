@@ -21,6 +21,7 @@ import com.unircorn.csp.data.model.base.Response
 import com.unircorn.csp.databinding.FraCommentBinding
 import com.unircorn.csp.ui.adapter.CommentAdapter
 import com.unircorn.csp.ui.base.PageFra
+import com.unircorn.csp.ui.header.ArticleHeaderType1
 import io.reactivex.rxjava3.core.Single
 
 class CommentFra : PageFra<Comment>(R.layout.fra_comment) {
@@ -34,7 +35,7 @@ class CommentFra : PageFra<Comment>(R.layout.fra_comment) {
         super.initBindings()
         binding.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
             override fun onLeftClick(v: View?) {
-               requireActivity().finish()
+                requireActivity().finish()
             }
 
             override fun onRightClick(v: View?) {
@@ -45,6 +46,18 @@ class CommentFra : PageFra<Comment>(R.layout.fra_comment) {
             }
         })
         binding.btnCreateComment.safeClicks().subscribe { createCommentX() }
+    }
+
+    private fun getArticle() {
+        api.getArticle(objectId = article.objectId)
+            .lifeOnMain(this)
+            .subscribe(
+                {
+                    if (it.failed) return@subscribe
+                    pageAdapter.addHeaderView(ArticleHeaderType1(article = it.data))
+                },
+                { it }
+            )
     }
 
     private fun createCommentX() {
@@ -67,18 +80,19 @@ class CommentFra : PageFra<Comment>(R.layout.fra_comment) {
                     binding.etContent.setText("")
                     loadStartPage()
                 },
-                {it.toast()}
+                { it.toast() }
             )
     }
 
 
-
     override fun initPageAdapter() {
         pageAdapter = CommentAdapter()
+
         // 根据 type 添加三种头 todo
 //        pageAdapter.addHeaderView(TopicHeader(context = this,topic = topic))
         // 当空数据时显示空布局和HeaderView
-        pageAdapter.headerWithEmptyEnable =true
+        pageAdapter.headerWithEmptyEnable = true
+        getArticle()
     }
 
     override fun initItemDecoration(recyclerView: RecyclerView) {

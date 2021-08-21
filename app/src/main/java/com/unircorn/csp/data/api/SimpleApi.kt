@@ -44,6 +44,9 @@ interface SimpleApi {
         @Query("keyword") keyword: String = ""
     ): Single<Response<Page<Article>>>
 
+    @GET("api/v1/app/article/{objectId}")
+    fun getArticle(@Path("objectId") objectId: String): Single<Response<Article>>
+
     @GET("api/v1/app/article/{articleId}/comment")
     fun getComment(
         @Path("articleId") articleId: String,
