@@ -17,7 +17,9 @@ data class Article(
     val cover: String,
     val type: Int,          // 1=图文，2=图文+视频，3=pdf
     val pdf: Attachment,
-    val video: Attachment
+    val video: Attachment,
+    val readCount: Int,
+    val commentCount: Int
 ) : Serializable
 
 data class Attachment(

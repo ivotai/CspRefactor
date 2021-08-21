@@ -55,12 +55,17 @@ abstract class PageFra<T>(@LayoutRes contentLayoutId: Int = R.layout.ui_swipe) :
             initPageAdapter()
             adapter = pageAdapter
         }
+        initItemDecoration(mRecyclerView)
+    }
+
+    protected open fun initItemDecoration(recyclerView: RecyclerView){
+
     }
 
     private fun initLoadMoreModule() {
         loadMoreModule.run {
             // 设置为 false 可以更好地测试分页逻辑
-            isAutoLoadMore = false // todo
+            isAutoLoadMore = true
             isEnableLoadMoreIfNotFullPage = true
         }
     }

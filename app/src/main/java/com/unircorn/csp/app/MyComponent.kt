@@ -12,6 +12,4 @@ class MyComponent : KoinComponent {
 
     val context: Context by inject()
 
-//    val baseUrl: String by inject(named(baseUrl))
-
 }

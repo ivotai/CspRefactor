@@ -116,7 +116,7 @@ class MainFra : BaseFra(R.layout.fra_main) {
         with(binding) {
             navigationController.addSimpleTabItemSelectedListener { index, _ ->
                 titleBar.title = MainFragmentStateAdapter.titles[index]
-                viewPager2.currentItem = index
+                viewPager2.setCurrentItem(index,false)
             }
             titleBar.setOnTitleBarListener(object : OnTitleBarListener {
                 override fun onLeftClick(view: View?) {

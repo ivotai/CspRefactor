@@ -1,6 +1,9 @@
 package com.unircorn.csp.app
 
-const val baseUrl = "baseUrl"
+const val baseUrl = "http://csp.seafa.kjgk.xyz:8000/"
+
+//"http://csp.seafa.kjgk.xyz:8000"       // 测试
+// "http://58.16.65.7:8080"
 
 const val Cookie = "Cookie"
 const val SESSION = "SESSION"

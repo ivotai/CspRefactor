@@ -1,25 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/root"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/tvTitle"
-        android:layout_width="match_parent"
+        android:layout_width="379dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
         android:text="文章标题"
         android:textColor="@color/md_black"
-        android:textSize="18dp" />
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:layout_marginTop="4dp"
         android:id="@+id/tvPublishTime"
-        android:textSize="14dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         android:text="2020-01-10"
         android:textColor="@color/md_grey_500"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/tvTitle"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvReadCount"
+        app:layout_constraintTop_toTopOf="@+id/tvReadCount" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/tvReadCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="已读数"
+        android:textColor="@color/md_grey_500"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvCommentCount"
+        app:layout_constraintEnd_toStartOf="@+id/tvPublishTime"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tvCommentCount"
+        app:layout_constraintTop_toTopOf="@+id/tvCommentCount" />
+
+    <TextView
+        android:id="@+id/tvCommentCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="已评论数"
+        android:textColor="@color/md_grey_500"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toStartOf="@+id/tvReadCount"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@+id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
