@@ -18,7 +18,7 @@
         app:leftTitle="搜索"
         app:rightColor="@color/md_white"
         app:rightTitle="我的"
-        app:title="默认的标题栏"
+        app:title="黔法快阅通"
         app:titleColor="@color/md_white" />
 
     <androidx.viewpager2.widget.ViewPager2
