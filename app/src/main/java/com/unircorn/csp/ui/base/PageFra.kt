@@ -8,12 +8,14 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.R
+import com.unircorn.csp.app.defaultPageSize
+import com.unircorn.csp.app.toast
 import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
 import io.reactivex.rxjava3.core.Single
 
 
-abstract class PageFra<T>(@LayoutRes contentLayoutId: Int = R.layout.ui_swipe_recycler) :
+abstract class PageFra<T>(@LayoutRes contentLayoutId: Int = R.layout.ui_swipe) :
     BaseFra(contentLayoutId = contentLayoutId) {
 
     abstract fun initPageAdapter()
@@ -26,7 +28,7 @@ abstract class PageFra<T>(@LayoutRes contentLayoutId: Int = R.layout.ui_swipe_re
 
     private val startPage = 1
 
-    protected open val pageSize = 5
+    protected open val pageSize = defaultPageSize
 
     private val size
         get() = pageAdapter.data.size
@@ -41,11 +43,10 @@ abstract class PageFra<T>(@LayoutRes contentLayoutId: Int = R.layout.ui_swipe_re
     }
 
     private fun initSwipeRefreshLayout() {
-//        mSwipeRefreshLayout.
-//        mSwipeRefreshLayout.run {
-//            setColorSchemeResources(R.color.white)
-//            setProgressBackgroundColorSchemeResource(R.color.blue_500)
-//        }
+        mSwipeRefreshLayout.run {
+            setColorSchemeResources(R.color.white)
+            setProgressBackgroundColorSchemeResource(R.color.md_red_700)
+        }
     }
 
     private fun initRecyclerView() {
@@ -59,7 +60,7 @@ abstract class PageFra<T>(@LayoutRes contentLayoutId: Int = R.layout.ui_swipe_re
     private fun initLoadMoreModule() {
         loadMoreModule.run {
             // 设置为 false 可以更好地测试分页逻辑
-            isAutoLoadMore = true
+            isAutoLoadMore = false // todo
             isEnableLoadMoreIfNotFullPage = true
         }
     }
@@ -79,16 +80,16 @@ abstract class PageFra<T>(@LayoutRes contentLayoutId: Int = R.layout.ui_swipe_re
                 if (it.failed) return@subscribe
                 pageAdapter.setList(it.data.content)
                 checkIsLoadAll(it)
-                setEmptyViewIfNeed(it)
+//                setEmptyViewIfNeed(it)
             }, {
                 mSwipeRefreshLayout.isRefreshing = false
-//                it.showPrompt()
+                it.toast()
             })
     }
 
-    private fun setEmptyViewIfNeed(pageResponse: Response<Page<T>>) {
+//    private fun setEmptyViewIfNeed(pageResponse: Response<Page<T>>) {
 //        if (pageResponse.data.content.isEmpty()) pageAdapter.setEmptyView(R.layout.ui_empty_view)
-    }
+//    }
 
     private fun loadNextPage() {
         loadPage(nextPage)
@@ -103,7 +104,7 @@ abstract class PageFra<T>(@LayoutRes contentLayoutId: Int = R.layout.ui_swipe_re
                 checkIsLoadAll(it)
             }, {
                 loadMoreModule.loadMoreFail()
-//                it.showPrompt()
+                it.toast()
             })
     }
 

@@ -1,10 +1,9 @@
 package com.unircorn.csp.data.api
 
 import com.unircorn.csp.app.Globals
-import com.unircorn.csp.data.model.CheckUpdateResponse
-import com.unircorn.csp.data.model.LoginResponse
-import com.unircorn.csp.data.model.ModifyPasswordParam
-import com.unircorn.csp.data.model.Summary
+import com.unircorn.csp.app.defaultPageSize
+import com.unircorn.csp.data.model.*
+import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
 import io.reactivex.rxjava3.core.Single
 import retrofit2.Call
@@ -36,5 +35,13 @@ interface SimpleApi {
 
     @PUT("api/v1/app/modifyPassword")
     fun modifyPassword(@Body modifyPasswordParam: ModifyPasswordParam): Single<Response<Any>>
+
+    @GET("api/v1/app/article")
+    fun getArticle(
+        @Query("page") page: Int,
+        @Query("pageSize") pageSize: Int = defaultPageSize,
+        @Query("category") category: String = "",
+        @Query("keyword") keyword: String = ""
+    ): Single<Response<Page<Article>>>
 
 }
