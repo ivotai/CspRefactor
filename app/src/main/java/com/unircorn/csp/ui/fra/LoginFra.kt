@@ -7,25 +7,74 @@ import android.view.ViewGroup
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
 import com.mikepenz.iconics.utils.sizeDp
+import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.R
+import com.unircorn.csp.app.*
+import com.unircorn.csp.app.helper.VersionHelper
 import com.unircorn.csp.databinding.FraLoginBinding
+import com.unircorn.csp.ui.act.LoginAct
 import com.unircorn.csp.ui.base.BaseFra
 
 class LoginFra : BaseFra(R.layout.fra_login) {
 
-    override fun initViews() {
-        with(binding) {
-            tilUsername.startIconDrawable =
-                IconicsDrawable(requireContext(), FontAwesome.Icon.faw_user1).apply {
-                    sizeDp = 24
-                }
-            tilPassword.startIconDrawable =
-                IconicsDrawable(requireContext(), FontAwesome.Icon.faw_lock).apply {
-                    sizeDp = 24
-                }
+    override fun initViews() = with(binding) {
+        tilUsername.startIconDrawable =
+            IconicsDrawable(requireContext(), FontAwesome.Icon.faw_user1).apply {
+                sizeDp = 24
+            }
+        tilPassword.startIconDrawable =
+            IconicsDrawable(requireContext(), FontAwesome.Icon.faw_lock).apply {
+                sizeDp = 24
+            }
+        etUsername.setText(UserInfo.username)
+        etPassword.setText(UserInfo.password)
+        if (fromChangePassword) {
+            etPassword.setText("")
+            etPassword.requestFocus()
         }
     }
 
+    private val fromChangePassword by lazy { arguments?.getBoolean(Param, false) ?: false }
+
+    override fun initBindings() {
+        with(binding) {
+            btnLogin.safeClicks().subscribe { loginX() }
+        }
+
+        // 自动登录
+        if (UserInfo.username.isNotEmpty() && !Globals.isLogout) loginX()
+
+    }
+
+    private fun loginX() = with(binding) {
+        if (etUsername.isEmpty()) {
+            ("账号不能为空").toast()
+            return@with
+        }
+        if (etPassword.isEmpty()) {
+            ("密码不能为空").toast()
+            return@with
+        }
+        login()
+    }
+
+    private fun login() = with(binding) {
+        api.login(etUsername.trimText(), etPassword.trimText())
+            .lifeOnMain(this@LoginFra)
+            .subscribe(
+                {
+                    if (it.failed) return@subscribe
+                    Globals.loginResponse = it
+                    Globals.isLogout = false
+                    with(UserInfo) {
+                        username = etUsername.trimText()
+                        password = etPassword.trimText()
+                    }
+                    VersionHelper.check(requireActivity() as LoginAct)
+                },
+                { it.toast() }
+            )
+    }
 
     // ----
 

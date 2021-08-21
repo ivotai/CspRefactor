@@ -1,4 +1,4 @@
-package com.unircorn.csp.data.model
+package com.unircorn.csp.data.model.base
 
 data class Page<T>(
     val content: List<T>,

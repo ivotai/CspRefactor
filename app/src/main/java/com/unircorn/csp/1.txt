@@ -49,4 +49,9 @@ https://stackoverflow.com/questions/66475730/in-android-studio-arctic-fox-canary
 
 重写登录界面，添加了图标，账号有一键清空，密码添加了眼睛，登录界面支持系统自带暗色主题。
 
+登录超时待测试 todo
+
+切换 retrofit 适配器到 rxjava3
+
+更新下载 apk 已测试，安装覆盖未测试 todo
 

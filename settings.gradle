@@ -4,6 +4,12 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { url "https://jitpack.io" }
+        //noinspection JcenterRepositoryObsolete
+        jcenter() {
+            content {
+                includeModule("com.kaopiz", "kprogresshud")
+            }
+        }
     }
 }
 rootProject.name = "CspRefactor"

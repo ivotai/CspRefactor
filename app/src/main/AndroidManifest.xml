@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.unircorn.csp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <application
         android:name=".app.App"
         android:allowBackup="false"
         android:icon="@mipmap/logo"
         android:label="贵州智慧法院进行时"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/logo"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CspRefactor">
+        android:theme="@style/Theme.CspRefactor"
+        tools:replace="android:allowBackup">
         <activity
             android:name=".ui.act.LoginAct"
             android:exported="true">
@@ -19,6 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.act.MainAct" />
     </application>
 
 </manifest>

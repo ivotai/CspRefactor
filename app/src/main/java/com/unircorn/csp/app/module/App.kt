@@ -6,6 +6,9 @@ import org.koin.dsl.module
 
 val appModule = module {
 
-    single(named(baseUrl)) { "https://www.baidu.com/" }
+    single(named(baseUrl)) { "http://csp.seafa.kjgk.xyz:8000" }
 
 }
+
+//"http://csp.seafa.kjgk.xyz:8000"       // 测试
+// "http://58.16.65.7:8080"

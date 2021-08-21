@@ -1,4 +1,4 @@
-package com.unircorn.csp.data.model
+package com.unircorn.csp.data.model.base
 
 import com.unircorn.csp.app.toast
 

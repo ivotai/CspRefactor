@@ -8,8 +8,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.R
-import com.unircorn.csp.data.model.Page
-import com.unircorn.csp.data.model.Response
+import com.unircorn.csp.data.model.base.Page
+import com.unircorn.csp.data.model.base.Response
 import io.reactivex.rxjava3.core.Single
 
 
