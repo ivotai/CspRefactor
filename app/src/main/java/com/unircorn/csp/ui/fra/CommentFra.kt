@@ -22,6 +22,7 @@ import com.unircorn.csp.databinding.FraCommentBinding
 import com.unircorn.csp.ui.adapter.CommentAdapter
 import com.unircorn.csp.ui.base.PageFra
 import com.unircorn.csp.ui.header.CommentFraHeaderType1
+import com.unircorn.csp.ui.header.CommentFraHeaderType2
 import io.reactivex.rxjava3.core.Single
 
 class CommentFra : PageFra<Comment>(R.layout.fra_comment) {
@@ -54,7 +55,15 @@ class CommentFra : PageFra<Comment>(R.layout.fra_comment) {
             .subscribe(
                 {
                     if (it.failed) return@subscribe
-                    pageAdapter.addHeaderView(CommentFraHeaderType1(article = it.data))
+                    if (it.data.type == 1)    // 1=图文，2=图文+视频，3=pdf
+                        pageAdapter.addHeaderView(CommentFraHeaderType1(article = it.data))
+                    if (it.data.type == 3)
+                        pageAdapter.addHeaderView(
+                            CommentFraHeaderType2(
+                                context = requireContext(),
+                                article = it.data
+                            )
+                        )
                 },
                 { it.toast() }
             )
