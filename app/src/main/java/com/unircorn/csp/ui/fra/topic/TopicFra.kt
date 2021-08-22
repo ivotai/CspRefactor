@@ -1,5 +1,6 @@
 package com.unircorn.csp.ui.fra.topic
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,17 +8,35 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chad.library.adapter.base.entity.MultiItemEntity
+import com.mikepenz.iconics.IconicsDrawable
+import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
+import com.mikepenz.iconics.utils.colorInt
+import com.mikepenz.iconics.utils.sizeDp
 import com.unircorn.csp.R
 import com.unircorn.csp.app.*
 import com.unircorn.csp.data.model.*
 import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
-import com.unircorn.csp.databinding.UiSwipeBinding
+import com.unircorn.csp.databinding.FraTopicBinding
 import com.unircorn.csp.ui.adapter.TopicAdapter
 import com.unircorn.csp.ui.base.PageFra
 import io.reactivex.rxjava3.core.Single
 
 class TopicFra : PageFra<MultiItemEntity>(R.layout.ui_swipe) {
+
+    override fun initViews() {
+        super.initViews()
+        initFab()
+    }
+
+    private fun initFab() {
+        binding.floatingActionButton.setImageDrawable(
+            IconicsDrawable(requireContext(), FontAwesome.Icon.faw_plus).apply {
+                colorInt = Color.WHITE
+                sizeDp = 24
+            }
+        )
+    }
 
     override fun initPageAdapter() {
         pageAdapter = TopicAdapter()
@@ -52,7 +71,7 @@ class TopicFra : PageFra<MultiItemEntity>(R.layout.ui_swipe) {
 
 // ----
 
-    private var _binding: UiSwipeBinding? = null
+    private var _binding: FraTopicBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -63,7 +82,7 @@ class TopicFra : PageFra<MultiItemEntity>(R.layout.ui_swipe) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = UiSwipeBinding.inflate(inflater, container, false)
+        _binding = FraTopicBinding.inflate(inflater, container, false)
         return binding.root
     }
 
