@@ -1,7 +1,9 @@
 package com.unircorn.csp.data.model
 
 import com.chad.library.adapter.base.entity.MultiItemEntity
+import com.unircorn.csp.ui.act.topic.CommentTopicNormalAct
 import com.unircorn.csp.ui.adapter.TopicAdapter
+import com.unircorn.csp.ui.fra.topic.CommentTopicNormalFra
 import java.io.Serializable
 
 data class Topic(
@@ -14,12 +16,12 @@ data class Topic(
     val images: List<Attachment>,
     val videos: List<Attachment>
 ) : Serializable {
-    val type: Int
+    val targetClass: Class<*>
         get() = when {
-            videos.isNotEmpty() -> 3
+            videos.isNotEmpty() -> CommentTopicNormalAct::class.java
             // todo
 //        images.isNotEmpty() ->3
-            else -> 0
+            else -> CommentTopicNormalAct::class.java
         }
 }
 

@@ -1,5 +1,7 @@
 package com.unircorn.csp.ui.adapter
 
+import android.content.Intent
+import android.view.View
 import cn.jzvd.JZDataSource
 import cn.jzvd.Jzvd
 import cn.jzvd.JzvdStd
@@ -9,16 +11,9 @@ import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.unircorn.csp.R
-import com.unircorn.csp.app.Cookie
-import com.unircorn.csp.app.Globals
-import com.unircorn.csp.app.SESSION
-import com.unircorn.csp.app.displayDateFormat
-import com.unircorn.csp.data.model.Article
+import com.unircorn.csp.app.*
 import com.unircorn.csp.data.model.TopicNormal
 import com.unircorn.csp.data.model.TopicVideo
-import com.unircorn.csp.ui.act.article.CommentAct
-import com.unircorn.csp.ui.act.article.CommentPdfAct
-import com.unircorn.csp.ui.act.article.CommentVideoAct
 import org.joda.time.DateTime
 import java.util.*
 
@@ -46,11 +41,11 @@ class TopicAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(
                     DateTime(topic.issueTime).toString(displayDateFormat)
                 )
                 holder.setText(R.id.tvCommentCount, "回复 ${topic.commentCount}")
-//                holder.getView<View>(R.id.root).safeClicks().subscribe {
-//                    Intent(context, getActClassByArticle(article)).apply {
-//                        putExtra(Param, article)
-//                    }.let { context.startActivity(it) }
-//                }
+                holder.getView<View>(R.id.root).safeClicks().subscribe {
+                    Intent(context, topic.targetClass).apply {
+                        putExtra(Param, topic)
+                    }.let { context.startActivity(it) }
+                }
             }
             topic_video -> {
                 item as TopicVideo
@@ -65,10 +60,5 @@ class TopicAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(
         }
     }
 
-    private fun getActClassByArticle(article: Article) = when (article.type) {
-        1 -> CommentAct::class.java
-        2 -> CommentVideoAct::class.java
-        else -> CommentPdfAct::class.java
-    }
 
 }

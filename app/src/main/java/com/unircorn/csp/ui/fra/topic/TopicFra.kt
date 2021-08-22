@@ -19,6 +19,7 @@ import com.unircorn.csp.data.model.*
 import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
 import com.unircorn.csp.databinding.FraTopicBinding
+import com.unircorn.csp.ui.act.topic.CommentTopicNormalAct
 import com.unircorn.csp.ui.act.topic.CreateTopicAct
 import com.unircorn.csp.ui.adapter.TopicAdapter
 import com.unircorn.csp.ui.base.PageFra
@@ -85,7 +86,9 @@ class TopicFra : PageFra<MultiItemEntity>(R.layout.fra_create_topic) {
             .map {
                 val page1 = Page(
                     content = it.data.content.map { topic ->
-                        if (topic.type == 0) TopicNormal(topic = topic)
+                        if (topic.targetClass == CommentTopicNormalAct::class.java) TopicNormal(
+                            topic = topic
+                        )
                         else TopicVideo(topic = topic)
                     },
                     totalElements = it.data.totalElements
