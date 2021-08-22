@@ -59,9 +59,7 @@ my_fra 界面没有调整 todo 不急
 修改密码界面调整 todo 不急
 在自定义 View 中使用 ViewBinding todo 不急
 FileUtil2 待优化 todo 不急
+视频第一帧的缩略图怎么获取 todo 不是很急
 
-----
-展示 topicfra
-上传测试
 
 

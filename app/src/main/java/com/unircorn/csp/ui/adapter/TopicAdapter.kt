@@ -3,12 +3,16 @@ package com.unircorn.csp.ui.adapter
 import cn.jzvd.JZDataSource
 import cn.jzvd.Jzvd
 import cn.jzvd.JzvdStd
+import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.unircorn.csp.R
-import com.unircorn.csp.app.*
+import com.unircorn.csp.app.Cookie
+import com.unircorn.csp.app.Globals
+import com.unircorn.csp.app.SESSION
+import com.unircorn.csp.app.displayDateFormat
 import com.unircorn.csp.data.model.Article
 import com.unircorn.csp.data.model.TopicNormal
 import com.unircorn.csp.data.model.TopicVideo
@@ -55,8 +59,8 @@ class TopicAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(
                 val jzDataSource = JZDataSource(topic.videos[0].fullUrl, topic.title)
                 jzDataSource.headerMap[Cookie] = "$SESSION=${Globals.session}"
                 jzvdStd.setUp(jzDataSource, Jzvd.SCREEN_NORMAL)
-//                Glide.with(holder.jzvdStd.getContext()).load(videoEntity.getThumb())
-//                    .into(holder.jzvdStd.posterImageView)
+                Glide.with(context).load(topic.videos[0].imageUrl)
+                    .into(jzvdStd.posterImageView)
             }
         }
     }
