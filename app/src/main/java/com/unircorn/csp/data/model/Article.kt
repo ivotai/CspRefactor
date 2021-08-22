@@ -3,6 +3,7 @@ package com.unircorn.csp.data.model
 import com.blankj.utilcode.util.FileUtils
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.unircorn.csp.app.MyComponent
+import com.unircorn.csp.app.baseUrl
 import java.io.File
 import java.io.Serializable
 
@@ -32,7 +33,7 @@ data class Attachment(
     val path get() = "${MyComponent().context.filesDir}/$uniqueFilename"
     val file get() = File(path)
     val exists get() = file.exists()
-//    val fullUrl get() = MyComponent().baseUrl + url
+    val fullUrl get() = baseUrl + url
 }
 
 const val normal = 0

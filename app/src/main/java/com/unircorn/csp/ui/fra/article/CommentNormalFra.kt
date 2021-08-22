@@ -1,5 +1,6 @@
 package com.unircorn.csp.ui.fra.article
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,13 +8,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.list.listItems
 import com.blankj.utilcode.util.ToastUtils
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.hjq.bar.OnTitleBarListener
+import com.kaopiz.kprogresshud.KProgressHUD
 import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.R
 import com.unircorn.csp.app.*
+import com.unircorn.csp.app.helper.FileUtils2
 import com.unircorn.csp.data.model.Article
+import com.unircorn.csp.data.model.Attachment
 import com.unircorn.csp.data.model.Comment
 import com.unircorn.csp.data.model.CreateCommentParam
 import com.unircorn.csp.data.model.base.Page
@@ -23,6 +29,9 @@ import com.unircorn.csp.ui.adapter.CommentAdapter
 import com.unircorn.csp.ui.base.PageFra
 import com.unircorn.csp.ui.header.WebViewHeaderView
 import io.reactivex.rxjava3.core.Single
+import rxhttp.RxHttp
+import rxhttp.wrapper.exception.HttpStatusCodeException
+import java.io.File
 
 class CommentNormalFra : PageFra<Comment>(R.layout.fra_comment_normal) {
 
@@ -33,19 +42,63 @@ class CommentNormalFra : PageFra<Comment>(R.layout.fra_comment_normal) {
 
     override fun initBindings() {
         super.initBindings()
-        binding.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
-            override fun onLeftClick(v: View?) {
-                requireActivity().finish()
-            }
+        if (article.attachments.isNotEmpty()) {
+            binding.titleBar.rightTitle = "附件"
+            binding.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
+                override fun onLeftClick(v: View?) {
+                    requireActivity().finish()
+                }
 
-            override fun onRightClick(v: View?) {
+                override fun onRightClick(v: View?) {
+                    showAttachmentDialog()
+                }
 
-            }
-
-            override fun onTitleClick(v: View?) {
-            }
-        })
+                override fun onTitleClick(v: View?) {
+                }
+            })
+        }
         binding.btnCreateComment.safeClicks().subscribe { createCommentX() }
+    }
+
+    @SuppressLint("CheckResult")
+    private fun showAttachmentDialog() {
+        MaterialDialog(requireContext()).show {
+            listItems(items = article.attachments.map { it.filename }) { _, index, _ ->
+                downloadAttachment(article.attachments[index])
+            }
+        }
+    }
+
+    private fun downloadAttachment(attachment: Attachment) = with(attachment) {
+        if (exists) {
+            FileUtils2.openFile(requireContext(), file = file)
+            return@with
+        }
+        val progressMask = KProgressHUD.create(requireContext())
+            .setStyle(KProgressHUD.Style.BAR_DETERMINATE)
+            .setCancellable(true)
+            .setDimAmount(0.5f)
+            .setMaxProgress(100)
+            .show()
+        val fullUrl = baseUrl + url
+        RxHttp.get(fullUrl)
+            .addHeader(Cookie, "${SESSION}=${Globals.session}")
+            .asDownload(
+                path,
+            ) { progressMask.setProgress(it.progress) }
+            .subscribe(
+                {
+                    progressMask.dismiss()
+                    FileUtils2.openFile(requireContext(), file = File(it))
+                },
+                {
+                    progressMask.dismiss()
+                    if (it is HttpStatusCodeException) {
+                        if (it.statusCode == "401")
+                            ToastUtils.showLong("登陆超时，请重新登陆")
+                    }
+                }
+            )
     }
 
     private fun getArticle() {
