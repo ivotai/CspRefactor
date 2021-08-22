@@ -23,12 +23,13 @@ import com.unircorn.csp.data.model.*
 import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
 import com.unircorn.csp.databinding.FraTopicBinding
+import com.unircorn.csp.ui.act.topic.CreateTopicAct
 import com.unircorn.csp.ui.adapter.TopicAdapter
 import com.unircorn.csp.ui.base.PageFra
 import io.reactivex.rxjava3.core.Single
 
 
-class TopicFra : PageFra<MultiItemEntity>(R.layout.ui_swipe) {
+class TopicFra : PageFra<MultiItemEntity>(R.layout.fra_create_topic) {
 
     override fun initViews() {
         super.initViews()
@@ -47,23 +48,8 @@ class TopicFra : PageFra<MultiItemEntity>(R.layout.ui_swipe) {
     override fun initBindings() {
         super.initBindings()
         binding.floatingActionButton.safeClicks().subscribe {
-            s()
+            startAct(CreateTopicAct::class.java)
         }
-    }
-
-    private fun s() {
-        PictureSelector.create(this)
-            .openCamera(PictureMimeType.ofImage())
-            .imageEngine(GlideEngine.createGlideEngine())
-            .forResult(object : OnResultCallbackListener<LocalMedia?> {
-                override fun onResult(result: List<LocalMedia?>) {
-                    // onResult Callback
-                }
-
-                override fun onCancel() {
-                    // onCancel Callback
-                }
-            })
     }
 
     override fun initPageAdapter() {
