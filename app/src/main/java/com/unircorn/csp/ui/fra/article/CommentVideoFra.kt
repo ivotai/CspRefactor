@@ -29,6 +29,7 @@ import com.unircorn.csp.data.model.base.Response
 import com.unircorn.csp.databinding.FraCommentVideoBinding
 import com.unircorn.csp.ui.adapter.CommentAdapter
 import com.unircorn.csp.ui.base.PageFra
+import com.unircorn.csp.ui.header.WebViewHeaderView
 import io.reactivex.rxjava3.core.Single
 import rxhttp.RxHttp
 import rxhttp.wrapper.exception.HttpStatusCodeException
@@ -114,7 +115,11 @@ class CommentVideoFra : PageFra<Comment>(R.layout.fra_comment_video) {
         api.getArticle(objectId = article.objectId)
             .lifeOnMain(this)
             .subscribe(
-                { if (it.failed) return@subscribe },
+                {
+                    if (it.failed) return@subscribe
+                    pageAdapter.addHeaderView(WebViewHeaderView(content = it.data.content))
+
+                },
                 { it.toast() }
             )
     }

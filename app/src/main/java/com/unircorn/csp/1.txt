@@ -47,7 +47,7 @@ https://stackoverflow.com/questions/66475730/in-android-studio-arctic-fox-canary
 
 ----
 
-重写登录界面，添加了图标，账号有一键清空，密码添加了眼睛，登录界面支持系统自带暗色主题。
+重写登录界面，添加了图标，账号有一键清空，密码添加了眼睛，界面支持系统自带暗色主题。
 
 登录超时待测试 todo 需测试
 
@@ -56,8 +56,7 @@ https://stackoverflow.com/questions/66475730/in-android-studio-arctic-fox-canary
 更新下载 apk 已测试，安装覆盖未测试 todo 需测试
 
 my_fra 界面没有调整 todo 不急
-修改密码界面没有调整 todo 不急
-搜索暂时隐藏 待恢复 todo 不急
+修改密码界面调整 todo 不急
 在自定义 View 中使用 ViewBinding todo 不急
 FileUtil2 待优化 todo 不急
 
