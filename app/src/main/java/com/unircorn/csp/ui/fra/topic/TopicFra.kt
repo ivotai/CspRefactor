@@ -1,6 +1,5 @@
 package com.unircorn.csp.ui.fra.topic
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,17 +7,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chad.library.adapter.base.entity.MultiItemEntity
-import com.luck.picture.lib.PictureSelector
-import com.luck.picture.lib.config.PictureMimeType
-import com.luck.picture.lib.entity.LocalMedia
-import com.luck.picture.lib.listener.OnResultCallbackListener
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
-import com.mikepenz.iconics.utils.colorInt
 import com.mikepenz.iconics.utils.sizeDp
 import com.unircorn.csp.R
 import com.unircorn.csp.app.*
-import com.unircorn.csp.app.third.GlideEngine
+import com.unircorn.csp.data.event.RefreshTopicEvent
 import com.unircorn.csp.data.model.*
 import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
@@ -27,6 +21,7 @@ import com.unircorn.csp.ui.act.topic.CreateTopicAct
 import com.unircorn.csp.ui.adapter.TopicAdapter
 import com.unircorn.csp.ui.base.PageFra
 import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.functions.Consumer
 
 
 class TopicFra : PageFra<MultiItemEntity>(R.layout.fra_create_topic) {
@@ -39,7 +34,6 @@ class TopicFra : PageFra<MultiItemEntity>(R.layout.fra_create_topic) {
     private fun initFab() {
         binding.floatingActionButton.setImageDrawable(
             IconicsDrawable(requireContext(), FontAwesome.Icon.faw_plus).apply {
-                colorInt = Color.WHITE
                 sizeDp = 24
             }
         )
@@ -50,6 +44,12 @@ class TopicFra : PageFra<MultiItemEntity>(R.layout.fra_create_topic) {
         binding.floatingActionButton.safeClicks().subscribe {
             startAct(CreateTopicAct::class.java)
         }
+    }
+
+    override fun initEvents() {
+        RxBus.registerEvent(this, RefreshTopicEvent::class.java, Consumer {
+            loadStartPage()
+        })
     }
 
     override fun initPageAdapter() {

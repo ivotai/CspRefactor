@@ -25,14 +25,15 @@ data class Topic(
 
 data class CreateTopicParam(
     val content: String,
-    val images: List<UploadResponse>,
+    val images: List<UploadResponse> = ArrayList(),
     val title: String,
-    val videos: List<UploadResponse>
+    val videos: List<UploadResponse> = ArrayList()
 )
 
 class TopicNormal(val topic: Topic) : MultiItemEntity {
     override val itemType = TopicAdapter.topic_normal
 }
+
 class TopicVideo(val topic: Topic) : MultiItemEntity {
     override val itemType = TopicAdapter.topic_video
 }
