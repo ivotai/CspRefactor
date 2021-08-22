@@ -16,7 +16,7 @@ import com.unircorn.csp.data.model.ArticleNormal
 import com.unircorn.csp.data.model.ArticleWithImage
 import com.unircorn.csp.data.model.normal
 import com.unircorn.csp.data.model.withImage
-import com.unircorn.csp.ui.act.CommentAct
+import com.unircorn.csp.ui.act.article.CommentAct
 import com.unircorn.csp.ui.act.CommentPdfAct
 import org.joda.time.DateTime
 import java.util.*

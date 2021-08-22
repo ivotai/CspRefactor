@@ -58,7 +58,6 @@ https://stackoverflow.com/questions/66475730/in-android-studio-arctic-fox-canary
 my_fra 界面没有调整 todo 不急
 修改密码界面没有调整 todo 不急
 搜索暂时隐藏 待恢复 todo 不急
-
-文章，文章详情
+在自定义 View 中使用 ViewBinding todo 不急
 
 

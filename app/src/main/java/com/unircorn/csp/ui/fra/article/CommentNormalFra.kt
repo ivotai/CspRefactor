@@ -1,4 +1,4 @@
-package com.unircorn.csp.ui.fra
+package com.unircorn.csp.ui.fra.article
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -18,14 +18,13 @@ import com.unircorn.csp.data.model.Comment
 import com.unircorn.csp.data.model.CreateCommentParam
 import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
-import com.unircorn.csp.databinding.FraCommentBinding
+import com.unircorn.csp.databinding.FraCommentNormalBinding
 import com.unircorn.csp.ui.adapter.CommentAdapter
 import com.unircorn.csp.ui.base.PageFra
-import com.unircorn.csp.ui.header.CommentFraHeaderType1
-import com.unircorn.csp.ui.header.CommentFraHeaderType2
+import com.unircorn.csp.ui.header.WebViewHeaderView
 import io.reactivex.rxjava3.core.Single
 
-class CommentFra : PageFra<Comment>(R.layout.fra_comment) {
+class CommentNormalFra : PageFra<Comment>(R.layout.fra_comment_normal) {
 
     override fun initViews() {
         super.initViews()
@@ -55,15 +54,7 @@ class CommentFra : PageFra<Comment>(R.layout.fra_comment) {
             .subscribe(
                 {
                     if (it.failed) return@subscribe
-                    if (it.data.type == 1)    // 1=图文，2=图文+视频，3=pdf
-                        pageAdapter.addHeaderView(CommentFraHeaderType1(article = it.data))
-                    if (it.data.type == 3)
-                        pageAdapter.addHeaderView(
-                            CommentFraHeaderType2(
-                                context = requireContext(),
-                                article = it.data
-                            )
-                        )
+                    pageAdapter.addHeaderView(WebViewHeaderView(content = it.data.content))
                 },
                 { it.toast() }
             )
@@ -96,10 +87,6 @@ class CommentFra : PageFra<Comment>(R.layout.fra_comment) {
 
     override fun initPageAdapter() {
         pageAdapter = CommentAdapter()
-
-        // 根据 type 添加三种头 todo
-//        pageAdapter.addHeaderView(TopicHeader(context = this,topic = topic))
-        // 当空数据时显示空布局和HeaderView
         pageAdapter.headerWithEmptyEnable = true
         getArticle()
     }
@@ -128,7 +115,7 @@ class CommentFra : PageFra<Comment>(R.layout.fra_comment) {
 
 // ----
 
-    private var _binding: FraCommentBinding? = null
+    private var _binding: FraCommentNormalBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -139,7 +126,7 @@ class CommentFra : PageFra<Comment>(R.layout.fra_comment) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FraCommentBinding.inflate(inflater, container, false)
+        _binding = FraCommentNormalBinding.inflate(inflater, container, false)
         return binding.root
     }
 

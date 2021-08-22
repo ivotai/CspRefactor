@@ -6,19 +6,18 @@ import android.webkit.WebView
 import android.widget.FrameLayout
 import com.unircorn.csp.R
 import com.unircorn.csp.app.MyComponent
-import com.unircorn.csp.data.model.Article
 
 @SuppressLint("ViewConstructor")
-class CommentFraHeaderType1(private val article: Article) : FrameLayout(MyComponent().context) {
+class WebViewHeaderView(private val content: String) : FrameLayout(MyComponent().context) {
 
     init {
         initViews()
     }
 
     private fun initViews() {
-        val root = LayoutInflater.from(context).inflate(R.layout.header_fra_comment_type1, this, true)
+        val root = LayoutInflater.from(context).inflate(R.layout.header_web_view, this, true)
         val webView = root.findViewById<WebView>(R.id.webView)
-        webView.loadDataWithBaseURL(null, article.content, "text/html", "utf-8", null);
+        webView.loadDataWithBaseURL(null, content, "text/html", "utf-8", null);
     }
 
 }
