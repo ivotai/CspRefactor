@@ -43,13 +43,28 @@ class CreateTopicFra : BaseFra(R.layout.fra_create_topic) {
     }
 
     private fun takeVideo() {
+//        PictureSelector.create(this)
+//            .openCamera(PictureMimeType.ofVideo())
+//            .imageEngine(GlideEngine.createGlideEngine())
+//            .forResult(object : OnResultCallbackListener<LocalMedia?> {
+//                override fun onResult(result: List<LocalMedia?>) {
+//                    val realPath = result[0]!!.realPath
+//                    uploadVideo(realPath)
+//                }
+//
+//                override fun onCancel() {
+//                    // onCancel Callback
+//                }
+//            })
+
         PictureSelector.create(this)
-            .openCamera(PictureMimeType.ofVideo())
+            .openGallery(PictureMimeType.ofVideo())
             .imageEngine(GlideEngine.createGlideEngine())
             .forResult(object : OnResultCallbackListener<LocalMedia?> {
                 override fun onResult(result: List<LocalMedia?>) {
                     val realPath = result[0]!!.realPath
                     uploadVideo(realPath)
+                    // onResult Callback
                 }
 
                 override fun onCancel() {
