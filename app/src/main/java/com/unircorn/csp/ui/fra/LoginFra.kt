@@ -1,5 +1,6 @@
 package com.unircorn.csp.ui.fra
 
+import android.Manifest
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
 import com.mikepenz.iconics.utils.sizeDp
 import com.rxjava.rxlife.lifeOnMain
+import com.tbruyelle.rxpermissions3.RxPermissions
 import com.unircorn.csp.R
 import com.unircorn.csp.app.*
 import com.unircorn.csp.app.helper.VersionHelper
@@ -44,6 +46,12 @@ class LoginFra : BaseFra(R.layout.fra_login) {
         // 自动登录
 //        if (UserInfo.username.isNotEmpty() && !Globals.isLogout) loginX()
 
+        // 获取权限
+        RxPermissions(this)
+            .request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
+            .subscribe { granted ->
+                if (!granted) requireActivity().finish()
+            }
     }
 
     private fun loginX() = with(binding) {
