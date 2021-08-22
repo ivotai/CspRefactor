@@ -1,5 +1,6 @@
-package com.unircorn.csp.ui.fra
+package com.unircorn.csp.ui.fra.topic
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,44 +8,48 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.list.listItems
+import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.hjq.bar.OnTitleBarListener
+import com.kaopiz.kprogresshud.KProgressHUD
+import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.R
-import com.unircorn.csp.app.Position
-import com.unircorn.csp.data.model.ArticleNormal
-import com.unircorn.csp.data.model.ArticleImage
+import com.unircorn.csp.app.*
+import com.unircorn.csp.app.helper.FileUtils2
+import com.unircorn.csp.data.model.*
 import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
+import com.unircorn.csp.databinding.FraCommentNormalBinding
 import com.unircorn.csp.databinding.UiSwipeBinding
-import com.unircorn.csp.ui.adapter.ArticleAdapter
+import com.unircorn.csp.ui.adapter.CommentAdapter
+import com.unircorn.csp.ui.adapter.TopicAdapter
 import com.unircorn.csp.ui.base.PageFra
-import com.unircorn.csp.ui.fragmentStateAdapter.MainFragmentStateAdapter
+import com.unircorn.csp.ui.header.WebViewHeaderView
 import io.reactivex.rxjava3.core.Single
+import rxhttp.RxHttp
+import rxhttp.wrapper.exception.HttpStatusCodeException
+import java.io.File
 
-class ArticleFra : PageFra<MultiItemEntity>(R.layout.ui_swipe) {
+class TopicFra : PageFra<MultiItemEntity>(R.layout.ui_swipe) {
 
     override fun initPageAdapter() {
-        pageAdapter = ArticleAdapter()
+        pageAdapter = TopicAdapter()
     }
 
     override fun initItemDecoration(recyclerView: RecyclerView) {
-        recyclerView.apply {
-            MaterialDividerItemDecoration(
-                requireContext(),
-                LinearLayoutManager.VERTICAL
-            ).apply {
-                dividerThickness = 1
-            }.let { addItemDecoration(it) }
-        }
+        recyclerView.addDefaultItemDecoration()
     }
 
     override fun loadPage(page: Int): Single<Response<Page<MultiItemEntity>>> =
-        api.getArticle(page = page, category = MainFragmentStateAdapter.categories[position])
+        api.getTopic(page = page)
             .map {
                 val page1 = Page(
-                    content = it.data.content.map { article ->
-                        if (article.cover == "") ArticleNormal(article)
-                        else ArticleImage(article)
+                    content = it.data.content.map { topic ->
+                        if (topic.type ==0)TopicNormal(topic = topic)
+                        else TopicVideo(topic = topic)
                     },
                     totalElements = it.data.totalElements
                 )
@@ -54,8 +59,6 @@ class ArticleFra : PageFra<MultiItemEntity>(R.layout.ui_swipe) {
                     data = page1
                 )
             }
-
-    private val position by lazy { requireArguments().getInt(Position, 0) }
 
     override val mRecyclerView: RecyclerView
         get() = binding.recyclerView

@@ -17,7 +17,7 @@ import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.R
 import com.unircorn.csp.app.trimText
 import com.unircorn.csp.data.model.ArticleNormal
-import com.unircorn.csp.data.model.ArticleWithImage
+import com.unircorn.csp.data.model.ArticleImage
 import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
 import com.unircorn.csp.databinding.FraArticleSearchBinding
@@ -65,7 +65,7 @@ class ArticleSearchFra : PageFra<MultiItemEntity>(R.layout.fra_article_search) {
                 val page1 = Page(
                     content = it.data.content.map { article ->
                         if (article.cover == "") ArticleNormal(article)
-                        else ArticleWithImage(article)
+                        else ArticleImage(article)
                     },
                     totalElements = it.data.totalElements
                 )

@@ -60,4 +60,13 @@ interface SimpleApi {
         @Body createCommentParam: CreateCommentParam
     ): Single<Response<Any>>
 
+    @POST("api/v1/app/topic")
+    fun createTopic(@Body createTopicParam: CreateTopicParam): Single<Response<Any>>
+
+    @GET("api/v1/app/topic")
+    fun getTopic(
+        @Query("page") page: Int,
+        @Query("pageSize") pageSize: Int = defaultPageSize
+    ): Single<Response<Page<Topic>>>
+
 }

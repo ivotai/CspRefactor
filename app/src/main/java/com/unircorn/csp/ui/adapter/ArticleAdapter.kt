@@ -22,14 +22,19 @@ import java.util.*
 class ArticleAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(ArrayList()),
     LoadMoreModule {
 
+    companion object{
+        const val article_normal = 0
+        const val article_image = 1
+    }
+
     init {
-        addItemType(normal, R.layout.item_article_normal)
-        addItemType(withImage, R.layout.item_article_with_image)
+        addItemType(article_normal, R.layout.item_article_normal)
+        addItemType(article_image, R.layout.item_article_with_image)
     }
 
     override fun convert(holder: BaseViewHolder, item: MultiItemEntity) {
         when (item.itemType) {
-            normal -> {
+            article_normal -> {
                 item as ArticleNormal
                 val article = item.article
                 holder.setText(R.id.tvTitle, article.title)
@@ -45,8 +50,8 @@ class ArticleAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder
                     }.let { context.startActivity(it) }
                 }
             }
-            withImage -> {
-                item as ArticleWithImage
+            article_image -> {
+                item as ArticleImage
                 val article = item.article
                 holder.setText(R.id.tvTitle, article.title)
                 val ivImage = holder.getView<ImageView>(R.id.ivImage)

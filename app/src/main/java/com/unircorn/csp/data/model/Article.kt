@@ -4,6 +4,8 @@ import com.blankj.utilcode.util.FileUtils
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.unircorn.csp.app.MyComponent
 import com.unircorn.csp.app.baseUrl
+import com.unircorn.csp.ui.adapter.ArticleAdapter.Companion.article_normal
+import com.unircorn.csp.ui.adapter.ArticleAdapter.Companion.article_image
 import java.io.File
 import java.io.Serializable
 
@@ -36,13 +38,10 @@ data class Attachment(
     val fullUrl get() = baseUrl + url
 }
 
-const val normal = 0
-const val withImage = 1
-
-class ArticleWithImage(val article: Article) : MultiItemEntity {
-    override val itemType = withImage
+class ArticleImage(val article: Article) : MultiItemEntity {
+    override val itemType = article_image
 }
 
 class ArticleNormal(val article: Article) : MultiItemEntity {
-    override val itemType = normal
+    override val itemType = article_normal
 }

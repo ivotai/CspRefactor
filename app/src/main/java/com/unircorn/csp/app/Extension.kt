@@ -5,9 +5,11 @@ import android.content.Intent
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.blankj.utilcode.util.ToastUtils
+import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.jakewharton.rxbinding4.view.clicks
 import io.reactivex.rxjava3.core.Observable
 import retrofit2.HttpException
@@ -35,7 +37,7 @@ fun ViewPager2.removeEdgeEffect() {
     (this.getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
 }
 
-fun Throwable.toast() = fun(){
+fun Throwable.toast() = fun() {
     val message = when (this) {
         is UnknownHostException -> "接口地址设置有误或无网络"
         is SocketTimeoutException -> "超时了"
@@ -48,3 +50,13 @@ fun Throwable.toast() = fun(){
     message.toast()
 }
 
+fun RecyclerView.addDefaultItemDecoration() {
+    this.apply {
+        MaterialDividerItemDecoration(
+            context,
+            LinearLayoutManager.VERTICAL
+        ).apply {
+            dividerThickness = 1
+        }.let { addItemDecoration(it) }
+    }
+}

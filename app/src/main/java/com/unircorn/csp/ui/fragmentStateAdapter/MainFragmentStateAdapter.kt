@@ -5,13 +5,14 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.unircorn.csp.app.Position
 import com.unircorn.csp.ui.fra.ArticleFra
+import com.unircorn.csp.ui.fra.topic.TopicFra
 
 class MainFragmentStateAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     override fun getItemCount() = titles.size
 
     override fun createFragment(position: Int): Fragment {
-        val fra = ArticleFra()
+        val fra = if (position == 1) TopicFra() else ArticleFra()
         fra.apply {
             arguments = Bundle().apply {
                 putInt(Position, position)
