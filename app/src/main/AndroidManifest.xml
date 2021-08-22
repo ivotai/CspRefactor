@@ -29,7 +29,8 @@
         <activity android:name=".ui.act.my.MyAct" />
         <activity android:name=".ui.act.my.ChangePasswordAct" />
         <activity android:name=".ui.act.article.CommentAct" />
-        <activity android:name=".ui.act.CommentPdfAct"/>
+        <activity android:name=".ui.act.article.CommentPdfAct" />
+        <activity android:name=".ui.act.article.ArticleSearchAct" />
     </application>
 
 </manifest>

@@ -15,11 +15,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:leftColor="@color/md_white"
+        app:leftTitle="搜索"
         app:rightColor="@color/md_white"
         app:rightTitle="我的"
         app:title="黔法快阅通"
         app:titleColor="@color/md_white" />
-    <!--        app:leftTitle="搜索"-->
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager2"

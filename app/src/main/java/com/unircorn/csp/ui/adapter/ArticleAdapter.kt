@@ -17,7 +17,7 @@ import com.unircorn.csp.data.model.ArticleWithImage
 import com.unircorn.csp.data.model.normal
 import com.unircorn.csp.data.model.withImage
 import com.unircorn.csp.ui.act.article.CommentAct
-import com.unircorn.csp.ui.act.CommentPdfAct
+import com.unircorn.csp.ui.act.article.CommentPdfAct
 import org.joda.time.DateTime
 import java.util.*
 
@@ -42,7 +42,7 @@ class ArticleAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder
                 holder.setText(R.id.tvReadCount,"阅读 ${item.article.readCount}")
                 holder.setText(R.id.tvCommentCount,"评论 ${item.article.commentCount}")
                 holder.getView<View>(R.id.root).safeClicks().subscribe {
-                    Intent(context, if (item.article.type == 3)CommentPdfAct::class.java else CommentAct::class.java).apply {
+                    Intent(context, if (item.article.type == 3) CommentPdfAct::class.java else CommentAct::class.java).apply {
                         putExtra(Param, article)
                     }.let { context.startActivity(it) }
                 }
@@ -60,7 +60,7 @@ class ArticleAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder
                 holder.setText(R.id.tvReadCount,"阅读 ${item.article.readCount}")
                 holder.setText(R.id.tvCommentCount,"评论 ${item.article.commentCount}")
                 holder.getView<View>(R.id.root).safeClicks().subscribe {
-                    Intent(context, if (item.article.type == 3)CommentPdfAct::class.java else CommentAct::class.java).apply {
+                    Intent(context, if (item.article.type == 3) CommentPdfAct::class.java else CommentAct::class.java).apply {
                     putExtra(Param, article)
                     }.let { context.startActivity(it) }
                 }

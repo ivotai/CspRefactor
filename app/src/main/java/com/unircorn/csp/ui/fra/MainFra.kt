@@ -19,6 +19,7 @@ import com.unircorn.csp.app.*
 import com.unircorn.csp.data.event.LogoutEvent
 import com.unircorn.csp.databinding.FraMainBinding
 import com.unircorn.csp.ui.act.LoginAct
+import com.unircorn.csp.ui.act.article.ArticleSearchAct
 import com.unircorn.csp.ui.act.my.MyAct
 import com.unircorn.csp.ui.base.BaseFra
 import com.unircorn.csp.ui.fragmentStateAdapter.MainFragmentStateAdapter
@@ -116,11 +117,11 @@ class MainFra : BaseFra(R.layout.fra_main) {
         with(binding) {
             navigationController.addSimpleTabItemSelectedListener { index, _ ->
                 titleBar.title = MainFragmentStateAdapter.titles[index]
-                viewPager2.setCurrentItem(index,false)
+                viewPager2.setCurrentItem(index, false)
             }
             titleBar.setOnTitleBarListener(object : OnTitleBarListener {
                 override fun onLeftClick(view: View?) {
-                    // todo 搜索
+                    startAct(ArticleSearchAct::class.java)
                 }
 
                 override fun onTitleClick(view: View?) {
