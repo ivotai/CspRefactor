@@ -60,6 +60,8 @@ class CreateTopicFra : BaseFra(R.layout.fra_create_topic) {
         PictureSelector.create(this)
             .openGallery(PictureMimeType.ofVideo())
             .imageEngine(GlideEngine.createGlideEngine())
+            .videoMaxSecond(15)
+            .videoMinSecond(5)
             .forResult(object : OnResultCallbackListener<LocalMedia?> {
                 override fun onResult(result: List<LocalMedia?>) {
                     val realPath = result[0]!!.realPath

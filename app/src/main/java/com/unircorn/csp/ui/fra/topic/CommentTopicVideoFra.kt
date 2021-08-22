@@ -12,6 +12,7 @@ import com.blankj.utilcode.util.ToastUtils
 import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.R
 import com.unircorn.csp.app.*
+import com.unircorn.csp.app.third.JZMediaIjk
 import com.unircorn.csp.data.model.*
 import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
@@ -36,7 +37,7 @@ class CommentTopicVideoFra : PageFra<Comment>(R.layout.fra_comment_topic_video) 
     private fun initVideo() = with(binding) {
         val jzDataSource = JZDataSource(topic.videos[0].fullUrl, topic.title)
         jzDataSource.headerMap[Cookie] = "$SESSION=${Globals.session}"
-        binding.jzvdStd.setUp(jzDataSource, Jzvd.SCREEN_NORMAL)
+        binding.jzvdStd.setUp(jzDataSource, Jzvd.SCREEN_NORMAL, JZMediaIjk::class.java)
     }
 
     private fun createCommentX() {
