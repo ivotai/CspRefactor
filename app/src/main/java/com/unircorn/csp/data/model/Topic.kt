@@ -24,10 +24,10 @@ data class Topic(
 }
 
 data class CreateTopicParam(
-    val content: String,
-    val images: List<UploadResponse> = ArrayList(),
-    val title: String,
-    val videos: List<UploadResponse> = ArrayList()
+    var content: String = "",
+    var images: List<UploadResponse> = ArrayList(),
+    var title: String = "",
+    var videos: List<UploadResponse> = ArrayList()
 )
 
 class TopicNormal(val topic: Topic) : MultiItemEntity {

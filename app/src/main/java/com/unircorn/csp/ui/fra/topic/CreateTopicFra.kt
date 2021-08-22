@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.blankj.utilcode.util.ToastUtils
 import com.hjq.bar.OnTitleBarListener
+import com.kaopiz.kprogresshud.KProgressHUD
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
@@ -57,12 +58,21 @@ class CreateTopicFra : BaseFra(R.layout.fra_create_topic) {
     }
 
     private fun uploadVideo(path: String) {
+        val progressMask = KProgressHUD.create(requireContext())
+            .setStyle(KProgressHUD.Style.BAR_DETERMINATE)
+            .setCancellable(true)
+            .setDimAmount(0.5f)
+            .setMaxProgress(100)
+            .show()
         RxHttp.postForm(uploadUrl)
             .addFile(attachment, File(path))
+            .upload { progressMask.setProgress(it.progress) }
             .asClass(UploadResponse::class.java).subscribe({
-                it
-                it
+                progressMask.dismiss()
+                createTopicParam.videos = listOf(it)
+                "视频已上传".toast()
             }, {
+                progressMask.dismiss()
                 it.toast()
             })
     }
@@ -98,13 +108,9 @@ class CreateTopicFra : BaseFra(R.layout.fra_create_topic) {
     }
 
     private fun createTopic() = with(binding) {
-        api.createTopic(
-            CreateTopicParam(
-                title = etTitle.trimText(),
-                content = etContent.trimText()
-
-            )
-        )
+        createTopicParam.title = etTitle.trimText()
+        createTopicParam.content = etContent.trimText()
+        api.createTopic(createTopicParam)
             .lifeOnMain(this@CreateTopicFra)
             .subscribe(
                 {
@@ -117,7 +123,7 @@ class CreateTopicFra : BaseFra(R.layout.fra_create_topic) {
             )
     }
 
-
+    private val createTopicParam = CreateTopicParam()
     //
 
     private var _binding: FraCreateTopicBinding? = null

@@ -2,44 +2,43 @@
   "data": {
     "content": [
       {
-        "objectId": "666308506600603648",
-        "title": "电视专题片《国家监察》第二集《全面监督》将于今天（13日）央视综合频道晚8点档播出",
-        "type": 1,
-        "category": "技术标准",
-        "publishTime": 1579055052000,
-        "cover": "",
-        "attachments": [
+        "objectId": "879006722914516992",
+        "title": "测试上传视频",
+        "content": "测试",
+        "issuer": "ivo",
+        "issueTime": 1629613134000,
+        "replyCount": 0,
+        "commentCount": 0,
+        "images": [],
+        "videos": [
           {
-            "filename": "倔强.jpg",
-            "attachmentId": "666308506646740992",
-            "url": "/content/download?id=666308506646740992",
-            "imageUrl": "/content/image/L0FydGljbGUvZGVmYXVsdC8yMDIwMDEvNjY2MzA4NTA2NjQyNTQ2Njg4"
-          },
-          {
-            "filename": "test.docx",
-            "attachmentId": "666333803433689089",
-            "url": "/content/download?id=666333803433689089"
+            "filename": "VID_20210822142019770.mp4",
+            "attachmentId": "879006723002597376",
+            "url": "/content/video?id=879006723002597376"
           }
-        ],
-        "readCount": 0,
-        "commentCount": 0
+        ]
       },
       {
-        "objectId": "665240384078610432",
-        "title": "退役军人事务部等多部门印发意见加强优抚优待工作 明确建立优待证制度",
-        "type": 1,
-        "category": "技术标准",
-        "publishTime": 1579055189000,
-        "cover": "",
-        "attachments": [
-          {
-            "filename": "QQ图片20200110170239.jpg",
-            "attachmentId": "665240384120553472",
-            "url": "/content/download?id=665240384120553472"
-          }
-        ],
-        "readCount": 0,
-        "commentCount": 0
+        "objectId": "878998597457149952",
+        "title": "测试2",
+        "content": "1111",
+        "issuer": "ivo",
+        "issueTime": 1629611197000,
+        "replyCount": 0,
+        "commentCount": 0,
+        "images": [],
+        "videos": []
+      },
+      {
+        "objectId": "878415754188292096",
+        "title": "测试",
+        "content": "测试",
+        "issuer": "顾亦斌",
+        "issueTime": 1629472236000,
+        "replyCount": 0,
+        "commentCount": 0,
+        "images": [],
+        "videos": []
       }
     ],
     "pageable": {
@@ -48,24 +47,24 @@
         "unsorted": false,
         "empty": false
       },
+      "offset": "0",
       "pageNumber": 0,
       "pageSize": 10,
-      "offset": "0",
       "unpaged": false,
       "paged": true
     },
-    "totalElements": "2",
-    "totalPages": 1,
     "last": true,
-    "first": true,
+    "totalElements": "3",
+    "totalPages": 1,
+    "number": 0,
     "sort": {
       "sorted": true,
       "unsorted": false,
       "empty": false
     },
-    "number": 0,
-    "numberOfElements": 2,
     "size": 10,
+    "first": true,
+    "numberOfElements": 3,
     "empty": false
   },
   "success": true
