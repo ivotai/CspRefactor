@@ -75,18 +75,18 @@ class MainFra : BaseFra(R.layout.fra_main) {
                     MainFragmentStateAdapter.abbr[4]
                 )
             )
-            .addItem(
-                newItem(
-                    FontAwesome.Icon.faw_book,
-                    MainFragmentStateAdapter.abbr[5]
-                )
-            )
-            .addItem(
-                newItem(
-                    FontAwesome.Icon.faw_cog,
-                    MainFragmentStateAdapter.abbr[6]
-                )
-            )
+//            .addItem(
+//                newItem(
+//                    FontAwesome.Icon.faw_book,
+//                    MainFragmentStateAdapter.abbr[5]
+//                )
+//            )
+//            .addItem(
+//                newItem(
+//                    FontAwesome.Icon.faw_cog,
+//                    MainFragmentStateAdapter.abbr[6]
+//                )
+//            )
             .build()
         titleBar.title = MainFragmentStateAdapter.titles[0]
     }

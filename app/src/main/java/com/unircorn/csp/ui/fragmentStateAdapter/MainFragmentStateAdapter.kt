@@ -22,9 +22,9 @@ class MainFragmentStateAdapter(fragment: Fragment) : FragmentStateAdapter(fragme
     }
 
     companion object {
-        val titles = listOf("学习教育", "学习讨论", "政策规定", "工作动态", "党史学习", "专题研究", "技术标准")
-        val abbr = listOf("教育", "讨论", "政策", "工作", "党史", "专题", "技术")
-        val categories = listOf("xxjy", "", "zcgd", "gzdt", "dsxx", "ztyj", "jsbz")
+        val titles = listOf("学习园地", "学习比一比", "政策规定", "信息工作动态", "党史学习")
+        val abbr = listOf("学习", "比比", "政策", "信息", "党史")
+        val categories = listOf("xxjy", "", "zcgd", "gzdt", "dsxx")
     }
 
 }

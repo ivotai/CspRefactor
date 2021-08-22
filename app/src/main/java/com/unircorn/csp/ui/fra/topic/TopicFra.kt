@@ -8,12 +8,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chad.library.adapter.base.entity.MultiItemEntity
+import com.luck.picture.lib.PictureSelector
+import com.luck.picture.lib.config.PictureMimeType
+import com.luck.picture.lib.entity.LocalMedia
+import com.luck.picture.lib.listener.OnResultCallbackListener
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
 import com.mikepenz.iconics.utils.colorInt
 import com.mikepenz.iconics.utils.sizeDp
 import com.unircorn.csp.R
 import com.unircorn.csp.app.*
+import com.unircorn.csp.app.third.GlideEngine
 import com.unircorn.csp.data.model.*
 import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
@@ -21,6 +26,7 @@ import com.unircorn.csp.databinding.FraTopicBinding
 import com.unircorn.csp.ui.adapter.TopicAdapter
 import com.unircorn.csp.ui.base.PageFra
 import io.reactivex.rxjava3.core.Single
+
 
 class TopicFra : PageFra<MultiItemEntity>(R.layout.ui_swipe) {
 
@@ -36,6 +42,28 @@ class TopicFra : PageFra<MultiItemEntity>(R.layout.ui_swipe) {
                 sizeDp = 24
             }
         )
+    }
+
+    override fun initBindings() {
+        super.initBindings()
+        binding.floatingActionButton.safeClicks().subscribe {
+            s()
+        }
+    }
+
+    private fun s() {
+        PictureSelector.create(this)
+            .openCamera(PictureMimeType.ofImage())
+            .imageEngine(GlideEngine.createGlideEngine())
+            .forResult(object : OnResultCallbackListener<LocalMedia?> {
+                override fun onResult(result: List<LocalMedia?>) {
+                    // onResult Callback
+                }
+
+                override fun onCancel() {
+                    // onCancel Callback
+                }
+            })
     }
 
     override fun initPageAdapter() {
