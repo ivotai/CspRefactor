@@ -1,6 +1,7 @@
 package com.unircorn.csp.app
 
 const val baseUrl = "http://117.187.141.201:8080"
+const val uploadUrl = "${baseUrl}/api/v1/system/file/upload"
 
 //"http://csp.seafa.kjgk.xyz:8000"       // 测试
 // "http://58.16.65.7:8080"
@@ -10,7 +11,7 @@ const val Cookie = "Cookie"
 const val SESSION = "SESSION"
 
 const val Param = "Param"
-
+const val attachment = "attachment"
 const val Title = "Title"
 const val Category = "Category"
 const val Topic = "Topic"

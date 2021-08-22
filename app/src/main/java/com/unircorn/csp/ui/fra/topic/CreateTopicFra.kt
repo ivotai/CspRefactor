@@ -15,15 +15,15 @@ import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
 import com.mikepenz.iconics.utils.sizeDp
 import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.R
-import com.unircorn.csp.app.RxBus
-import com.unircorn.csp.app.isEmpty
+import com.unircorn.csp.app.*
 import com.unircorn.csp.app.third.GlideEngine
-import com.unircorn.csp.app.toast
-import com.unircorn.csp.app.trimText
 import com.unircorn.csp.data.event.RefreshTopicEvent
 import com.unircorn.csp.data.model.CreateTopicParam
+import com.unircorn.csp.data.model.UploadResponse
 import com.unircorn.csp.databinding.FraCreateTopicBinding
 import com.unircorn.csp.ui.base.BaseFra
+import rxhttp.RxHttp
+import java.io.File
 
 class CreateTopicFra : BaseFra(R.layout.fra_create_topic) {
 
@@ -47,12 +47,23 @@ class CreateTopicFra : BaseFra(R.layout.fra_create_topic) {
             .forResult(object : OnResultCallbackListener<LocalMedia?> {
                 override fun onResult(result: List<LocalMedia?>) {
                     val realPath = result[0]!!.realPath
-                    PictureSelector.create(this@CreateTopicFra).externalPictureVideo(realPath);
+                    uploadVideo(realPath)
                 }
 
                 override fun onCancel() {
                     // onCancel Callback
                 }
+            })
+    }
+
+    private fun uploadVideo(path: String) {
+        RxHttp.postForm(uploadUrl)
+            .addFile(attachment, File(path))
+            .asClass(UploadResponse::class.java).subscribe({
+                it
+                it
+            }, {
+                it.toast()
             })
     }
 
@@ -69,6 +80,9 @@ class CreateTopicFra : BaseFra(R.layout.fra_create_topic) {
             override fun onTitleClick(v: View?) {
             }
         })
+        binding.floatingActionButton.safeClicks().subscribe {
+            takeVideo()
+        }
     }
 
     private fun createTopicX() = with(binding) {
