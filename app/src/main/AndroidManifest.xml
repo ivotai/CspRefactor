@@ -30,6 +30,10 @@
         <activity android:name=".ui.act.my.ChangePasswordAct" />
         <activity android:name=".ui.act.article.CommentAct" />
         <activity android:name=".ui.act.article.CommentPdfAct" />
+        <activity
+            android:name=".ui.act.article.CommentVideoAct"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
         <activity android:name=".ui.act.article.ArticleSearchAct" />
     </application>
 

@@ -12,12 +12,10 @@ import com.unircorn.csp.R
 import com.unircorn.csp.app.Param
 import com.unircorn.csp.app.displayDateFormat
 import com.unircorn.csp.app.safeClicks
-import com.unircorn.csp.data.model.ArticleNormal
-import com.unircorn.csp.data.model.ArticleWithImage
-import com.unircorn.csp.data.model.normal
-import com.unircorn.csp.data.model.withImage
+import com.unircorn.csp.data.model.*
 import com.unircorn.csp.ui.act.article.CommentAct
 import com.unircorn.csp.ui.act.article.CommentPdfAct
+import com.unircorn.csp.ui.act.article.CommentVideoAct
 import org.joda.time.DateTime
 import java.util.*
 
@@ -39,10 +37,10 @@ class ArticleAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder
                     R.id.tvPublishTime,
                     DateTime(article.publishTime).toString(displayDateFormat)
                 )
-                holder.setText(R.id.tvReadCount,"阅读 ${item.article.readCount}")
-                holder.setText(R.id.tvCommentCount,"评论 ${item.article.commentCount}")
+                holder.setText(R.id.tvReadCount, "阅读 ${item.article.readCount}")
+                holder.setText(R.id.tvCommentCount, "评论 ${item.article.commentCount}")
                 holder.getView<View>(R.id.root).safeClicks().subscribe {
-                    Intent(context, if (item.article.type == 3) CommentPdfAct::class.java else CommentAct::class.java).apply {
+                    Intent(context, getActClassByArticle(article)).apply {
                         putExtra(Param, article)
                     }.let { context.startActivity(it) }
                 }
@@ -57,11 +55,11 @@ class ArticleAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder
                     R.id.tvPublishTime,
                     DateTime(article.publishTime).toString(displayDateFormat)
                 )
-                holder.setText(R.id.tvReadCount,"阅读 ${item.article.readCount}")
-                holder.setText(R.id.tvCommentCount,"评论 ${item.article.commentCount}")
+                holder.setText(R.id.tvReadCount, "阅读 ${item.article.readCount}")
+                holder.setText(R.id.tvCommentCount, "评论 ${item.article.commentCount}")
                 holder.getView<View>(R.id.root).safeClicks().subscribe {
-                    Intent(context, if (item.article.type == 3) CommentPdfAct::class.java else CommentAct::class.java).apply {
-                    putExtra(Param, article)
+                    Intent(context, getActClassByArticle(article)).apply {
+                        putExtra(Param, article)
                     }.let { context.startActivity(it) }
                 }
             }
@@ -69,10 +67,10 @@ class ArticleAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder
         }
     }
 
-//    private fun getActClassByArticle(article: Article) = when (article.type) {
-//        1 -> ArticleAct::class.java
-//        2 -> ArticleVideoAct::class.java
-//        else -> ArticlePdfAct::class.java
-//    }
+    private fun getActClassByArticle(article: Article) = when (article.type) {
+        1 -> CommentAct::class.java
+        2 -> CommentVideoAct::class.java
+        else -> CommentPdfAct::class.java
+    }
 
 }
