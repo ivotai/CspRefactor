@@ -1,7 +1,7 @@
 package com.unircorn.csp.ui.act
 
 import com.unircorn.csp.ui.base.BaseAct
-import com.unircorn.csp.ui.fra.CommentPdfFra
+import com.unircorn.csp.ui.fra.article.CommentPdfFra
 
 class CommentPdfAct : BaseAct() {
 
