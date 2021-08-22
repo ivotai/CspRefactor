@@ -27,7 +27,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.act.MainAct" />
+        <activity
+            android:name=".ui.act.MainAct"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait" />
         <activity android:name=".ui.act.my.MyAct" />
         <activity android:name=".ui.act.my.ChangePasswordAct" />
         <activity android:name=".ui.act.article.CommentAct" />

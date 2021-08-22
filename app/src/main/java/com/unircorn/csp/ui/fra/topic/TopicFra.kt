@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.OnChildAttachStateChangeListener
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import cn.jzvd.Jzvd
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
@@ -29,6 +31,24 @@ class TopicFra : PageFra<MultiItemEntity>(R.layout.fra_create_topic) {
     override fun initViews() {
         super.initViews()
         initFab()
+        doForVideo()
+    }
+
+    private fun doForVideo() {
+        mRecyclerView.addOnChildAttachStateChangeListener(object :
+            OnChildAttachStateChangeListener {
+            override fun onChildViewAttachedToWindow(view: View) {}
+            override fun onChildViewDetachedFromWindow(view: View) {
+                val jzvd: Jzvd? = view.findViewById(R.id.jzvdStd)
+                if (jzvd != null && Jzvd.CURRENT_JZVD != null &&
+                    jzvd.jzDataSource.containsTheUrl(Jzvd.CURRENT_JZVD.jzDataSource.currentUrl)
+                ) {
+                    if (Jzvd.CURRENT_JZVD != null && Jzvd.CURRENT_JZVD.screen != Jzvd.SCREEN_FULLSCREEN) {
+                        Jzvd.releaseAllVideos()
+                    }
+                }
+            }
+        })
     }
 
     private fun initFab() {

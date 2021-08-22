@@ -1,14 +1,17 @@
 package com.unircorn.csp.ui.adapter
 
+import cn.jzvd.JZDataSource
+import cn.jzvd.Jzvd
+import cn.jzvd.JzvdStd
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.unircorn.csp.R
-import com.unircorn.csp.app.displayDateFormat
+import com.unircorn.csp.app.*
 import com.unircorn.csp.data.model.Article
-import com.unircorn.csp.data.model.ArticleNormal
 import com.unircorn.csp.data.model.TopicNormal
+import com.unircorn.csp.data.model.TopicVideo
 import com.unircorn.csp.ui.act.article.CommentAct
 import com.unircorn.csp.ui.act.article.CommentPdfAct
 import com.unircorn.csp.ui.act.article.CommentVideoAct
@@ -25,7 +28,7 @@ class TopicAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(
 
     init {
         addItemType(topic_normal, R.layout.item_topic_normal)
-        addItemType(topic_video, R.layout.item_topic_normal)    // todo
+        addItemType(topic_video, R.layout.item_topic_video)    // todo
     }
 
     override fun convert(holder: BaseViewHolder, item: MultiItemEntity) {
@@ -45,8 +48,16 @@ class TopicAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(
 //                    }.let { context.startActivity(it) }
 //                }
             }
-
-
+            topic_video -> {
+                item as TopicVideo
+                val topic = item.topic
+                val jzvdStd = holder.getView<JzvdStd>(R.id.jzvdStd)
+                val jzDataSource = JZDataSource(topic.videos[0].fullUrl, topic.title)
+                jzDataSource.headerMap[Cookie] = "$SESSION=${Globals.session}"
+                jzvdStd.setUp(jzDataSource, Jzvd.SCREEN_NORMAL)
+//                Glide.with(holder.jzvdStd.getContext()).load(videoEntity.getThumb())
+//                    .into(holder.jzvdStd.posterImageView)
+            }
         }
     }
 

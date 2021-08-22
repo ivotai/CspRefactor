@@ -11,8 +11,8 @@ data class Topic(
     val commentCount: Int,
     val content: String,
     val title: String,
-    val images: List<UploadResponse>,
-    val videos: List<UploadResponse>
+    val images: List<Attachment>,
+    val videos: List<Attachment>
 ) : Serializable {
     val type: Int
         get() = when {
