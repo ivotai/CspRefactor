@@ -58,16 +58,17 @@ my_fra 界面没有调整 todo 不急
 在自定义 View 中使用 ViewBinding todo 不急
 FileUtil2 待优化 todo 不急
 是否启用自动登录？ todo 问题
+第一，华为手机的鸿蒙系统上传视频，上传不了 todo
+视频访问时 header 未生效 todo
+发文重复的问题 todo
 
-重构代码 todo
-发表图片 todo
+----
+
 搜索当前栏目 todo
 学习比一比，自己发的自己可以删除 todo
-发文重复的问题 todo
+发表图片 todo
 视频压缩 todo
-第一，华为手机的鸿蒙系统上传视频，上传不了 todo
 
-视频访问时 header 未生效 todo
 
 
 

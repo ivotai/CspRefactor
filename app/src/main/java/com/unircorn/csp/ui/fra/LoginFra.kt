@@ -30,13 +30,13 @@ class LoginFra : BaseFra() {
             etUsername.setText(username)
             etPassword.setText(password)
         }
-        if (fromChangePassword) {
+        if (fromModifyPassword) {
             etPassword.setText("")
             etPassword.requestFocus()
         }
     }
 
-    private val fromChangePassword by lazy { arguments?.getBoolean(Param, false) ?: false }
+    private val fromModifyPassword by lazy { arguments?.getBoolean(Param, false) ?: false }
 
     override fun initBindings() = with(binding) {
         btnLogin.safeClicks().subscribe { loginX() }

@@ -75,19 +75,8 @@ class MainFra : BaseFra() {
                     MainFragmentStateAdapter.abbr[4]
                 )
             )
-//            .addItem(
-//                newItem(
-//                    FontAwesome.Icon.faw_book,
-//                    MainFragmentStateAdapter.abbr[5]
-//                )
-//            )
-//            .addItem(
-//                newItem(
-//                    FontAwesome.Icon.faw_cog,
-//                    MainFragmentStateAdapter.abbr[6]
-//                )
-//            )
             .build()
+        // 设置第一个标题
         titleBar.title = MainFragmentStateAdapter.titles[0]
     }
 
@@ -110,29 +99,28 @@ class MainFra : BaseFra() {
             setTextCheckedColor(checkedColor)
         }
 
+    // 这个颜色有待商榷
     private val defaultColor = ColorUtils.getColor(R.color.md_grey_600)
     private val checkedColor = ColorUtils.getColor(R.color.md_red_700)
 
-    override fun initBindings() {
-        with(binding) {
-            navigationController.addSimpleTabItemSelectedListener { index, _ ->
-                titleBar.title = MainFragmentStateAdapter.titles[index]
-                viewPager2.setCurrentItem(index, false)
+    override fun initBindings() = with(binding) {
+        titleBar.setOnTitleBarListener(object : OnTitleBarListener {
+            override fun onLeftClick(view: View?) {
+                startAct(ArticleSearchAct::class.java)
             }
-            titleBar.setOnTitleBarListener(object : OnTitleBarListener {
-                override fun onLeftClick(view: View?) {
-                    startAct(ArticleSearchAct::class.java)
-                }
 
-                override fun onTitleClick(view: View?) {
+            override fun onTitleClick(view: View?) {
 
-                }
+            }
 
-                override fun onRightClick(view: View?) {
-                    startAct(MyAct::class.java)
-                }
+            override fun onRightClick(view: View?) {
+                startAct(MyAct::class.java)
+            }
 
-            })
+        })
+        navigationController.addSimpleTabItemSelectedListener { index, _ ->
+            titleBar.title = MainFragmentStateAdapter.titles[index]
+            viewPager2.setCurrentItem(index, false)
         }
     }
 
@@ -140,13 +128,14 @@ class MainFra : BaseFra() {
         fun logout(logoutEvent: LogoutEvent) {
             api.logout()
                 .lifeOnMain(this)
-                .subscribe({ response ->
-                    if (response.failed) return@subscribe
-                    ActivityUtils.finishAllActivities()
-                    Intent(requireContext(), LoginAct::class.java).apply {
-                        putExtra(Param, logoutEvent.clearPassword)
-                    }.let { startActivity(it) }
-                },
+                .subscribe(
+                    { response ->
+                        if (response.failed) return@subscribe
+                        ActivityUtils.finishAllActivities()
+                        Intent(requireContext(), LoginAct::class.java).apply {
+                            putExtra(Param, logoutEvent.clearPassword)
+                        }.let { startActivity(it) }
+                    },
                     { it.toast() }
                 )
         }
