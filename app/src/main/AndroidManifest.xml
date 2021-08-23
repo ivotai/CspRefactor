@@ -33,7 +33,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ui.act.my.MyAct" />
         <activity android:name=".ui.act.my.ModifyPasswordAct" />
-        <activity android:name=".ui.act.article.CommentAct" />
+        <activity android:name=".ui.act.article.ArticleNormalDetailAct" />
         <activity android:name=".ui.act.article.CommentPdfAct" />
         <activity
             android:name=".ui.act.article.CommentVideoAct"

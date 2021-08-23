@@ -33,7 +33,7 @@ import rxhttp.RxHttp
 import rxhttp.wrapper.exception.HttpStatusCodeException
 import java.io.File
 
-class CommentNormalFra : PageFra<Comment>() {
+class ArticleNormalDetailFra : PageFra<Comment>() {
 
     override fun initViews() {
         super.initViews()
@@ -142,17 +142,6 @@ class CommentNormalFra : PageFra<Comment>() {
         pageAdapter = CommentAdapter()
         pageAdapter.headerWithEmptyEnable = true
         getArticle()
-    }
-
-    override fun initItemDecoration(recyclerView: RecyclerView) {
-        recyclerView.apply {
-            MaterialDividerItemDecoration(
-                requireContext(),
-                LinearLayoutManager.VERTICAL
-            ).apply {
-                dividerThickness = 1
-            }.let { addItemDecoration(it) }
-        }
     }
 
     override fun loadPage(page: Int): Single<Response<Page<Comment>>> =
