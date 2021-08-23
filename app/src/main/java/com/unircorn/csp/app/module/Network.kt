@@ -40,7 +40,7 @@ val networkModule = module {
     single {
 
         val client = get<OkHttpClient>()
-        RxHttpPlugins.init(client)
+//        RxHttpPlugins.init(client)
 
         Retrofit.Builder()
             .baseUrl(baseUrl)

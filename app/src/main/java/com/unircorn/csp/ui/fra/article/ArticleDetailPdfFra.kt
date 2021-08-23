@@ -16,8 +16,9 @@ import com.unircorn.csp.app.SESSION
 import com.unircorn.csp.app.helper.ProgressHelper
 import com.unircorn.csp.app.toast
 import com.unircorn.csp.data.model.Attachment
-import com.unircorn.csp.ui.base.ArticleDetailFra
 import com.unircorn.csp.databinding.FraArticleDetailPdfBinding
+import com.unircorn.csp.ui.base.ArticleDetailFra
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import rxhttp.RxHttp
 import rxhttp.wrapper.exception.HttpStatusCodeException
 
@@ -33,7 +34,9 @@ class ArticleDetailPdfFra : ArticleDetailFra() {
             val progressMask = ProgressHelper.showMask(requireActivity())
             RxHttp.get(pdf.fullUrl)
                 .addHeader(Cookie, "$SESSION=${Globals.session}")
-                .asDownload(pdf.path) { progressMask.setProgress(it.progress) }
+                .asDownload(pdf.path, AndroidSchedulers.mainThread()) {
+                    progressMask.setProgress(it.progress)
+                }
                 .subscribe(
                     {
                         progressMask.dismiss()
