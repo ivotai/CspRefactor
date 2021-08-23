@@ -86,7 +86,7 @@ class LoginFra : BaseFra() {
                         username = etUsername.trimText()
                         password = etPassword.trimText()
                     }
-                    VersionHelper.check(requireActivity() as LoginAct)
+                    VersionHelper.checkVersion(requireActivity() as LoginAct)
                 },
                 { it.toast() }
             )

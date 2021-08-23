@@ -1,54 +1,45 @@
 package com.unircorn.csp.app.helper
 
+import androidx.appcompat.app.AppCompatActivity
 import com.blankj.utilcode.util.AppUtils
-import com.kaopiz.kprogresshud.KProgressHUD
 import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.app.MyComponent
 import com.unircorn.csp.app.startAct
 import com.unircorn.csp.app.toast
-import com.unircorn.csp.ui.act.LoginAct
 import com.unircorn.csp.ui.act.MainAct
 import rxhttp.RxHttp
 import java.io.File
 
 object VersionHelper {
 
-    fun check(loginAct: LoginAct) {
+    fun checkVersion(appCompatActivity: AppCompatActivity) {
         MyComponent().api.checkUpdate(version = AppUtils.getAppVersionName())
-            .lifeOnMain(loginAct)
+            .lifeOnMain(appCompatActivity)
             .subscribe(
                 {
                     if (it.newVersion)
-                        download(loginAct = loginAct, apkUrl = it.apkUrl)
-                    else {
-                        loginAct.startAct(MainAct::class.java)
-                        loginAct.finish()
-                    }
+                        downloadApk(appCompatActivity = appCompatActivity, apkUrl = it.apkUrl)
+                    else
+                        appCompatActivity.startAct(cls = MainAct::class.java, finishSelf = true)
                 },
                 { it.toast() }
             )
     }
 
-    private fun download(loginAct: LoginAct, apkUrl: String) {
-        val progressMask = KProgressHUD.create(loginAct)
-            .setStyle(KProgressHUD.Style.BAR_DETERMINATE)
-            .setCancellable(true)
-            .setDimAmount(0.5f)
-            .setMaxProgress(100)
-            .show()
-        RxHttp.get(apkUrl).asDownload(
-            "${MyComponent().context.filesDir.path}/csp.apk"
-        ) {
-            progressMask.setProgress(it.progress)
-        }.subscribe(
-            {
-                progressMask.dismiss()
-                AppUtils.installApp(File(it))
-            },
-            {
-                progressMask.dismiss()
-            }
-        )
+    private fun downloadApk(appCompatActivity: AppCompatActivity, apkUrl: String) {
+        val progressMask = ProgressHelper.showMask(appCompatActivity)
+        RxHttp.get(apkUrl)
+            .asDownload("${MyComponent().context.filesDir.path}/csp.apk")
+            { progressMask.setProgress(it.progress) }
+            .subscribe(
+                {
+                    progressMask.dismiss()
+                    AppUtils.installApp(File(it))
+                },
+                {
+                    progressMask.dismiss()
+                }
+            )
     }
 
 }

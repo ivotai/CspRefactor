@@ -1,5 +1,6 @@
 package com.unircorn.csp.app
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.View
@@ -20,11 +21,17 @@ import java.util.concurrent.TimeUnit
 fun View.safeClicks(): Observable<Unit> = this.clicks()
     .throttleFirst(2, TimeUnit.SECONDS)
 
-fun Context.startAct(cls: Class<*>) = startActivity(Intent(this, cls))
+fun Activity.startAct(cls: Class<*>, finishSelf: Boolean = false) {
+    startActivity(Intent(this, cls))
+    if (finishSelf) finish()
+}
+
+fun Context.startAct(cls: Class<*>) {
+    startActivity(Intent(this, cls))
+}
 
 fun Fragment.startAct(cls: Class<*>, finishAct: Boolean = false) {
-    requireActivity().startAct(cls)
-    if (finishAct) activity?.finish()
+    requireActivity().startAct(cls, finishSelf = finishAct)
 }
 
 fun TextView.trimText() = text.toString().trim()
