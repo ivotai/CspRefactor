@@ -1,5 +1,6 @@
 package com.unircorn.csp.ui.fra.topic
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -19,11 +20,9 @@ import com.unircorn.csp.app.helper.ProgressHelper
 import com.unircorn.csp.app.third.GlideEngine
 import com.unircorn.csp.data.event.RefreshTopicEvent
 import com.unircorn.csp.data.model.CreateTopicParam
-import com.unircorn.csp.data.model.UploadResponse
 import com.unircorn.csp.databinding.FraCreateTopicBinding
 import com.unircorn.csp.ui.base.BaseFra
 import rxhttp.RxHttp
-import java.io.File
 
 class CreateTopicFra : BaseFra() {
 
@@ -66,12 +65,13 @@ class CreateTopicFra : BaseFra() {
             .videoMaxSecond(15)
             .videoMinSecond(5)
             .maxSelectNum(3)
-            .forResult(object : OnResultCallbackListener<LocalMedia?> {
-                override fun onResult(result: List<LocalMedia?>) {
+            .forResult(object : OnResultCallbackListener<LocalMedia> {
+                override fun onResult(result: List<LocalMedia>) {
                     val first = result[0]!!
-                    if (first.mimeType != "image/jpeg") {
-                        uploadVideo(first.realPath)
-                    }
+//                    if (first.mimeType != "image/jpeg") {
+                    uploadVideo(result)
+//                        uploadVideo(first.realPath)
+//                    }
                     val mimeType = "image/jpeg"
 
                     val realPath = result[0]!!.realPath
@@ -85,19 +85,28 @@ class CreateTopicFra : BaseFra() {
             })
     }
 
-    private fun uploadVideo(path: String) {
+    private fun uploadVideo(result: List<LocalMedia>) {
         val progressMask = ProgressHelper.showMask(requireActivity())
         RxHttp.postForm(uploadUrl)
-            .addFiles("attachments", listOf(File(path)))
-            .upload { progressMask.setProgress(it.progress) }
-            .asClass(UploadResponse::class.java).subscribe({
-                progressMask.dismiss()
-                createTopicParam.videos = listOf(it)
-                "视频已上传".toast()
+            .addParts(requireContext(), attachments, result.map { Uri.parse(it.path) })
+            .upload {
+                progressMask.setProgress(it.progress)
+            }
+            .asString().subscribe({
+                it
+                it
             }, {
-                progressMask.dismiss()
                 it.toast()
-            })
+            }
+            )
+//            .asList(UploadResponse::class.java).subscribe({
+//                progressMask.dismiss()
+//                createTopicParam.videos = it
+//                "视频已上传".toast()
+//            }, {
+//                progressMask.dismiss()
+//                it.toast()
+//            })
     }
 
     //
