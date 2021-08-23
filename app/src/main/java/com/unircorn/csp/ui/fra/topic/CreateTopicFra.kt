@@ -1,5 +1,6 @@
 package com.unircorn.csp.ui.fra.topic
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,8 +24,6 @@ import com.unircorn.csp.data.model.UploadResponse
 import com.unircorn.csp.databinding.FraCreateTopicBinding
 import com.unircorn.csp.ui.base.BaseFra
 import rxhttp.RxHttp
-import rxhttp.RxHttpPlugins
-import java.io.File
 
 class CreateTopicFra : BaseFra() {
 
@@ -78,9 +77,8 @@ class CreateTopicFra : BaseFra() {
     private fun upload(result: List<LocalMedia>) {
         val progressMask = ProgressHelper.showMask(requireActivity())
         RxHttp.postForm(uploadUrl)
-
-            .addFile(attachments, result.map { File(it.realPath) })
-//            .addParts(requireContext(), attachments, result.map { Uri.parse(it.path) })
+//            .addFile(attachments, result.map { File(it.realPath) })
+            .addParts(requireContext(), attachments, result.map { Uri.parse(it.path) })
             .upload {
                 progressMask.setProgress(it.progress)
             }

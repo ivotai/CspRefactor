@@ -1,6 +1,7 @@
 package com.unircorn.csp.data.model
 
 import com.chad.library.adapter.base.entity.MultiItemEntity
+import com.unircorn.csp.app.baseUrl
 import com.unircorn.csp.ui.act.topic.TopicDetailNormalAct
 import com.unircorn.csp.ui.act.topic.TopicDetailVideoAct
 import java.io.Serializable
@@ -12,9 +13,11 @@ data class Topic(
     val commentCount: Int,
     val content: String,
     val title: String,
-    val images: List<Attachment>,
+    val images: List<String>,
     val videos: List<Attachment>
 ) : Serializable, MultiItemEntity {
+
+    val imageUrls = images.map { "$baseUrl$it" }
 
     companion object {
         const val topic_normal = 0
