@@ -13,6 +13,7 @@ import com.blankj.utilcode.util.ToastUtils
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.jakewharton.rxbinding4.view.clicks
 import io.reactivex.rxjava3.core.Observable
+import org.joda.time.DateTime
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
 import java.net.UnknownHostException
@@ -69,3 +70,5 @@ fun RecyclerView.addDefaultItemDecoration() {
 }
 
 fun Fragment.finishAct() = this.requireActivity().finish()
+
+fun Long.toDisplayDateFormat() = DateTime(this).toString(displayDateFormat)
