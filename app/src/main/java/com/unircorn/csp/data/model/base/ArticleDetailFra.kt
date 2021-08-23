@@ -96,7 +96,7 @@ abstract class ArticleDetailFra : CommentPageFra() {
     override fun loadPage(page: Int): Single<Response<Page<Comment>>> =
         api.getComment(articleId = article.objectId, page = page)
 
-    private val article by lazy { requireArguments().getSerializable(Param) as Article }
+    protected val article by lazy { requireArguments().getSerializable(Param) as Article }
 
     abstract val titleBar: TitleBar
 

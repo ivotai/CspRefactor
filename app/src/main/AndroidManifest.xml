@@ -36,7 +36,7 @@
         <activity android:name=".ui.act.article.ArticleDetailNormalAct" />
         <activity android:name=".ui.act.article.CommentPdfAct" />
         <activity
-            android:name=".ui.act.article.CommentVideoAct"
+            android:name=".ui.act.article.ArticleDetailVideoAct"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.act.article.ArticleSearchAct" />

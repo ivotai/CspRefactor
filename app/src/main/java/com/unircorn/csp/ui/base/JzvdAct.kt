@@ -1,12 +1,8 @@
-package com.unircorn.csp.ui.act.article
+package com.unircorn.csp.ui.base
 
-import com.unircorn.csp.ui.base.BaseAct
-import com.unircorn.csp.ui.fra.article.CommentVideoFra
 import cn.jzvd.Jzvd
 
-class CommentVideoAct : BaseAct() {
-
-    override fun createFragment() = CommentVideoFra()
+abstract class JzvdAct : BaseAct() {
 
     override fun onBackPressed() {
         if (Jzvd.backPress()) {
