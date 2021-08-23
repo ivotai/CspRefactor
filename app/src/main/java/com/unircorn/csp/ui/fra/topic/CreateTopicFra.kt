@@ -1,6 +1,5 @@
 package com.unircorn.csp.ui.fra.topic
 
-import android.media.ThumbnailUtils
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +15,6 @@ import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
 import com.mikepenz.iconics.utils.sizeDp
 import com.rxjava.rxlife.lifeOnMain
-import com.unircorn.csp.R
 import com.unircorn.csp.app.*
 import com.unircorn.csp.app.third.GlideEngine
 import com.unircorn.csp.data.event.RefreshTopicEvent
@@ -27,7 +25,7 @@ import com.unircorn.csp.ui.base.BaseFra
 import rxhttp.RxHttp
 import java.io.File
 
-class CreateTopicFra : BaseFra(R.layout.fra_create_topic) {
+class CreateTopicFra : BaseFra() {
 
     override fun initViews() {
         super.initViews()

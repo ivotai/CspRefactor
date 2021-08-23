@@ -18,7 +18,7 @@ import com.unircorn.csp.databinding.FraMyBinding
 import com.unircorn.csp.ui.adapter.MyAdapter
 import com.unircorn.csp.ui.base.BaseFra
 
-class MyFra : BaseFra(R.layout.fra_my) {
+class MyFra : BaseFra() {
 
     override fun initViews() = with(binding) {
         tvUsername.text = Globals.user.username

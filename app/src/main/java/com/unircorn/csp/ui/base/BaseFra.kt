@@ -6,7 +6,8 @@ import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
 import com.unircorn.csp.app.MyComponent
 
-abstract class BaseFra(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId), UI {
+
+abstract class BaseFra : Fragment(), UI {
 
     final override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViews()

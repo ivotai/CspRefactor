@@ -17,7 +17,7 @@ import com.unircorn.csp.data.model.ModifyPasswordParam
 import com.unircorn.csp.databinding.FraChangePasswordBinding
 import com.unircorn.csp.ui.base.BaseFra
 
-class ChangePasswordFra : BaseFra(R.layout.fra_change_password) {
+class ChangePasswordFra : BaseFra() {
 
     override fun initBindings() {
         binding.titleBar.setOnTitleBarListener(object : OnTitleBarListener {

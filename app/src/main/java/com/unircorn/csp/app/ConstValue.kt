@@ -1,6 +1,6 @@
 package com.unircorn.csp.app
 
-const val baseUrl = "http://117.187.141.201:8080"
+const val baseUrl = "http://csp.seafa.kjgk.xyz:8000"
 const val uploadUrl = "${baseUrl}/api/v1/system/file/upload"
 
 //"http://csp.seafa.kjgk.xyz:8000"       // 测试
@@ -12,9 +12,6 @@ const val SESSION = "SESSION"
 
 const val Param = "Param"
 const val attachment = "attachment"
-const val Title = "Title"
-const val Category = "Category"
-const val Topic = "Topic"
 const val Position = "Position"
 
 const val displayDateFormat = "yyyy年MM月dd日"

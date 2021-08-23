@@ -10,14 +10,13 @@ import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
 import com.mikepenz.iconics.utils.sizeDp
 import com.rxjava.rxlife.lifeOnMain
 import com.tbruyelle.rxpermissions3.RxPermissions
-import com.unircorn.csp.R
 import com.unircorn.csp.app.*
 import com.unircorn.csp.app.helper.VersionHelper
 import com.unircorn.csp.databinding.FraLoginBinding
 import com.unircorn.csp.ui.act.LoginAct
 import com.unircorn.csp.ui.base.BaseFra
 
-class LoginFra : BaseFra(R.layout.fra_login) {
+class LoginFra : BaseFra() {
 
     override fun initViews() = with(binding) {
         tilUsername.startIconDrawable =

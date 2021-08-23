@@ -33,7 +33,7 @@ import rxhttp.RxHttp
 import rxhttp.wrapper.exception.HttpStatusCodeException
 import java.io.File
 
-class CommentPdfFra : PageFra<Comment>(R.layout.fra_comment_pdf) {
+class CommentPdfFra : PageFra<Comment>() {
 
     override fun initViews() {
         super.initViews()

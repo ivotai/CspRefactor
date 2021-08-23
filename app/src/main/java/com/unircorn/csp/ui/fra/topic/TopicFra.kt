@@ -27,7 +27,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.functions.Consumer
 
 
-class TopicFra : PageFra<MultiItemEntity>(R.layout.fra_create_topic) {
+class TopicFra : PageFra<MultiItemEntity>() {
 
     override fun initViews() {
         super.initViews()

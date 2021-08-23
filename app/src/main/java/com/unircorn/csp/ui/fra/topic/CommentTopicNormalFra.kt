@@ -19,7 +19,7 @@ import com.unircorn.csp.ui.base.PageFra
 import com.unircorn.csp.ui.header.TopicHeaderView
 import io.reactivex.rxjava3.core.Single
 
-class CommentTopicNormalFra : PageFra<Comment>(R.layout.fra_comment_topic_normal) {
+class CommentTopicNormalFra : PageFra<Comment>() {
 
     override fun initViews() {
         super.initViews()

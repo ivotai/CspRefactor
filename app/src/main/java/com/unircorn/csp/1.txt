@@ -66,6 +66,7 @@ FileUtil2 待优化 todo 不急
 发文重复的问题 todo
 视频压缩 todo
 
+是否启用自动登录？ todo 问题
 
 
 

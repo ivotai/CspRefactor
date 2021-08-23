@@ -27,7 +27,7 @@ import io.reactivex.rxjava3.functions.Consumer
 import me.majiajie.pagerbottomtabstrip.NavigationController
 import me.majiajie.pagerbottomtabstrip.item.NormalItemView
 
-class MainFra : BaseFra(R.layout.fra_main) {
+class MainFra : BaseFra() {
 
     override fun initViews() {
         initViewPager2()

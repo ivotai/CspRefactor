@@ -33,7 +33,7 @@ import rxhttp.RxHttp
 import rxhttp.wrapper.exception.HttpStatusCodeException
 import java.io.File
 
-class CommentNormalFra : PageFra<Comment>(R.layout.fra_comment_normal) {
+class CommentNormalFra : PageFra<Comment>() {
 
     override fun initViews() {
         super.initViews()

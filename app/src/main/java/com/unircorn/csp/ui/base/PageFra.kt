@@ -1,6 +1,5 @@
 package com.unircorn.csp.ui.base
 
-import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -15,8 +14,7 @@ import com.unircorn.csp.data.model.base.Response
 import io.reactivex.rxjava3.core.Single
 
 
-abstract class PageFra<T>(@LayoutRes contentLayoutId: Int = R.layout.ui_swipe) :
-    BaseFra(contentLayoutId = contentLayoutId) {
+abstract class PageFra<T> : BaseFra() {
 
     abstract fun initPageAdapter()
 

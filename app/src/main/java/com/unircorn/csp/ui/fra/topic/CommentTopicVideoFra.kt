@@ -21,7 +21,7 @@ import com.unircorn.csp.ui.adapter.CommentAdapter
 import com.unircorn.csp.ui.base.PageFra
 import io.reactivex.rxjava3.core.Single
 
-class CommentTopicVideoFra : PageFra<Comment>(R.layout.fra_comment_topic_video) {
+class CommentTopicVideoFra : PageFra<Comment>() {
 
     override fun initViews() {
         super.initViews()

@@ -21,7 +21,7 @@ import com.unircorn.csp.ui.base.PageFra
 import com.unircorn.csp.ui.fragmentStateAdapter.MainFragmentStateAdapter
 import io.reactivex.rxjava3.core.Single
 
-class ArticleFra : PageFra<MultiItemEntity>(R.layout.ui_swipe) {
+class ArticleFra : PageFra<MultiItemEntity>() {
 
     override fun initPageAdapter() {
         pageAdapter = ArticleAdapter()

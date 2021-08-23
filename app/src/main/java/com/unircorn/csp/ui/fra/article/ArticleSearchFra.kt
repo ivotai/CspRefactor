@@ -26,7 +26,7 @@ import com.unircorn.csp.ui.base.PageFra
 import io.reactivex.rxjava3.core.Single
 import java.util.concurrent.TimeUnit
 
-class ArticleSearchFra : PageFra<MultiItemEntity>(R.layout.fra_article_search) {
+class ArticleSearchFra : PageFra<MultiItemEntity>() {
 
     override fun initViews() {
         super.initViews()

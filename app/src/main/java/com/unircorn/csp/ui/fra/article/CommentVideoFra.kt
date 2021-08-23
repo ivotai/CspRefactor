@@ -17,7 +17,6 @@ import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.hjq.bar.OnTitleBarListener
 import com.kaopiz.kprogresshud.KProgressHUD
 import com.rxjava.rxlife.lifeOnMain
-import com.unircorn.csp.R
 import com.unircorn.csp.app.*
 import com.unircorn.csp.app.helper.FileUtils2
 import com.unircorn.csp.app.third.JZMediaIjk
@@ -36,7 +35,7 @@ import rxhttp.RxHttp
 import rxhttp.wrapper.exception.HttpStatusCodeException
 import java.io.File
 
-class CommentVideoFra : PageFra<Comment>(R.layout.fra_comment_video) {
+class CommentVideoFra : PageFra<Comment>() {
 
     override fun initViews() {
         super.initViews()
