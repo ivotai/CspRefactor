@@ -1,23 +1,10 @@
 package com.unircorn.csp.ui.act.topic
 
-import cn.jzvd.Jzvd
-import com.unircorn.csp.ui.base.BaseAct
-import com.unircorn.csp.ui.fra.topic.CommentTopicVideoFra
+import com.unircorn.csp.ui.base.JzvdAct
+import com.unircorn.csp.ui.fra.topic.TopicDetailVideoFra
 
-class TopicDetailVideoAct : BaseAct() {
+class TopicDetailVideoAct : JzvdAct() {
 
-    override fun createFragment() = CommentTopicVideoFra()
-
-    override fun onBackPressed() {
-        if (Jzvd.backPress()) {
-            return
-        }
-        super.onBackPressed()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Jzvd.releaseAllVideos()
-    }
+    override fun createFragment() = TopicDetailVideoFra()
 
 }
