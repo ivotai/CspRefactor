@@ -1,6 +1,6 @@
 package com.unircorn.csp.app.helper
 
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentActivity
 import com.blankj.utilcode.util.AppUtils
 import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.app.MyComponent
@@ -12,22 +12,22 @@ import java.io.File
 
 object VersionHelper {
 
-    fun checkVersion(appCompatActivity: AppCompatActivity) {
+    fun checkVersion(fragmentActivity: FragmentActivity) {
         MyComponent().api.checkUpdate(version = AppUtils.getAppVersionName())
-            .lifeOnMain(appCompatActivity)
+            .lifeOnMain(fragmentActivity)
             .subscribe(
                 {
                     if (it.newVersion)
-                        downloadApk(appCompatActivity = appCompatActivity, apkUrl = it.apkUrl)
+                        downloadApk(fragmentActivity = fragmentActivity, apkUrl = it.apkUrl)
                     else
-                        appCompatActivity.startAct(cls = MainAct::class.java, finishSelf = true)
+                        fragmentActivity.startAct(cls = MainAct::class.java, finishSelf = true)
                 },
                 { it.toast() }
             )
     }
 
-    private fun downloadApk(appCompatActivity: AppCompatActivity, apkUrl: String) {
-        val progressMask = ProgressHelper.showMask(appCompatActivity)
+    private fun downloadApk(fragmentActivity: FragmentActivity, apkUrl: String) {
+        val progressMask = ProgressHelper.showMask(fragmentActivity)
         RxHttp.get(apkUrl)
             .asDownload("${MyComponent().context.filesDir.path}/csp.apk")
             { progressMask.setProgress(it.progress) }

@@ -13,7 +13,6 @@ import com.tbruyelle.rxpermissions3.RxPermissions
 import com.unircorn.csp.app.*
 import com.unircorn.csp.app.helper.VersionHelper
 import com.unircorn.csp.databinding.FraLoginBinding
-import com.unircorn.csp.ui.act.LoginAct
 import com.unircorn.csp.ui.base.BaseFra
 
 class LoginFra : BaseFra() {
@@ -39,10 +38,8 @@ class LoginFra : BaseFra() {
 
     private val fromChangePassword by lazy { arguments?.getBoolean(Param, false) ?: false }
 
-    override fun initBindings() {
-        with(binding) {
-            btnLogin.safeClicks().subscribe { loginX() }
-        }
+    override fun initBindings() = with(binding) {
+        btnLogin.safeClicks().subscribe { loginX() }
         requestPermissions()
     }
 
@@ -86,7 +83,7 @@ class LoginFra : BaseFra() {
                         username = etUsername.trimText()
                         password = etPassword.trimText()
                     }
-                    VersionHelper.checkVersion(requireActivity() as LoginAct)
+                    VersionHelper.checkVersion(requireActivity())
                 },
                 { it.toast() }
             )
