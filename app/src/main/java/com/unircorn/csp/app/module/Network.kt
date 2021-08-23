@@ -16,8 +16,8 @@ val networkModule = module {
     single {
 
         OkHttpClient.Builder()
-            .readTimeout(10000, TimeUnit.SECONDS)
-            .connectTimeout(10000, TimeUnit.SECONDS)
+            .readTimeout(20000, TimeUnit.SECONDS)
+            .connectTimeout(20000, TimeUnit.SECONDS)
             .addInterceptor { chain ->
                 if ("login" in chain.request().url.encodedPathSegments || "version" in chain.request().url.encodedPathSegments)
                     chain.proceed(chain.request())
@@ -40,7 +40,8 @@ val networkModule = module {
     single {
 
         val client = get<OkHttpClient>()
-//        RxHttpPlugins.init(client)
+
+        RxHttpPlugins.init(client)
 
         Retrofit.Builder()
             .baseUrl(baseUrl)

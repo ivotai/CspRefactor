@@ -23,6 +23,7 @@ import com.unircorn.csp.data.model.CreateTopicParam
 import com.unircorn.csp.data.model.UploadResponse
 import com.unircorn.csp.databinding.FraCreateTopicBinding
 import com.unircorn.csp.ui.base.BaseFra
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import rxhttp.RxHttp
 
 class CreateTopicFra : BaseFra() {
@@ -79,7 +80,7 @@ class CreateTopicFra : BaseFra() {
         RxHttp.postForm(uploadUrl)
 //            .addFile(attachments, result.map { File(it.realPath) })
             .addParts(requireContext(), attachments, result.map { Uri.parse(it.path) })
-            .upload {
+            .upload(AndroidSchedulers.mainThread()) {
                 progressMask.setProgress(it.progress)
             }
 //            .asString().subscribe({

@@ -11,6 +11,7 @@ object ProgressHelper {
             .setCancellable(false)
             .setDimAmount(0.5f)
             .setMaxProgress(100)
+            .setAutoDismiss(false)
             .show()
 
 }
