@@ -14,10 +14,7 @@ import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.jakewharton.rxbinding4.widget.textChanges
 import com.rxjava.rxlife.lifeOnMain
-import com.unircorn.csp.R
 import com.unircorn.csp.app.trimText
-import com.unircorn.csp.data.model.ArticleNormal
-import com.unircorn.csp.data.model.ArticleImage
 import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
 import com.unircorn.csp.databinding.FraArticleSearchBinding
@@ -64,8 +61,7 @@ class ArticleSearchFra : PageFra<MultiItemEntity>() {
             .map {
                 val page1 = Page(
                     content = it.data.content.map { article ->
-                        if (article.cover == "") ArticleNormal(article)
-                        else ArticleImage(article)
+                        article as MultiItemEntity
                     },
                     totalElements = it.data.totalElements
                 )

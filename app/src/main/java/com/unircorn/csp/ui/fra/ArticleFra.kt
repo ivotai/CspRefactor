@@ -12,8 +12,6 @@ import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
 import com.unircorn.csp.databinding.UiSwipeBinding
 import com.unircorn.csp.ui.adapter.ArticleAdapter
-import com.unircorn.csp.ui.adapter.ArticleImage
-import com.unircorn.csp.ui.adapter.ArticleNormal
 import com.unircorn.csp.ui.base.PageFra
 import com.unircorn.csp.ui.fraStateAdapter.MainFraStateAdapter
 import io.reactivex.rxjava3.core.Single
@@ -29,8 +27,7 @@ class ArticleFra : PageFra<MultiItemEntity>() {
             .map {
                 val page1 = Page(
                     content = it.data.content.map { article ->
-                        if (article.cover == "") ArticleNormal(article)
-                        else ArticleImage(article)
+                        article as MultiItemEntity
                     },
                     totalElements = it.data.totalElements
                 )
