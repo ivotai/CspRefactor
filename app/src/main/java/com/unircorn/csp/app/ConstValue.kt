@@ -11,7 +11,6 @@ const val SESSION = "SESSION"
 
 const val Param = "Param"
 const val attachment = "attachment"
-const val Position = "Position"
 
 const val displayDateFormat = "yyyy年MM月dd日"
 

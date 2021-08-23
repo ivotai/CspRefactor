@@ -57,10 +57,11 @@ my_fra 界面没有调整 todo 不急
 修改密码界面调整 todo 不急
 在自定义 View 中使用 ViewBinding todo 不急
 FileUtil2 待优化 todo 不急
-是否启用自动登录？ todo 问题
-第一，华为手机的鸿蒙系统上传视频，上传不了 todo
-视频访问时 header 未生效 todo
+是否启用自动登录？ todo 征求意见
+华为手机的鸿蒙系统上传视频，上传不了 todo 没有测试机
+视频访问时 header 未生效 todo jdsourse 的 headMap 设置了后无效 我有啥办法
 发文重复的问题 todo
+有时候视频播放还是会卡住，这是什么原因呢 todo 需更多关注
 
 ----
 

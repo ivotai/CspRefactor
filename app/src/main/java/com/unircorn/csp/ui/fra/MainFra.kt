@@ -22,7 +22,7 @@ import com.unircorn.csp.ui.act.LoginAct
 import com.unircorn.csp.ui.act.article.ArticleSearchAct
 import com.unircorn.csp.ui.act.my.MyAct
 import com.unircorn.csp.ui.base.BaseFra
-import com.unircorn.csp.ui.fragmentStateAdapter.MainFragmentStateAdapter
+import com.unircorn.csp.ui.fraStateAdapter.MainFraStateAdapter
 import io.reactivex.rxjava3.functions.Consumer
 import me.majiajie.pagerbottomtabstrip.NavigationController
 import me.majiajie.pagerbottomtabstrip.item.NormalItemView
@@ -37,8 +37,8 @@ class MainFra : BaseFra() {
     private fun initViewPager2() = with(binding.viewPager2) {
         removeEdgeEffect()
         isUserInputEnabled = false
-        offscreenPageLimit = MainFragmentStateAdapter.titles.size - 1
-        adapter = MainFragmentStateAdapter(this@MainFra)
+        offscreenPageLimit = MainFraStateAdapter.titles.size - 1
+        adapter = MainFraStateAdapter(this@MainFra)
     }
 
     private lateinit var navigationController: NavigationController
@@ -48,36 +48,36 @@ class MainFra : BaseFra() {
             .addItem(
                 newItem(
                     FontAwesome.Icon.faw_graduation_cap,
-                    MainFragmentStateAdapter.abbr[0]
+                    MainFraStateAdapter.abbr[0]
                 )
             )
             .addItem(
                 newItem(
                     FontAwesome.Icon.faw_comments1,
-                    MainFragmentStateAdapter.abbr[1]
+                    MainFraStateAdapter.abbr[1]
                 )
             )
             .addItem(
                 newItem(
                     FontAwesome.Icon.faw_balance_scale,
-                    MainFragmentStateAdapter.abbr[2]
+                    MainFraStateAdapter.abbr[2]
                 )
             )
             .addItem(
                 newItem(
                     FontAwesome.Icon.faw_calendar_check1,
-                    MainFragmentStateAdapter.abbr[3]
+                    MainFraStateAdapter.abbr[3]
                 )
             )
             .addItem(
                 newItem(
                     FontAwesome.Icon.faw_book_open,
-                    MainFragmentStateAdapter.abbr[4]
+                    MainFraStateAdapter.abbr[4]
                 )
             )
             .build()
         // 设置第一个标题
-        titleBar.title = MainFragmentStateAdapter.titles[0]
+        titleBar.title = MainFraStateAdapter.titles[0]
     }
 
     private fun newItem(icon: IIcon, text: String) =
@@ -119,7 +119,7 @@ class MainFra : BaseFra() {
 
         })
         navigationController.addSimpleTabItemSelectedListener { index, _ ->
-            titleBar.title = MainFragmentStateAdapter.titles[index]
+            titleBar.title = MainFraStateAdapter.titles[index]
             viewPager2.setCurrentItem(index, false)
         }
     }

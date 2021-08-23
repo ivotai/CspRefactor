@@ -4,21 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chad.library.adapter.base.entity.MultiItemEntity
-import com.google.android.material.divider.MaterialDividerItemDecoration
-import com.unircorn.csp.R
-import com.unircorn.csp.app.Position
-import com.unircorn.csp.data.model.ArticleNormal
+import com.unircorn.csp.app.Param
 import com.unircorn.csp.data.model.ArticleImage
+import com.unircorn.csp.data.model.ArticleNormal
 import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
 import com.unircorn.csp.databinding.UiSwipeBinding
 import com.unircorn.csp.ui.adapter.ArticleAdapter
 import com.unircorn.csp.ui.base.PageFra
-import com.unircorn.csp.ui.fragmentStateAdapter.MainFragmentStateAdapter
+import com.unircorn.csp.ui.fraStateAdapter.MainFraStateAdapter
 import io.reactivex.rxjava3.core.Single
 
 class ArticleFra : PageFra<MultiItemEntity>() {
@@ -27,19 +24,8 @@ class ArticleFra : PageFra<MultiItemEntity>() {
         pageAdapter = ArticleAdapter()
     }
 
-    override fun initItemDecoration(recyclerView: RecyclerView) {
-        recyclerView.apply {
-            MaterialDividerItemDecoration(
-                requireContext(),
-                LinearLayoutManager.VERTICAL
-            ).apply {
-                dividerThickness = 1
-            }.let { addItemDecoration(it) }
-        }
-    }
-
     override fun loadPage(page: Int): Single<Response<Page<MultiItemEntity>>> =
-        api.getArticle(page = page, category = MainFragmentStateAdapter.categories[position])
+        api.getArticle(page = page, category = MainFraStateAdapter.categories[position])
             .map {
                 val page1 = Page(
                     content = it.data.content.map { article ->
@@ -55,7 +41,7 @@ class ArticleFra : PageFra<MultiItemEntity>() {
                 )
             }
 
-    private val position by lazy { requireArguments().getInt(Position, 0) }
+    private val position by lazy { requireArguments().getInt(Param, 0) }
 
     override val mRecyclerView: RecyclerView
         get() = binding.recyclerView

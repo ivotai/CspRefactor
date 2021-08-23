@@ -7,6 +7,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.R
+import com.unircorn.csp.app.addDefaultItemDecoration
 import com.unircorn.csp.app.defaultPageSize
 import com.unircorn.csp.app.toast
 import com.unircorn.csp.data.model.base.Page
@@ -57,7 +58,7 @@ abstract class PageFra<T> : BaseFra() {
     }
 
     protected open fun initItemDecoration(recyclerView: RecyclerView) {
-
+        mRecyclerView.addDefaultItemDecoration()
     }
 
     private fun initLoadMoreModule() {

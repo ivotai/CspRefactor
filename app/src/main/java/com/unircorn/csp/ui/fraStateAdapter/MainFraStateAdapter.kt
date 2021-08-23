@@ -1,25 +1,22 @@
-package com.unircorn.csp.ui.fragmentStateAdapter
+package com.unircorn.csp.ui.fraStateAdapter
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.unircorn.csp.app.Position
+import com.unircorn.csp.app.Param
 import com.unircorn.csp.ui.fra.ArticleFra
 import com.unircorn.csp.ui.fra.topic.TopicFra
 
-class MainFragmentStateAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+class MainFraStateAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     override fun getItemCount() = titles.size
 
-    override fun createFragment(position: Int): Fragment {
-        val fra = if (position == 1) TopicFra() else ArticleFra()
-        fra.apply {
+    override fun createFragment(position: Int): Fragment =
+        if (position == 1) TopicFra() else ArticleFra().apply {
             arguments = Bundle().apply {
-                putInt(Position, position)
+                putInt(Param, position)
             }
         }
-        return fra
-    }
 
     companion object {
         val titles = listOf("学习园地", "学习比一比", "政策规定", "信息工作动态", "党史学习")
