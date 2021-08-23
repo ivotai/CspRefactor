@@ -1,6 +1,5 @@
 package com.unircorn.csp.ui.fra.topic
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,9 +20,7 @@ import com.unircorn.csp.data.model.*
 import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
 import com.unircorn.csp.databinding.FraTopicBinding
-import com.unircorn.csp.ui.act.article.ArticleSearchAct
 import com.unircorn.csp.ui.act.my.MyAct
-import com.unircorn.csp.ui.act.topic.CommentTopicNormalAct
 import com.unircorn.csp.ui.act.topic.CreateTopicAct
 import com.unircorn.csp.ui.adapter.TopicAdapter
 import com.unircorn.csp.ui.base.PageFra
@@ -37,10 +34,10 @@ class TopicFra : PageFra<MultiItemEntity>() {
     override fun initViews() = with(binding) {
         super.initViews()
         titleBar.title = MainFraStateAdapter.titles[1]
-        initFab()
+        initFloatingActionButton()
     }
 
-    private fun initFab() {
+    private fun initFloatingActionButton() {
         binding.floatingActionButton.setImageDrawable(
             IconicsDrawable(requireContext(), FontAwesome.Icon.faw_plus).apply {
                 sizeDp = 24
@@ -101,10 +98,7 @@ class TopicFra : PageFra<MultiItemEntity>() {
             .map {
                 val page1 = Page(
                     content = it.data.content.map { topic ->
-                        if (topic.targetClass == CommentTopicNormalAct::class.java) TopicNormal(
-                            topic = topic
-                        )
-                        else TopicVideo(topic = topic)
+                        topic as MultiItemEntity
                     },
                     totalElements = it.data.totalElements
                 )

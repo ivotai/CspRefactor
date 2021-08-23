@@ -4,7 +4,7 @@ import cn.jzvd.Jzvd
 import com.unircorn.csp.ui.base.BaseAct
 import com.unircorn.csp.ui.fra.topic.CommentTopicVideoFra
 
-class CommentTopicVideoAct : BaseAct() {
+class TopicDetailVideoAct : BaseAct() {
 
     override fun createFragment() = CommentTopicVideoFra()
 

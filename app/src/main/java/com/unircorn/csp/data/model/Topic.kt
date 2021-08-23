@@ -1,9 +1,8 @@
 package com.unircorn.csp.data.model
 
 import com.chad.library.adapter.base.entity.MultiItemEntity
-import com.unircorn.csp.ui.act.topic.CommentTopicNormalAct
-import com.unircorn.csp.ui.act.topic.CommentTopicVideoAct
-import com.unircorn.csp.ui.adapter.TopicAdapter
+import com.unircorn.csp.ui.act.topic.TopicDetailNormalAct
+import com.unircorn.csp.ui.act.topic.TopicDetailVideoAct
 import java.io.Serializable
 
 data class Topic(
@@ -15,14 +14,28 @@ data class Topic(
     val title: String,
     val images: List<Attachment>,
     val videos: List<Attachment>
-) : Serializable {
-    val targetClass: Class<*>
+) : Serializable, MultiItemEntity {
+
+    companion object {
+        const val topic_normal = 0
+        const val topic_image = 1
+        const val topic_video = 2
+    }
+
+    override val itemType: Int
         get() = when {
-            videos.isNotEmpty() -> CommentTopicVideoAct::class.java
-            // todo
-//        images.isNotEmpty() ->3
-            else -> CommentTopicNormalAct::class.java
+            videos.isNotEmpty() -> topic_video
+            images.isNotEmpty() -> topic_image
+            else -> topic_normal
         }
+
+    val targetClass: Class<*>
+        get() = when (itemType) {
+            topic_video -> TopicDetailVideoAct::class.java
+            topic_image -> TopicDetailNormalAct::class.java // todo
+            else -> TopicDetailNormalAct::class.java
+        }
+
 }
 
 data class CreateTopicParam(
@@ -31,11 +44,3 @@ data class CreateTopicParam(
     var title: String = "",
     var videos: List<UploadResponse> = ArrayList()
 )
-
-class TopicNormal(val topic: Topic) : MultiItemEntity {
-    override val itemType = TopicAdapter.topic_normal
-}
-
-class TopicVideo(val topic: Topic) : MultiItemEntity {
-    override val itemType = TopicAdapter.topic_video
-}

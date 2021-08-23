@@ -41,8 +41,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ui.act.article.ArticleSearchAct" />
         <activity android:name=".ui.act.topic.CreateTopicAct" />
-        <activity android:name=".ui.act.topic.CommentTopicNormalAct" />
-        <activity android:name=".ui.act.topic.CommentTopicVideoAct"
+        <activity android:name=".ui.act.topic.TopicDetailNormalAct" />
+        <activity android:name=".ui.act.topic.TopicDetailVideoAct"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
     </application>
