@@ -1,4 +1,4 @@
-package com.unircorn.csp.ui.fra
+package com.unircorn.csp.ui.fra.my
 
 import android.os.Bundle
 import android.view.LayoutInflater

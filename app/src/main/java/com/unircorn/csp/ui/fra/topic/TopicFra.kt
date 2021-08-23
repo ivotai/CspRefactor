@@ -31,11 +31,11 @@ class TopicFra : PageFra<MultiItemEntity>() {
 
     override fun initViews() {
         super.initViews()
+        addOnChildAttachStateChangeListener()
         initFab()
-        doForVideo()
     }
 
-    private fun doForVideo() {
+    private fun addOnChildAttachStateChangeListener() {
         mRecyclerView.addOnChildAttachStateChangeListener(object :
             OnChildAttachStateChangeListener {
             override fun onChildViewAttachedToWindow(view: View) {}
@@ -75,10 +75,6 @@ class TopicFra : PageFra<MultiItemEntity>() {
 
     override fun initPageAdapter() {
         pageAdapter = TopicAdapter()
-    }
-
-    override fun initItemDecoration(recyclerView: RecyclerView) {
-        recyclerView.addDefaultItemDecoration()
     }
 
     override fun loadPage(page: Int): Single<Response<Page<MultiItemEntity>>> =

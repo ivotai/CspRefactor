@@ -1,23 +1,10 @@
 package com.unircorn.csp.ui.act
 
-import cn.jzvd.Jzvd
-import com.unircorn.csp.ui.base.BaseAct
+import com.unircorn.csp.ui.base.JzvdAct
 import com.unircorn.csp.ui.fra.MainFra
 
-class MainAct : BaseAct() {
+class MainAct : JzvdAct() {
 
     override fun createFragment() = MainFra()
-
-    override fun onBackPressed() {
-        if (Jzvd.backPress()) {
-            return
-        }
-        super.onBackPressed()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Jzvd.releaseAllVideos()
-    }
 
 }

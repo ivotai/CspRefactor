@@ -1,4 +1,4 @@
-package com.unircorn.csp.ui.fra
+package com.unircorn.csp.ui.fra.article
 
 import android.content.Intent
 import android.os.Bundle

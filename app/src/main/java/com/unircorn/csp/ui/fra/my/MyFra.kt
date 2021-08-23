@@ -1,4 +1,4 @@
-package com.unircorn.csp.ui.fra
+package com.unircorn.csp.ui.fra.my
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.blankj.utilcode.util.ColorUtils
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.hjq.bar.OnTitleBarListener
 import com.rxjava.rxlife.lifeOnMain
-import com.unircorn.csp.R
 import com.unircorn.csp.app.Globals
 import com.unircorn.csp.app.toast
 import com.unircorn.csp.data.model.MyMenu
