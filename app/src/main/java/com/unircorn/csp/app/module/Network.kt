@@ -16,8 +16,8 @@ val networkModule = module {
     single {
 
         OkHttpClient.Builder()
-            .readTimeout(30000, TimeUnit.SECONDS)
-            .connectTimeout(30000, TimeUnit.SECONDS)
+            .readTimeout(10000, TimeUnit.SECONDS)
+            .connectTimeout(10000, TimeUnit.SECONDS)
             .addInterceptor { chain ->
                 if ("login" in chain.request().url.encodedPathSegments || "version" in chain.request().url.encodedPathSegments)
                     chain.proceed(chain.request())
