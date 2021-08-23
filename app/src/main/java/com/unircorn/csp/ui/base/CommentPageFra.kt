@@ -1,4 +1,4 @@
-package com.unircorn.csp.data.model.base
+package com.unircorn.csp.ui.base
 
 import com.blankj.utilcode.util.ToastUtils
 import com.google.android.material.button.MaterialButton

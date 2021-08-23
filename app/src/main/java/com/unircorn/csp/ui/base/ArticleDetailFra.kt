@@ -1,4 +1,4 @@
-package com.unircorn.csp.data.model.base
+package com.unircorn.csp.ui.base
 
 import android.annotation.SuppressLint
 import android.view.View
@@ -15,6 +15,8 @@ import com.unircorn.csp.data.model.Article
 import com.unircorn.csp.data.model.Attachment
 import com.unircorn.csp.data.model.Comment
 import com.unircorn.csp.data.model.CreateCommentParam
+import com.unircorn.csp.data.model.base.Page
+import com.unircorn.csp.data.model.base.Response
 import io.reactivex.rxjava3.core.Single
 import rxhttp.RxHttp
 import rxhttp.wrapper.exception.HttpStatusCodeException

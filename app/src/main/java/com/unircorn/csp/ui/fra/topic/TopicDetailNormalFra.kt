@@ -1,4 +1,4 @@
-package com.unircorn.csp.ui.fra.article
+package com.unircorn.csp.ui.fra.topic
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,29 +9,15 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.hjq.bar.TitleBar
-import com.rxjava.rxlife.lifeOnMain
-import com.unircorn.csp.app.*
-import com.unircorn.csp.ui.base.ArticleDetailFra
-import com.unircorn.csp.databinding.FraArticleDetailNormalBinding
-import com.unircorn.csp.ui.header.WebViewHeaderView
+import com.unircorn.csp.databinding.FraTopicDetailNormalBinding
+import com.unircorn.csp.ui.base.TopicDetailFra
+import com.unircorn.csp.ui.header.TopicHeaderView
 
-class ArticleDetailNormalFra : ArticleDetailFra() {
+class TopicDetailNormalFra : TopicDetailFra() {
 
-    override fun initBindings() {
-        super.initBindings()
-        getArticle()
-    }
-
-    private fun getArticle() {
-        api.getArticle(objectId = article.objectId)
-            .lifeOnMain(this)
-            .subscribe(
-                {
-                    if (it.failed) return@subscribe
-                    pageAdapter.addHeaderView(WebViewHeaderView(content = it.data.content))
-                },
-                { it.toast() }
-            )
+    override fun initPageAdapter() {
+        super.initPageAdapter()
+        pageAdapter.addHeaderView(TopicHeaderView(topic))
     }
 
     override val titleBar: TitleBar
@@ -51,7 +37,7 @@ class ArticleDetailNormalFra : ArticleDetailFra() {
 
 // ----
 
-    private var _binding: FraArticleDetailNormalBinding? = null
+    private var _binding: FraTopicDetailNormalBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -62,7 +48,7 @@ class ArticleDetailNormalFra : ArticleDetailFra() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FraArticleDetailNormalBinding.inflate(inflater, container, false)
+        _binding = FraTopicDetailNormalBinding.inflate(inflater, container, false)
         return binding.root
     }
 

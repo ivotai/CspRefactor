@@ -16,7 +16,7 @@ import com.unircorn.csp.app.SESSION
 import com.unircorn.csp.app.helper.ProgressHelper
 import com.unircorn.csp.app.toast
 import com.unircorn.csp.data.model.Attachment
-import com.unircorn.csp.data.model.base.ArticleDetailFra
+import com.unircorn.csp.ui.base.ArticleDetailFra
 import com.unircorn.csp.databinding.FraArticleDetailPdfBinding
 import rxhttp.RxHttp
 import rxhttp.wrapper.exception.HttpStatusCodeException
