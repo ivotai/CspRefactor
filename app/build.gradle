@@ -51,15 +51,6 @@ android {
             arg("rxhttp_package", "rxhttp")
         }
     }
-
-//    splits {
-//        abi {
-//            enable true
-//            reset()
-//            include 'armeabi', 'armeabi-v7a'
-//            universalApk false
-//        }
-//    }
 }
 
 dependencies {

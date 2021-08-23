@@ -4,7 +4,6 @@ const val baseUrl = "http://csp.seafa.kjgk.xyz:8000"
 const val uploadUrl = "${baseUrl}/api/v1/system/file/upload"
 
 //"http://csp.seafa.kjgk.xyz:8000"       // 测试
-// "http://58.16.65.7:8080"
 // http://117.187.141.201:8080  // 新服务器
 
 const val Cookie = "Cookie"

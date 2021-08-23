@@ -7,17 +7,16 @@ import android.view.ViewGroup
 import com.blankj.utilcode.util.ToastUtils
 import com.hjq.bar.OnTitleBarListener
 import com.rxjava.rxlife.lifeOnMain
-import com.unircorn.csp.R
 import com.unircorn.csp.app.RxBus
 import com.unircorn.csp.app.isEmpty
 import com.unircorn.csp.app.toast
 import com.unircorn.csp.app.trimText
 import com.unircorn.csp.data.event.LogoutEvent
 import com.unircorn.csp.data.model.ModifyPasswordParam
-import com.unircorn.csp.databinding.FraChangePasswordBinding
+import com.unircorn.csp.databinding.FraModifyPasswordBinding
 import com.unircorn.csp.ui.base.BaseFra
 
-class ChangePasswordFra : BaseFra() {
+class ModifyPasswordFra : BaseFra() {
 
     override fun initBindings() {
         binding.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
@@ -42,7 +41,7 @@ class ChangePasswordFra : BaseFra() {
                     newPassword = etNewPwd.trimText()
                 )
             )
-                .lifeOnMain(this@ChangePasswordFra)
+                .lifeOnMain(this@ModifyPasswordFra)
                 .subscribe(
                     {
                         if (it.failed) return@subscribe
@@ -75,7 +74,7 @@ class ChangePasswordFra : BaseFra() {
 
     // ----
 
-    private var _binding: FraChangePasswordBinding? = null
+    private var _binding: FraModifyPasswordBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -86,7 +85,7 @@ class ChangePasswordFra : BaseFra() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FraChangePasswordBinding.inflate(inflater, container, false)
+        _binding = FraModifyPasswordBinding.inflate(inflater, container, false)
         return binding.root
     }
 

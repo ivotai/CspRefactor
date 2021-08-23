@@ -32,7 +32,7 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.act.my.MyAct" />
-        <activity android:name=".ui.act.my.ChangePasswordAct" />
+        <activity android:name=".ui.act.my.ModifyPasswordAct" />
         <activity android:name=".ui.act.article.CommentAct" />
         <activity android:name=".ui.act.article.CommentPdfAct" />
         <activity
