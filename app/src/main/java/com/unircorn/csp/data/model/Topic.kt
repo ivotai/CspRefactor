@@ -14,10 +14,12 @@ data class Topic(
     val content: String,
     val title: String,
     val images: List<String>,
-    val videos: List<Attachment>
+    val videos: List<Attachment>,
+    val court: String,
+    val replyCount: Int,
 ) : Serializable, MultiItemEntity {
 
-    val imageUrls = images.map { "$baseUrl$it" }
+    val imageUrls: List<String> get() = images.map { "$baseUrl$it" }
 
     companion object {
         const val topic_normal = 0
@@ -46,4 +48,17 @@ data class CreateTopicParam(
     var images: List<UploadResponse> = ArrayList(),
     var title: String = "",
     var videos: List<UploadResponse> = ArrayList()
+)
+
+data class T(
+    val commentCount: Int,
+    val content: String,
+    val court: String,
+    val images: List<String>,
+    val issueTime: Long,
+    val issuer: String,
+    val objectId: String,
+    val replyCount: Int,
+    val title: String,
+    val videos: List<Any>
 )

@@ -64,6 +64,7 @@ class CreateTopicFra : BaseFra() {
             .videoMaxSecond(15)
             .videoMinSecond(5)
             .maxSelectNum(3)
+            .isCompress(true)
             .forResult(object : OnResultCallbackListener<LocalMedia> {
                 override fun onResult(result: List<LocalMedia>) {
                     upload(result)
@@ -78,18 +79,11 @@ class CreateTopicFra : BaseFra() {
     private fun upload(result: List<LocalMedia>) {
         val progressMask = ProgressHelper.showMask(requireActivity())
         RxHttp.postForm(uploadUrl)
-//            .addFile(attachments, result.map { File(it.realPath) })
+//            .addFile(attachments, result.map { File(it.compressPath) })
             .addParts(requireContext(), attachments, result.map { Uri.parse(it.path) })
             .upload(AndroidSchedulers.mainThread()) {
                 progressMask.setProgress(it.progress)
             }
-//            .asString().subscribe({
-//                it
-//                it
-//            }, {
-//                it.toast()
-//            }
-//            )
             .asList(UploadResponse::class.java).subscribe({
                 progressMask.dismiss()
                 if (result[0].mimeType == "image/jpeg") {
