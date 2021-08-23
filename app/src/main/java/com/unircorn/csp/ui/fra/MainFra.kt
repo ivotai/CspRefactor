@@ -76,8 +76,6 @@ class MainFra : BaseFra() {
                 )
             )
             .build()
-        // 设置第一个标题
-        titleBar.title = MainFraStateAdapter.titles[0]
     }
 
     private fun newItem(icon: IIcon, text: String) =

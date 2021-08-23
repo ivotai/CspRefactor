@@ -62,10 +62,10 @@ FileUtil2 待优化 todo 不急
 视频访问时 header 未生效 todo jdsourse 的 headMap 设置了后无效 我有啥办法
 发文重复的问题 todo
 有时候视频播放还是会卡住，这是什么原因呢 todo 需更多关注
+全屏播放完成后按重播，闪退，可复现 todo 再换个内核试试 ？？
 
 ----
 
-搜索当前栏目 todo
 学习比一比，自己发的自己可以删除 todo
 发表图片 todo
 视频压缩 todo
