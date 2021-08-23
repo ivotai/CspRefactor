@@ -52,7 +52,8 @@ class TopicAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(
                 item as TopicVideo
                 val topic = item.topic
                 val jzvdStd = holder.getView<JzvdStdRv>(R.id.jzvdStd)
-                val jzDataSource = JZDataSource(topic.videos[0].fullUrl, topic.title)
+                val fullUrl = topic.videos[0].fullUrl
+                val jzDataSource = JZDataSource(fullUrl, topic.title)
                 jzDataSource.headerMap[Cookie] = "$SESSION=${Globals.session}"
                 jzvdStd.setUp(jzDataSource, Jzvd.SCREEN_NORMAL, JZMediaIjk::class.java)
                 Glide.with(context).load(topic.videos[0].imageUrl)

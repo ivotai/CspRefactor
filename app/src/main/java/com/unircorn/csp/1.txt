@@ -53,16 +53,18 @@ https://stackoverflow.com/questions/66475730/in-android-studio-arctic-fox-canary
 
 切换 retrofit 适配器到 rxjava3
 
-更新下载 apk 已测试，安装覆盖未测试 todo 需测试
-
 my_fra 界面没有调整 todo 不急
 修改密码界面调整 todo 不急
 在自定义 View 中使用 ViewBinding todo 不急
 FileUtil2 待优化 todo 不急
-视频第一帧的缩略图怎么获取 todo 不是很急
 
+重构代码 todo
+发表图片 todo
 强制更新 todo
 搜索当前栏目 todo
+可以改成自己发的话题自己可以修改删除 todo
+发文重复的问题 todo
+视频压缩 todo
 
 
 
