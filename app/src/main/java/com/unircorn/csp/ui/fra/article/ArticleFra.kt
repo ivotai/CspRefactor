@@ -26,7 +26,6 @@ class ArticleFra : PageFra<MultiItemEntity>() {
     override fun initViews() = with(binding) {
         super.initViews()
         titleBar.title = mTitle
-
     }
 
     override fun initBindings() {

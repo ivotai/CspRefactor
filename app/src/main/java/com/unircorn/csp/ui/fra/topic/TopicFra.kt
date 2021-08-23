@@ -1,5 +1,6 @@
 package com.unircorn.csp.ui.fra.topic
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView.OnChildAttachStateChangeListene
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.jzvd.Jzvd
 import com.chad.library.adapter.base.entity.MultiItemEntity
+import com.hjq.bar.OnTitleBarListener
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
 import com.mikepenz.iconics.utils.sizeDp
@@ -19,20 +21,52 @@ import com.unircorn.csp.data.model.*
 import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
 import com.unircorn.csp.databinding.FraTopicBinding
+import com.unircorn.csp.ui.act.article.ArticleSearchAct
+import com.unircorn.csp.ui.act.my.MyAct
 import com.unircorn.csp.ui.act.topic.CommentTopicNormalAct
 import com.unircorn.csp.ui.act.topic.CreateTopicAct
 import com.unircorn.csp.ui.adapter.TopicAdapter
 import com.unircorn.csp.ui.base.PageFra
+import com.unircorn.csp.ui.fraStateAdapter.MainFraStateAdapter
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.functions.Consumer
 
 
 class TopicFra : PageFra<MultiItemEntity>() {
 
-    override fun initViews() {
+    override fun initViews() = with(binding) {
         super.initViews()
-        addOnChildAttachStateChangeListener()
+        titleBar.title = MainFraStateAdapter.titles[1]
         initFab()
+    }
+
+    private fun initFab() {
+        binding.floatingActionButton.setImageDrawable(
+            IconicsDrawable(requireContext(), FontAwesome.Icon.faw_plus).apply {
+                sizeDp = 24
+            }
+        )
+    }
+
+    override fun initBindings() {
+        super.initBindings()
+        binding.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
+            override fun onLeftClick(view: View?) {
+
+            }
+
+            override fun onTitleClick(view: View?) {
+
+            }
+
+            override fun onRightClick(view: View?) {
+                startAct(MyAct::class.java)
+            }
+        })
+        addOnChildAttachStateChangeListener()
+        binding.floatingActionButton.safeClicks().subscribe {
+            startAct(CreateTopicAct::class.java)
+        }
     }
 
     private fun addOnChildAttachStateChangeListener() {
@@ -50,21 +84,6 @@ class TopicFra : PageFra<MultiItemEntity>() {
                 }
             }
         })
-    }
-
-    private fun initFab() {
-        binding.floatingActionButton.setImageDrawable(
-            IconicsDrawable(requireContext(), FontAwesome.Icon.faw_plus).apply {
-                sizeDp = 24
-            }
-        )
-    }
-
-    override fun initBindings() {
-        super.initBindings()
-        binding.floatingActionButton.safeClicks().subscribe {
-            startAct(CreateTopicAct::class.java)
-        }
     }
 
     override fun initEvents() {
