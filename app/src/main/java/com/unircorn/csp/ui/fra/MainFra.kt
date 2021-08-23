@@ -104,22 +104,8 @@ class MainFra : BaseFra() {
     private val checkedColor = ColorUtils.getColor(R.color.md_red_700)
 
     override fun initBindings() = with(binding) {
-        titleBar.setOnTitleBarListener(object : OnTitleBarListener {
-            override fun onLeftClick(view: View?) {
-                startAct(ArticleSearchAct::class.java)
-            }
-
-            override fun onTitleClick(view: View?) {
-
-            }
-
-            override fun onRightClick(view: View?) {
-                startAct(MyAct::class.java)
-            }
-
-        })
         navigationController.addSimpleTabItemSelectedListener { index, _ ->
-            titleBar.title = MainFraStateAdapter.titles[index]
+//            titleBar.title = MainFraStateAdapter.titles[index]
             viewPager2.setCurrentItem(index, false)
         }
     }

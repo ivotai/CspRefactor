@@ -7,10 +7,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chad.library.adapter.base.entity.MultiItemEntity
+import com.hjq.bar.OnTitleBarListener
 import com.unircorn.csp.app.Param
+import com.unircorn.csp.app.startAct
 import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
-import com.unircorn.csp.databinding.UiSwipeBinding
+import com.unircorn.csp.databinding.UiTitleSwipeBinding
+import com.unircorn.csp.ui.act.article.ArticleSearchAct
+import com.unircorn.csp.ui.act.my.MyAct
 import com.unircorn.csp.ui.adapter.ArticleAdapter
 import com.unircorn.csp.ui.base.PageFra
 import com.unircorn.csp.ui.fraStateAdapter.MainFraStateAdapter
@@ -18,12 +22,40 @@ import io.reactivex.rxjava3.core.Single
 
 class ArticleFra : PageFra<MultiItemEntity>() {
 
+    override fun initViews() = with(binding) {
+        super.initViews()
+        with(titleBar) {
+            title = mTitle
+            rightTitle = "我的"
+            leftTitle = "搜索"
+            // 隐藏返回
+            titleBar.leftView.visibility = android.view.View.INVISIBLE
+        }
+    }
+
+    override fun initBindings() {
+        super.initBindings()
+        binding.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
+            override fun onLeftClick(view: View?) {
+                startAct(ArticleSearchAct::class.java)
+            }
+
+            override fun onTitleClick(view: View?) {
+
+            }
+
+            override fun onRightClick(view: View?) {
+                startAct(MyAct::class.java)
+            }
+        })
+    }
+
     override fun initPageAdapter() {
         pageAdapter = ArticleAdapter()
     }
 
     override fun loadPage(page: Int): Single<Response<Page<MultiItemEntity>>> =
-        api.getArticle(page = page, category = MainFraStateAdapter.categories[position])
+        api.getArticle(page = page, category = category)
             .map {
                 val page1 = Page(
                     content = it.data.content.map { article ->
@@ -38,6 +70,8 @@ class ArticleFra : PageFra<MultiItemEntity>() {
                 )
             }
 
+    private val mTitle by lazy { MainFraStateAdapter.titles[position] }
+    private val category by lazy { MainFraStateAdapter.categories[position] }
     private val position by lazy { requireArguments().getInt(Param, 0) }
 
     override val mRecyclerView: RecyclerView
@@ -46,9 +80,9 @@ class ArticleFra : PageFra<MultiItemEntity>() {
     override val mSwipeRefreshLayout: SwipeRefreshLayout
         get() = binding.swipeRefreshLayout
 
-// ----
+    // ----
 
-    private var _binding: UiSwipeBinding? = null
+    private var _binding: UiTitleSwipeBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -59,7 +93,7 @@ class ArticleFra : PageFra<MultiItemEntity>() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = UiSwipeBinding.inflate(inflater, container, false)
+        _binding = UiTitleSwipeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
