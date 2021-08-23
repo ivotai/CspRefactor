@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.blankj.utilcode.util.ToastUtils
 import com.hjq.bar.OnTitleBarListener
-import com.kaopiz.kprogresshud.KProgressHUD
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
@@ -16,6 +15,7 @@ import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
 import com.mikepenz.iconics.utils.sizeDp
 import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.app.*
+import com.unircorn.csp.app.helper.ProgressHelper
 import com.unircorn.csp.app.third.GlideEngine
 import com.unircorn.csp.data.event.RefreshTopicEvent
 import com.unircorn.csp.data.model.CreateTopicParam
@@ -29,10 +29,10 @@ class CreateTopicFra : BaseFra() {
 
     override fun initViews() {
         super.initViews()
-        initFab()
+        initFloatingActionButton()
     }
 
-    private fun initFab() {
+    private fun initFloatingActionButton() {
         binding.floatingActionButton.setImageDrawable(
             IconicsDrawable(requireContext(), FontAwesome.Icon.faw_video).apply {
                 sizeDp = 24
@@ -40,30 +40,42 @@ class CreateTopicFra : BaseFra() {
         )
     }
 
-    private fun takeVideo() {
-//        PictureSelector.create(this)
-//            .openCamera(PictureMimeType.ofVideo())
-//            .imageEngine(GlideEngine.createGlideEngine())
-//            .forResult(object : OnResultCallbackListener<LocalMedia?> {
-//                override fun onResult(result: List<LocalMedia?>) {
-//                    val realPath = result[0]!!.realPath
-//                    uploadVideo(realPath)
-//                }
-//
-//                override fun onCancel() {
-//                    // onCancel Callback
-//                }
-//            })
+    override fun initBindings() {
+        binding.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
+            override fun onLeftClick(v: View?) {
+                finishAct()
+            }
+
+            override fun onRightClick(v: View?) {
+                createTopicX()
+            }
+
+            override fun onTitleClick(v: View?) {
+            }
+        })
+        binding.floatingActionButton.safeClicks().subscribe { selectPicture() }
+    }
+
+    private fun selectPicture() {
+
+//        image/jpeg
 
         PictureSelector.create(this)
-            .openGallery(PictureMimeType.ofVideo())
+            .openGallery(PictureMimeType.ofAll())
             .imageEngine(GlideEngine.createGlideEngine())
             .videoMaxSecond(15)
             .videoMinSecond(5)
+            .maxSelectNum(3)
             .forResult(object : OnResultCallbackListener<LocalMedia?> {
                 override fun onResult(result: List<LocalMedia?>) {
+                    val first = result[0]!!
+                    if (first.mimeType != "image/jpeg") {
+                        uploadVideo(first.realPath)
+                    }
+                    val mimeType = "image/jpeg"
+
                     val realPath = result[0]!!.realPath
-                    uploadVideo(realPath)
+//                    uploadVideo(realPath)
                     // onResult Callback
                 }
 
@@ -74,14 +86,9 @@ class CreateTopicFra : BaseFra() {
     }
 
     private fun uploadVideo(path: String) {
-        val progressMask = KProgressHUD.create(requireContext())
-            .setStyle(KProgressHUD.Style.BAR_DETERMINATE)
-            .setCancellable(true)
-            .setDimAmount(0.5f)
-            .setMaxProgress(100)
-            .show()
+        val progressMask = ProgressHelper.showMask(requireActivity())
         RxHttp.postForm(uploadUrl)
-            .addFile(attachment, File(path))
+            .addFiles("attachments", listOf(File(path)))
             .upload { progressMask.setProgress(it.progress) }
             .asClass(UploadResponse::class.java).subscribe({
                 progressMask.dismiss()
@@ -93,23 +100,7 @@ class CreateTopicFra : BaseFra() {
             })
     }
 
-    override fun initBindings() {
-        binding.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
-            override fun onLeftClick(v: View?) {
-                requireActivity().finish()
-            }
-
-            override fun onRightClick(v: View?) {
-                createTopicX()
-            }
-
-            override fun onTitleClick(v: View?) {
-            }
-        })
-        binding.floatingActionButton.safeClicks().subscribe {
-            takeVideo()
-        }
-    }
+    //
 
     private fun createTopicX() = with(binding) {
         if (etTitle.isEmpty()) {
@@ -126,6 +117,7 @@ class CreateTopicFra : BaseFra() {
     private fun createTopic() = with(binding) {
         createTopicParam.title = etTitle.trimText()
         createTopicParam.content = etContent.trimText()
+
         api.createTopic(createTopicParam)
             .lifeOnMain(this@CreateTopicFra)
             .subscribe(
@@ -133,13 +125,14 @@ class CreateTopicFra : BaseFra() {
                     if (it.failed) return@subscribe
                     ToastUtils.showShort("发帖成功")
                     RxBus.post(RefreshTopicEvent())
-                    requireActivity().finish()
+                    finishAct()
                 },
                 { it.toast() }
             )
     }
 
     private val createTopicParam = CreateTopicParam()
+
     //
 
     private var _binding: FraCreateTopicBinding? = null
