@@ -87,7 +87,7 @@ public class JZMediaIjk extends JZMediaInterface implements IMediaPlayer.OnPrepa
             ijkMediaPlayer.setOnTimedTextListener(JZMediaIjk.this);
 
             try {
-                ijkMediaPlayer.setDataSource(jzvd.jzDataSource.getCurrentUrl().toString());
+                ijkMediaPlayer.setDataSource(jzvd.jzDataSource.getCurrentUrl().toString(), jzvd.jzDataSource.headerMap);
                 ijkMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
                 ijkMediaPlayer.setScreenOnWhilePlaying(true);
                 ijkMediaPlayer.prepareAsync();
