@@ -70,6 +70,26 @@ FileUtil2 待优化 todo 不急
 发表图片 todo
 视频压缩 todo
 
+上传有问题，上传图片没问题，视频有问题
+
+用安卓最新上传方式会生成这种值
+ {
+        "objectId": "879398605369114624",
+        "title": "这是图片贴",
+        "content": "图片",
+        "court": "贵阳中院",
+        "issuer": "任佳健",
+        "issueTime": 1629706566000,
+        "replyCount": 0,
+        "commentCount": 0,
+        "images": [
+          "/content/image/L1RvcGljL2ltYWdlLzIwMjEwOC84NzkzOTg2MDU0MzYyMjM0ODg=",
+          "/content/image/L1RvcGljL2ltYWdlLzIwMjEwOC84NzkzOTg2MDU0NTMwMDA3MDQ=",
+          "/content/image/L1RvcGljL2ltYWdlLzIwMjEwOC84NzkzOTg2MDU0NjEzODkzMTI="
+        ],
+        "videos": []
+      },
+
 
 
 

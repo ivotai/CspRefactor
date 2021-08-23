@@ -1,6 +1,5 @@
 package com.unircorn.csp.ui.fra.topic
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,9 +19,12 @@ import com.unircorn.csp.app.helper.ProgressHelper
 import com.unircorn.csp.app.third.GlideEngine
 import com.unircorn.csp.data.event.RefreshTopicEvent
 import com.unircorn.csp.data.model.CreateTopicParam
+import com.unircorn.csp.data.model.UploadResponse
 import com.unircorn.csp.databinding.FraCreateTopicBinding
 import com.unircorn.csp.ui.base.BaseFra
 import rxhttp.RxHttp
+import rxhttp.RxHttpPlugins
+import java.io.File
 
 class CreateTopicFra : BaseFra() {
 
@@ -56,9 +58,6 @@ class CreateTopicFra : BaseFra() {
     }
 
     private fun selectPicture() {
-
-//        image/jpeg
-
         PictureSelector.create(this)
             .openGallery(PictureMimeType.ofAll())
             .imageEngine(GlideEngine.createGlideEngine())
@@ -67,16 +66,7 @@ class CreateTopicFra : BaseFra() {
             .maxSelectNum(3)
             .forResult(object : OnResultCallbackListener<LocalMedia> {
                 override fun onResult(result: List<LocalMedia>) {
-                    val first = result[0]!!
-//                    if (first.mimeType != "image/jpeg") {
-                    uploadVideo(result)
-//                        uploadVideo(first.realPath)
-//                    }
-                    val mimeType = "image/jpeg"
-
-                    val realPath = result[0]!!.realPath
-//                    uploadVideo(realPath)
-                    // onResult Callback
+                    upload(result)
                 }
 
                 override fun onCancel() {
@@ -85,28 +75,34 @@ class CreateTopicFra : BaseFra() {
             })
     }
 
-    private fun uploadVideo(result: List<LocalMedia>) {
+    private fun upload(result: List<LocalMedia>) {
         val progressMask = ProgressHelper.showMask(requireActivity())
         RxHttp.postForm(uploadUrl)
-            .addParts(requireContext(), attachments, result.map { Uri.parse(it.path) })
+
+            .addFile(attachments, result.map { File(it.realPath) })
+//            .addParts(requireContext(), attachments, result.map { Uri.parse(it.path) })
             .upload {
                 progressMask.setProgress(it.progress)
             }
-            .asString().subscribe({
-                it
-                it
-            }, {
-                it.toast()
-            }
-            )
-//            .asList(UploadResponse::class.java).subscribe({
-//                progressMask.dismiss()
-//                createTopicParam.videos = it
-//                "视频已上传".toast()
+//            .asString().subscribe({
+//                it
+//                it
 //            }, {
-//                progressMask.dismiss()
 //                it.toast()
-//            })
+//            }
+//            )
+            .asList(UploadResponse::class.java).subscribe({
+                progressMask.dismiss()
+                if (result[0].mimeType == "image/jpeg") {
+                    createTopicParam.images = it
+                } else {
+                    createTopicParam.videos = it
+                }
+                "上传成功".toast()
+            }, {
+                progressMask.dismiss()
+                it.toast()
+            })
     }
 
     //
@@ -136,7 +132,9 @@ class CreateTopicFra : BaseFra() {
                     RxBus.post(RefreshTopicEvent())
                     finishAct()
                 },
-                { it.toast() }
+                {
+                    it.toast()
+                }
             )
     }
 
