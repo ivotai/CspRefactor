@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.unircorn.csp.app.Param
-import com.unircorn.csp.data.model.ArticleImage
-import com.unircorn.csp.data.model.ArticleNormal
 import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
 import com.unircorn.csp.databinding.UiSwipeBinding
 import com.unircorn.csp.ui.adapter.ArticleAdapter
+import com.unircorn.csp.ui.adapter.ArticleImage
+import com.unircorn.csp.ui.adapter.ArticleNormal
 import com.unircorn.csp.ui.base.PageFra
 import com.unircorn.csp.ui.fraStateAdapter.MainFraStateAdapter
 import io.reactivex.rxjava3.core.Single

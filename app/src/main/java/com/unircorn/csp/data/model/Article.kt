@@ -1,12 +1,8 @@
 package com.unircorn.csp.data.model
 
-import com.blankj.utilcode.util.FileUtils
-import com.chad.library.adapter.base.entity.MultiItemEntity
-import com.unircorn.csp.app.MyComponent
-import com.unircorn.csp.app.baseUrl
-import com.unircorn.csp.ui.adapter.ArticleAdapter.Companion.article_image
-import com.unircorn.csp.ui.adapter.ArticleAdapter.Companion.article_normal
-import java.io.File
+import com.unircorn.csp.ui.act.article.CommentAct
+import com.unircorn.csp.ui.act.article.CommentPdfAct
+import com.unircorn.csp.ui.act.article.CommentVideoAct
 import java.io.Serializable
 
 data class Article(
@@ -23,26 +19,14 @@ data class Article(
     val video: Attachment,
     val readCount: Int,
     val commentCount: Int
-) : Serializable
-
-data class Attachment(
-    val attachmentId: String,
-    val filename: String,
-    val url: String,
-    val imageUrl: String?
 ) : Serializable {
-    private val extension get() = FileUtils.getFileExtension(filename)
-    private val uniqueFilename get() = "$attachmentId.$extension"
-    val path get() = "${MyComponent().context.filesDir}/$uniqueFilename"
-    val file get() = File(path)
-    val exists get() = file.exists()
-    val fullUrl get() = baseUrl + url
+    val targetClass: Class<*>
+        get() = when (type) {
+            1 -> CommentAct::class.java
+            2 -> CommentVideoAct::class.java
+            else -> CommentPdfAct::class.java
+        }
 }
 
-class ArticleImage(val article: Article) : MultiItemEntity {
-    override val itemType = article_image
-}
 
-class ArticleNormal(val article: Article) : MultiItemEntity {
-    override val itemType = article_normal
-}
+
