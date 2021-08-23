@@ -1,5 +1,6 @@
 package com.unircorn.csp.ui.fra
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +13,7 @@ import com.unircorn.csp.app.Param
 import com.unircorn.csp.app.startAct
 import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
-import com.unircorn.csp.databinding.UiTitleSwipeBinding
+import com.unircorn.csp.databinding.FraArticleBinding
 import com.unircorn.csp.ui.act.article.ArticleSearchAct
 import com.unircorn.csp.ui.act.my.MyAct
 import com.unircorn.csp.ui.adapter.ArticleAdapter
@@ -24,20 +25,17 @@ class ArticleFra : PageFra<MultiItemEntity>() {
 
     override fun initViews() = with(binding) {
         super.initViews()
-        with(titleBar) {
-            title = mTitle
-            rightTitle = "我的"
-            leftTitle = "搜索"
-            // 隐藏返回
-            titleBar.leftView.visibility = android.view.View.INVISIBLE
-        }
+        titleBar.title = mTitle
+
     }
 
     override fun initBindings() {
         super.initBindings()
         binding.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
             override fun onLeftClick(view: View?) {
-                startAct(ArticleSearchAct::class.java)
+                Intent(requireContext(), ArticleSearchAct::class.java)
+                    .apply { putExtra(Param, category) }
+                    .let { requireContext().startActivity(it) }
             }
 
             override fun onTitleClick(view: View?) {
@@ -82,7 +80,7 @@ class ArticleFra : PageFra<MultiItemEntity>() {
 
     // ----
 
-    private var _binding: UiTitleSwipeBinding? = null
+    private var _binding: FraArticleBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -93,7 +91,7 @@ class ArticleFra : PageFra<MultiItemEntity>() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = UiTitleSwipeBinding.inflate(inflater, container, false)
+        _binding = FraArticleBinding.inflate(inflater, container, false)
         return binding.root
     }
 

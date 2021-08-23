@@ -14,6 +14,7 @@ import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.jakewharton.rxbinding4.widget.textChanges
 import com.rxjava.rxlife.lifeOnMain
+import com.unircorn.csp.app.Param
 import com.unircorn.csp.app.trimText
 import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
@@ -57,7 +58,7 @@ class ArticleSearchFra : PageFra<MultiItemEntity>() {
     }
 
     override fun loadPage(page: Int): Single<Response<Page<MultiItemEntity>>> =
-        api.getArticle(page = page, keyword = binding.etSearch.trimText())
+        api.getArticle(page = page, category = category, keyword = binding.etSearch.trimText())
             .map {
                 val page1 = Page(
                     content = it.data.content.map { article ->
@@ -71,6 +72,8 @@ class ArticleSearchFra : PageFra<MultiItemEntity>() {
                     data = page1
                 )
             }
+
+    private val category by lazy { requireArguments().getString(Param, "") }
 
     override val mRecyclerView: RecyclerView
         get() = binding.recyclerView
