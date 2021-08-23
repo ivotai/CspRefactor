@@ -26,3 +26,4 @@ abstract class BaseFra(@LayoutRes contentLayoutId: Int) : Fragment(contentLayout
     val api by lazy { MyComponent().api }
 
 }
+

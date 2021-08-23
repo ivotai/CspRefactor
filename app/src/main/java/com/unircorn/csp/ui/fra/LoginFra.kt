@@ -28,8 +28,10 @@ class LoginFra : BaseFra(R.layout.fra_login) {
             IconicsDrawable(requireContext(), FontAwesome.Icon.faw_lock).apply {
                 sizeDp = 24
             }
-        etUsername.setText(UserInfo.username)
-        etPassword.setText(UserInfo.password)
+        with(UserInfo) {
+            etUsername.setText(username)
+            etPassword.setText(password)
+        }
         if (fromChangePassword) {
             etPassword.setText("")
             etPassword.requestFocus()
@@ -42,15 +44,22 @@ class LoginFra : BaseFra(R.layout.fra_login) {
         with(binding) {
             btnLogin.safeClicks().subscribe { loginX() }
         }
+        requestPermissions()
+    }
 
-        // 自动登录
-//        if (UserInfo.username.isNotEmpty() && !Globals.isLogout) loginX()
+    private fun requestPermissions() {
+        fun autoLogin() {
+            if (UserInfo.username.isNotEmpty() && !Globals.isLogout) loginX()
+        }
 
-        // 获取权限
         RxPermissions(this)
             .request(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA)
             .subscribe { granted ->
-                if (!granted) requireActivity().finish()
+                if (!granted)
+                    finishAct()
+                else {
+//                    autoLogin()
+                }
             }
     }
 

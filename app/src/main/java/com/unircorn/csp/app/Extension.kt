@@ -60,3 +60,5 @@ fun RecyclerView.addDefaultItemDecoration() {
         }.let { addItemDecoration(it) }
     }
 }
+
+fun Fragment.finishAct() = this.requireActivity().finish()
