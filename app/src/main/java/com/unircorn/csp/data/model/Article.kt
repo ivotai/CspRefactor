@@ -1,7 +1,7 @@
 package com.unircorn.csp.data.model
 
 import com.chad.library.adapter.base.entity.MultiItemEntity
-import com.unircorn.csp.ui.act.article.ArticleNormalDetailAct
+import com.unircorn.csp.ui.act.article.ArticleDetailNormalAct
 import com.unircorn.csp.ui.act.article.CommentPdfAct
 import com.unircorn.csp.ui.act.article.CommentVideoAct
 import java.io.Serializable
@@ -29,7 +29,7 @@ data class Article(
 
     val targetClass: Class<*>
         get() = when (type) {
-            1 -> ArticleNormalDetailAct::class.java
+            1 -> ArticleDetailNormalAct::class.java
             2 -> CommentVideoAct::class.java
             else -> CommentPdfAct::class.java
         }

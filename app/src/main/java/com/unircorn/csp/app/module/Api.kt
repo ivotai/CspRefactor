@@ -7,7 +7,9 @@ import retrofit2.Retrofit
 val apiModule = module {
 
     single {
+
         get<Retrofit>().create(SimpleApi::class.java)
+
     }
 
 }
