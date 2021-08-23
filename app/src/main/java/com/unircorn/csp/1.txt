@@ -59,36 +59,19 @@ my_fra 界面没有调整 todo 不急
 FileUtil2 待优化 todo 不急
 是否启用自动登录？ todo 征求意见
 华为手机的鸿蒙系统上传视频，上传不了 todo 没有测试机
-视频访问时 header 未生效 todo jdsourse 的 headMap 设置了后无效 我有啥办法
 发文重复的问题 todo
 有时候视频播放还是会卡住，这是什么原因呢 todo 需更多关注
 全屏播放完成后按重播，闪退，可复现 todo 再换个内核试试 ？？
+视频压缩 todo
 
 ----
 
+点赞功能要做吗 todo
 学习比一比，自己发的自己可以删除 todo
 发表图片 todo
-视频压缩 todo
 
 上传有问题，上传图片没问题，视频有问题
 
-用安卓最新上传方式会生成这种值
- {
-        "objectId": "879398605369114624",
-        "title": "这是图片贴",
-        "content": "图片",
-        "court": "贵阳中院",
-        "issuer": "任佳健",
-        "issueTime": 1629706566000,
-        "replyCount": 0,
-        "commentCount": 0,
-        "images": [
-          "/content/image/L1RvcGljL2ltYWdlLzIwMjEwOC84NzkzOTg2MDU0MzYyMjM0ODg=",
-          "/content/image/L1RvcGljL2ltYWdlLzIwMjEwOC84NzkzOTg2MDU0NTMwMDA3MDQ=",
-          "/content/image/L1RvcGljL2ltYWdlLzIwMjEwOC84NzkzOTg2MDU0NjEzODkzMTI="
-        ],
-        "videos": []
-      },
 
 
 

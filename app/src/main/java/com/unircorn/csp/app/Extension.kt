@@ -71,4 +71,4 @@ fun RecyclerView.addDefaultItemDecoration() {
 
 fun Fragment.finishAct() = this.requireActivity().finish()
 
-fun Long.toDisplayDateFormat() = DateTime(this).toString(displayDateFormat)
+fun Long.toDisplayDateFormat(): String = DateTime(this).toString(displayDateFormat)
