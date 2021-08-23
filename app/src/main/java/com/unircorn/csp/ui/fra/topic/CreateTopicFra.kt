@@ -115,7 +115,6 @@ class CreateTopicFra : BaseFra() {
     private fun createTopic() = with(binding) {
         createTopicParam.title = etTitle.trimText()
         createTopicParam.content = etContent.trimText()
-
         api.createTopic(createTopicParam)
             .lifeOnMain(this@CreateTopicFra)
             .subscribe(

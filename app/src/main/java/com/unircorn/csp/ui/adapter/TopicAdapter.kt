@@ -2,6 +2,7 @@ package com.unircorn.csp.ui.adapter
 
 import android.content.Intent
 import android.view.View
+import android.widget.ImageView
 import cn.jzvd.JZDataSource
 import cn.jzvd.Jzvd
 import com.bumptech.glide.Glide
@@ -24,7 +25,7 @@ class TopicAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(
 
     init {
         addItemType(topic_normal, R.layout.item_topic_normal)
-        addItemType(topic_image, R.layout.item_topic_normal)    // todo
+        addItemType(topic_image, R.layout.item_topic_image)
         addItemType(topic_video, R.layout.item_topic_video)
     }
 
@@ -54,6 +55,26 @@ class TopicAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(
                         Intent(context, targetClass).apply {
                             putExtra(Param, this@with)
                         }.let { context.startActivity(it) }
+                    }
+                }
+            }
+            topic_image -> {
+                with(item as Topic) {
+                    holder.setText(R.id.tvTitle, title)
+                    if (imageUrls.size > 0){
+                        val imageView = holder.getView<ImageView>(R.id.imageView1)
+                        imageView.visibility = View.VISIBLE
+                        Glide.with(context).load(imageUrls[0]).into(imageView)
+                    }
+                    if (imageUrls.size > 1){
+                        val imageView = holder.getView<ImageView>(R.id.imageView2)
+                        imageView.visibility = View.VISIBLE
+                        Glide.with(context).load(imageUrls[1]).into(imageView)
+                    }
+                    if (imageUrls.size > 2){
+                        val imageView = holder.getView<ImageView>(R.id.imageView3)
+                        imageView.visibility = View.VISIBLE
+                        Glide.with(context).load(imageUrls[2]).into(imageView)
                     }
                 }
             }
