@@ -16,5 +16,5 @@ const val displayDateFormat = "yyyy年MM月dd日"
 
 const val defaultPageSize = 10
 
-const val timeout = 5000L
+const val timeout = 20000L
 

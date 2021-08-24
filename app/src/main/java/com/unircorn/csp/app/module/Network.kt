@@ -43,13 +43,14 @@ val networkModule = module {
         val client = OkHttpClient.Builder()
             .readTimeout(timeout, TimeUnit.SECONDS)
             .connectTimeout(timeout, TimeUnit.SECONDS)
-            .writeTimeout(timeout,TimeUnit.SECONDS)
+            .writeTimeout(timeout, TimeUnit.SECONDS)
+            .callTimeout(timeout, TimeUnit.SECONDS)
 //            .addInterceptor(HttpLoggingInterceptor().apply {
 //                level = HttpLoggingInterceptor.Level.BODY
 //            })
             .build()
 
-//        RxHttpPlugins.init(client)
+        RxHttpPlugins.init(client)
 
         Retrofit.Builder()
             .baseUrl(baseUrl)
