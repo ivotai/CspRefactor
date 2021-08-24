@@ -7,11 +7,9 @@
 
     <ImageView
         android:id="@+id/imageView"
+        android:scaleType="fitXY"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"
-        android:adjustViewBounds="true"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

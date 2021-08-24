@@ -5,7 +5,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.SnapHelper
 import com.google.android.material.card.MaterialCardView
 import com.unircorn.csp.R
 import com.unircorn.csp.app.MyComponent
@@ -25,7 +27,7 @@ class TopicImageHeaderView(private val topic: Topic) : FrameLayout(MyComponent()
         val root = LayoutInflater.from(context).inflate(R.layout.header_topic_image, this, true)
         val recyclerView = root.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.run {
-            layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
             // todo
 //            MaterialDividerItemDecoration(
 //                context,
@@ -37,6 +39,8 @@ class TopicImageHeaderView(private val topic: Topic) : FrameLayout(MyComponent()
             val image2Adapter = Image2Adapter()
             adapter = image2Adapter
             image2Adapter.setList(topic.imageUrls)
+
+            PagerSnapHelper().attachToRecyclerView(this)
         }
     }
 

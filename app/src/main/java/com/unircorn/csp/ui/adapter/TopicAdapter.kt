@@ -91,6 +91,11 @@ class TopicAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(
                             putExtra(Param, this@with)
                         }.let { context.startActivity(it) }
                     }
+                    holder.getView<View>(R.id.recyclerView).safeClicks().subscribe {
+                        Intent(context, targetClass).apply {
+                            putExtra(Param, this@with)
+                        }.let { context.startActivity(it) }
+                    }
                 }
             }
         }
