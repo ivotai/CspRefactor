@@ -33,6 +33,23 @@ class TopicAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(
         addItemType(topic_video, R.layout.item_topic_video)
     }
 
+    override fun onItemViewHolderCreated(viewHolder: BaseViewHolder, viewType: Int) {
+        if (viewType == topic_image) {
+            val recyclerView = viewHolder.getView<RecyclerView>(R.id.recyclerView)
+            recyclerView.run {
+                layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+                MaterialDividerItemDecoration(
+                    context,
+                    LinearLayoutManager.HORIZONTAL
+                ).apply {
+                    dividerColor = Color.WHITE
+                    dividerThickness = ConvertUtils.dp2px(8f)
+                }.let { addItemDecoration(it) }
+                adapter = ImageAdapter()
+            }
+        }
+    }
+
     override fun convert(holder: BaseViewHolder, item: MultiItemEntity) {
         when (item.itemType) {
             topic_normal -> {
@@ -67,23 +84,11 @@ class TopicAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(
                 with(item as Topic) {
                     holder.setText(R.id.tvTitle, title)
                     val recyclerView = holder.getView<RecyclerView>(R.id.recyclerView)
-                    recyclerView.run {
-                        layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
-                        MaterialDividerItemDecoration(
-                            context,
-                            LinearLayoutManager.HORIZONTAL
-                        ).apply {
-                            dividerColor = Color.WHITE
-                            dividerThickness = ConvertUtils.dp2px(8f)
-                        }.let { addItemDecoration(it) }
-                        val imageAdapter = ImageAdapter()
-                        adapter = imageAdapter
-                        imageAdapter.setList(item.imageUrls)
-                    }
+                    val imageAdapter = recyclerView.adapter as ImageAdapter
+                    imageAdapter.setList(item.imageUrls)
                 }
             }
         }
     }
-
 
 }

@@ -1,6 +1,7 @@
 package com.unircorn.csp.ui.adapter
 
 import android.view.View
+import android.view.ViewGroup
 import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.FileUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
