@@ -43,7 +43,7 @@ class ArticleDetailVideoFra : ArticleDetailFra() {
                     pageAdapter.addHeaderView(WebViewHeaderView(content = it.data.content))
 
                 },
-                { it.toast() }
+                { it.errorMsg().toast() }
             )
     }
 

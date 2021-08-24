@@ -2,6 +2,7 @@ package com.unircorn.csp.app.module
 
 import com.unircorn.csp.app.baseUrl
 import com.unircorn.csp.app.helper.NetworkHelper
+import com.unircorn.csp.app.timeout
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -16,8 +17,8 @@ val networkModule = module {
     single {
 
         OkHttpClient.Builder()
-            .readTimeout(20000, TimeUnit.SECONDS)
-            .connectTimeout(20000, TimeUnit.SECONDS)
+//            .readTimeout(timeout, TimeUnit.SECONDS)
+//            .connectTimeout(timeout, TimeUnit.SECONDS)
             .addInterceptor { chain ->
                 if ("login" in chain.request().url.encodedPathSegments || "version" in chain.request().url.encodedPathSegments)
                     chain.proceed(chain.request())
@@ -39,13 +40,20 @@ val networkModule = module {
 
     single {
 
-        val client = get<OkHttpClient>()
+        val client = OkHttpClient.Builder()
+            .readTimeout(timeout, TimeUnit.SECONDS)
+            .connectTimeout(timeout, TimeUnit.SECONDS)
+            .writeTimeout(timeout,TimeUnit.SECONDS)
+//            .addInterceptor(HttpLoggingInterceptor().apply {
+//                level = HttpLoggingInterceptor.Level.BODY
+//            })
+            .build()
 
 //        RxHttpPlugins.init(client)
 
         Retrofit.Builder()
             .baseUrl(baseUrl)
-            .client(client)
+            .client(get())
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create())
             .build()

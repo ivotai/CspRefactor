@@ -91,7 +91,7 @@ abstract class ArticleDetailFra : CommentPageFra() {
                 if (it.failed) return@subscribe
                 afterCommentCreated()
             },
-            { it.toast() }
+            { it.errorMsg().toast() }
         )
     }
 

@@ -44,7 +44,7 @@ abstract class TopicDetailFra : CommentPageFra() {
                 if (it.failed) return@subscribe
                 afterCommentCreated()
             },
-            { it.toast() }
+            { it.errorMsg().toast() }
         )
     }
 

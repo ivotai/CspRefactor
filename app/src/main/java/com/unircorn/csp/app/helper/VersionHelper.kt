@@ -4,6 +4,7 @@ import androidx.fragment.app.FragmentActivity
 import com.blankj.utilcode.util.AppUtils
 import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.app.MyComponent
+import com.unircorn.csp.app.errorMsg
 import com.unircorn.csp.app.startAct
 import com.unircorn.csp.app.toast
 import com.unircorn.csp.ui.act.MainAct
@@ -22,7 +23,7 @@ object VersionHelper {
                     else
                         fragmentActivity.startAct(cls = MainAct::class.java, finishSelf = true)
                 },
-                { it.toast() }
+                { it.errorMsg().toast() }
             )
     }
 

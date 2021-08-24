@@ -85,7 +85,7 @@ class LoginFra : BaseFra() {
                     }
                     VersionHelper.checkVersion(requireActivity())
                 },
-                { it.toast() }
+                { it.errorMsg().toast() }
             )
     }
 

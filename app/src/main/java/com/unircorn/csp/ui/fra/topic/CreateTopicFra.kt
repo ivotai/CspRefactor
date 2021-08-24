@@ -1,6 +1,5 @@
 package com.unircorn.csp.ui.fra.topic
 
-import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -25,6 +24,7 @@ import com.unircorn.csp.databinding.FraCreateTopicBinding
 import com.unircorn.csp.ui.base.BaseFra
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import rxhttp.RxHttp
+import java.io.File
 
 class CreateTopicFra : BaseFra() {
 
@@ -77,16 +77,20 @@ class CreateTopicFra : BaseFra() {
     }
 
     private fun upload(result: List<LocalMedia>) {
+        val isImage = result[0].mimeType == "image/jpeg"
+
         val progressMask = ProgressHelper.showMask(requireActivity())
         RxHttp.postForm(uploadUrl)
-//            .addFile(attachments, result.map { File(it.compressPath) })
-            .addParts(requireContext(), attachments, result.map { Uri.parse(it.path) })
+            .addFiles(
+                attachments,
+                result.map { File(if (isImage) it.compressPath else it.realPath) })
+//            .addParts(requireContext(), attachments, result.map { Uri.parse(it.path) })
             .upload(AndroidSchedulers.mainThread()) {
                 progressMask.setProgress(it.progress)
             }
             .asList(UploadResponse::class.java).subscribe({
                 progressMask.dismiss()
-                if (result[0].mimeType == "image/jpeg") {
+                if (isImage) {
                     createTopicParam.images = it
                 } else {
                     createTopicParam.videos = it
@@ -94,7 +98,7 @@ class CreateTopicFra : BaseFra() {
                 "上传成功".toast()
             }, {
                 progressMask.dismiss()
-                it.toast()
+                it.errorMsg().toast()
             })
     }
 
@@ -125,7 +129,7 @@ class CreateTopicFra : BaseFra() {
                     finishAct()
                 },
                 {
-                    it.toast()
+                    it.errorMsg().toast()
                 }
             )
     }

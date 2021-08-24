@@ -30,7 +30,7 @@ class ArticleDetailNormalFra : ArticleDetailFra() {
                     if (it.failed) return@subscribe
                     pageAdapter.addHeaderView(WebViewHeaderView(content = it.data.content))
                 },
-                { it.toast() }
+                { it.errorMsg().toast() }
             )
     }
 

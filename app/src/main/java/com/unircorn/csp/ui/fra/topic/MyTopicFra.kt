@@ -60,9 +60,7 @@ class MyTopicFra : PageFra<Topic>() {
                     ToastUtils.showShort("删帖成功")
                     loadStartPage()
                 },
-                {
-                    it.toast()
-                }
+                { it.errorMsg().toast() }
             )
     }
 

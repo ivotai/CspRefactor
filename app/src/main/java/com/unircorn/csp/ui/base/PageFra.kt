@@ -9,6 +9,7 @@ import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.R
 import com.unircorn.csp.app.addDefaultItemDecoration
 import com.unircorn.csp.app.defaultPageSize
+import com.unircorn.csp.app.errorMsg
 import com.unircorn.csp.app.toast
 import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
@@ -87,7 +88,7 @@ abstract class PageFra<T> : BaseFra() {
 //                setEmptyViewIfNeed(it)
             }, {
                 mSwipeRefreshLayout.isRefreshing = false
-                it.toast()
+                it.errorMsg().toast()
             })
     }
 
@@ -108,7 +109,7 @@ abstract class PageFra<T> : BaseFra() {
                 checkIsLoadAll(it)
             }, {
                 loadMoreModule.loadMoreFail()
-                it.toast()
+                it.errorMsg().toast()
             })
     }
 

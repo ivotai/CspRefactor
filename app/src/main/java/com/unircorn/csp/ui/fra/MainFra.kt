@@ -120,7 +120,7 @@ class MainFra : BaseFra() {
                             putExtra(Param, logoutEvent.clearPassword)
                         }.let { startActivity(it) }
                     },
-                    { it.toast() }
+                    { it.errorMsg().toast() }
                 )
         }
         RxBus.registerEvent(this, LogoutEvent::class.java, Consumer {

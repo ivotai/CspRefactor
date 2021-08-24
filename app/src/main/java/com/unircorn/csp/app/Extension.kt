@@ -45,8 +45,9 @@ fun ViewPager2.removeEdgeEffect() {
     (this.getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
 }
 
-fun Throwable.toast() = fun() {
-    val message = when (this) {
+
+fun Throwable.errorMsg(): String {
+    val errorMsg = when (this) {
         is UnknownHostException -> "接口地址设置有误或无网络"
         is SocketTimeoutException -> "超时了"
         is HttpException -> when (code()) {
@@ -55,7 +56,7 @@ fun Throwable.toast() = fun() {
         }
         else -> toString()
     }
-    message.toast()
+    return errorMsg
 }
 
 fun RecyclerView.addDefaultItemDecoration() {
