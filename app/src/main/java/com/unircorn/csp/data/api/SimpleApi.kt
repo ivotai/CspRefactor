@@ -66,7 +66,14 @@ interface SimpleApi {
     @GET("api/v1/app/topic")
     fun getTopic(
         @Query("page") page: Int,
-        @Query("pageSize") pageSize: Int = defaultPageSize
+        @Query("pageSize") pageSize: Int = defaultPageSize,
+    ): Single<Response<Page<Topic>>>
+
+    @GET("api/v1/app/topic")
+    fun getMyTopic(
+        @Query("page") page: Int,
+        @Query("pageSize") pageSize: Int = defaultPageSize,
+        @Query("self") self: Int = 1
     ): Single<Response<Page<Topic>>>
 
     @GET("api/v1/app/topic/{topicId}/comment")

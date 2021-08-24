@@ -72,7 +72,6 @@ FileUtil2 待优化 todo 不急
 
 ----
 
-发表图片 todo
 自己发的自己可以删除 todo
 点赞功能要做吗 todo
 
