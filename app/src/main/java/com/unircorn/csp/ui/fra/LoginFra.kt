@@ -54,7 +54,7 @@ class LoginFra : BaseFra() {
                 if (!granted)
                     finishAct()
                 else {
-//                    autoLogin()
+                    autoLogin()
                 }
             }
     }
