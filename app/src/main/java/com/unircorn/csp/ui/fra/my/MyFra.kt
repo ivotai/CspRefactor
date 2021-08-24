@@ -10,9 +10,12 @@ import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.hjq.bar.OnTitleBarListener
 import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.app.Globals
+import com.unircorn.csp.app.safeClicks
+import com.unircorn.csp.app.startAct
 import com.unircorn.csp.app.toast
 import com.unircorn.csp.data.model.MyMenu
 import com.unircorn.csp.databinding.FraMyBinding
+import com.unircorn.csp.ui.act.topic.MyTopicAct
 import com.unircorn.csp.ui.adapter.MyAdapter
 import com.unircorn.csp.ui.base.BaseFra
 
@@ -64,6 +67,8 @@ class MyFra : BaseFra() {
                     },
                     { it.toast() }
                 )
+
+            tvTopicCount.safeClicks().subscribe { startAct(MyTopicAct::class.java) }
         }
     }
 

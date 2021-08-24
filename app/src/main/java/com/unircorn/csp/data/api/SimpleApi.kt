@@ -76,6 +76,11 @@ interface SimpleApi {
         @Query("self") self: Int = 1
     ): Single<Response<Page<Topic>>>
 
+    @DELETE("api/v1/app/topic/{topicId}")
+    fun deleteTopic(
+        @Path("topicId") topicId: String,
+    ): Single<Response<Any>>
+
     @GET("api/v1/app/topic/{topicId}/comment")
     fun getCommentT(
         @Path("topicId") topicId: String,
