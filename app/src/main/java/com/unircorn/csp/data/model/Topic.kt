@@ -2,6 +2,7 @@ package com.unircorn.csp.data.model
 
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.unircorn.csp.app.baseUrl
+import com.unircorn.csp.ui.act.topic.TopicDetailImageAct
 import com.unircorn.csp.ui.act.topic.TopicDetailNormalAct
 import com.unircorn.csp.ui.act.topic.TopicDetailVideoAct
 import java.io.Serializable
@@ -37,7 +38,7 @@ data class Topic(
     val targetClass: Class<*>
         get() = when (itemType) {
             topic_video -> TopicDetailVideoAct::class.java
-            topic_image -> TopicDetailNormalAct::class.java // todo
+            topic_image -> TopicDetailImageAct::class.java
             else -> TopicDetailNormalAct::class.java
         }
 

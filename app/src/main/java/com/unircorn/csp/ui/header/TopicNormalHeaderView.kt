@@ -12,7 +12,7 @@ import org.ocpsoft.prettytime.PrettyTime
 import java.util.*
 
 @SuppressLint("ViewConstructor")
-class TopicHeaderView(private val topic: Topic) : FrameLayout(MyComponent().context) {
+class TopicNormalHeaderView(private val topic: Topic) : FrameLayout(MyComponent().context) {
 
     private val prettyTime = PrettyTime()
 
@@ -21,7 +21,7 @@ class TopicHeaderView(private val topic: Topic) : FrameLayout(MyComponent().cont
     }
 
     private fun initViews(context: Context) {
-        val root = LayoutInflater.from(context).inflate(R.layout.header_topic, this, true)
+        val root = LayoutInflater.from(context).inflate(R.layout.header_topic_normal, this, true)
         with(topic) {
             root.findViewById<TextView>(R.id.tvIssuer).text = issuer
             root.findViewById<TextView>(R.id.tvIssueTime).text = prettyTime.format(Date(issueTime))

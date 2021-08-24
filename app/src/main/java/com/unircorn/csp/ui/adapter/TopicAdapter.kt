@@ -45,7 +45,7 @@ class TopicAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(
                     dividerColor = Color.WHITE
                     dividerThickness = ConvertUtils.dp2px(8f)
                 }.let { addItemDecoration(it) }
-                adapter = ImageAdapter()
+                adapter = Image1Adapter()
             }
         }
     }
@@ -84,8 +84,13 @@ class TopicAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(
                 with(item as Topic) {
                     holder.setText(R.id.tvTitle, title)
                     val recyclerView = holder.getView<RecyclerView>(R.id.recyclerView)
-                    val imageAdapter = recyclerView.adapter as ImageAdapter
+                    val imageAdapter = recyclerView.adapter as Image1Adapter
                     imageAdapter.setList(item.imageUrls)
+                    holder.getView<View>(R.id.root).safeClicks().subscribe {
+                        Intent(context, targetClass).apply {
+                            putExtra(Param, this@with)
+                        }.let { context.startActivity(it) }
+                    }
                 }
             }
         }

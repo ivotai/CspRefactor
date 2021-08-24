@@ -6,7 +6,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.unircorn.csp.R
 
-class ImageAdapter : BaseQuickAdapter<String, BaseViewHolder>(R.layout.item_image) {
+class Image1Adapter : BaseQuickAdapter<String, BaseViewHolder>(R.layout.item_image1) {
 
     override fun convert(holder: BaseViewHolder, item: String) {
         holder.apply {

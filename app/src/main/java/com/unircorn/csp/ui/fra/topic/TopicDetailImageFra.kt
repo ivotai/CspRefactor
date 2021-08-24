@@ -9,15 +9,17 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.hjq.bar.TitleBar
+import com.unircorn.csp.databinding.FraTopicDetailImageBinding
 import com.unircorn.csp.databinding.FraTopicDetailNormalBinding
 import com.unircorn.csp.ui.base.TopicDetailFra
+import com.unircorn.csp.ui.header.TopicImageHeaderView
 import com.unircorn.csp.ui.header.TopicNormalHeaderView
 
-class TopicDetailNormalFra : TopicDetailFra() {
+class TopicDetailImageFra : TopicDetailFra() {
 
     override fun initPageAdapter() {
         super.initPageAdapter()
-        pageAdapter.addHeaderView(TopicNormalHeaderView(topic))
+        pageAdapter.addHeaderView(TopicImageHeaderView(topic))
     }
 
     override val titleBar: TitleBar
@@ -37,7 +39,7 @@ class TopicDetailNormalFra : TopicDetailFra() {
 
 // ----
 
-    private var _binding: FraTopicDetailNormalBinding? = null
+    private var _binding: FraTopicDetailImageBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -48,7 +50,7 @@ class TopicDetailNormalFra : TopicDetailFra() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FraTopicDetailNormalBinding.inflate(inflater, container, false)
+        _binding = FraTopicDetailImageBinding.inflate(inflater, container, false)
         return binding.root
     }
 
