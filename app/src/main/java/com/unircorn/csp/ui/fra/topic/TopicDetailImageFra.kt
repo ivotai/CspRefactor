@@ -10,7 +10,6 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.hjq.bar.TitleBar
 import com.unircorn.csp.databinding.FraTopicDetailImageBinding
-import com.unircorn.csp.databinding.FraTopicDetailNormalBinding
 import com.unircorn.csp.ui.base.TopicDetailFra
 import com.unircorn.csp.ui.header.TopicImageHeaderView
 import com.unircorn.csp.ui.header.TopicNormalHeaderView
@@ -19,6 +18,7 @@ class TopicDetailImageFra : TopicDetailFra() {
 
     override fun initPageAdapter() {
         super.initPageAdapter()
+        pageAdapter.addHeaderView(TopicNormalHeaderView(topic))
         pageAdapter.addHeaderView(TopicImageHeaderView(topic))
     }
 

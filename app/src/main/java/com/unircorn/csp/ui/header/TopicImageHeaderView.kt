@@ -2,13 +2,11 @@ package com.unircorn.csp.ui.header
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.blankj.utilcode.util.ConvertUtils
-import com.google.android.material.divider.MaterialDividerItemDecoration
+import com.google.android.material.card.MaterialCardView
 import com.unircorn.csp.R
 import com.unircorn.csp.app.MyComponent
 import com.unircorn.csp.data.model.Topic
@@ -16,9 +14,8 @@ import com.unircorn.csp.ui.adapter.Image2Adapter
 import org.ocpsoft.prettytime.PrettyTime
 
 @SuppressLint("ViewConstructor")
-class TopicImageHeaderView(private val topic: Topic) : FrameLayout(MyComponent().context) {
-
-    private val prettyTime = PrettyTime()
+class TopicImageHeaderView(private val topic: Topic) : FrameLayout(MyComponent().context,null,
+) {
 
     init {
         initViews(context)
@@ -29,6 +26,7 @@ class TopicImageHeaderView(private val topic: Topic) : FrameLayout(MyComponent()
         val recyclerView = root.findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.run {
             layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+            // todo
 //            MaterialDividerItemDecoration(
 //                context,
 //                LinearLayoutManager.HORIZONTAL
@@ -39,7 +37,6 @@ class TopicImageHeaderView(private val topic: Topic) : FrameLayout(MyComponent()
             val image2Adapter = Image2Adapter()
             adapter = image2Adapter
             image2Adapter.setList(topic.imageUrls)
-            image2Adapter.addHeaderView(TopicNormalHeaderView(topic))
         }
     }
 
