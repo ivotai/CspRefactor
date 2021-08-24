@@ -19,7 +19,7 @@ class TopicDetailImageFra : TopicDetailFra() {
     override fun initPageAdapter() {
         super.initPageAdapter()
         pageAdapter.addHeaderView(TopicNormalHeaderView(topic))
-        pageAdapter.addHeaderView(TopicImageHeaderView(topic))
+        topic.imageUrls.forEach { pageAdapter.addHeaderView(TopicImageHeaderView(it)) }
     }
 
     override val titleBar: TitleBar
