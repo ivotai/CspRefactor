@@ -63,7 +63,7 @@ class CreateTopicFra : BaseFra() {
             .imageEngine(GlideEngine.createGlideEngine())
             .videoMaxSecond(15)
             .videoMinSecond(5)
-            .maxSelectNum(3)
+            .maxSelectNum(5)
             .isCompress(true)
             .forResult(object : OnResultCallbackListener<LocalMedia> {
                 override fun onResult(result: List<LocalMedia>) {

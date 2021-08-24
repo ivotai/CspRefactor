@@ -1,15 +1,19 @@
 package com.unircorn.csp.ui.adapter
 
 import android.content.Intent
+import android.graphics.Color
 import android.view.View
-import android.widget.ImageView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import cn.jzvd.JZDataSource
 import cn.jzvd.Jzvd
+import com.blankj.utilcode.util.ConvertUtils
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.chad.library.adapter.base.module.LoadMoreModule
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.unircorn.csp.R
 import com.unircorn.csp.app.*
 import com.unircorn.csp.app.third.JZMediaIjk
@@ -50,7 +54,8 @@ class TopicAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(
                     val jzDataSource = JZDataSource(fullUrl, title)
                     jzDataSource.headerMap[Cookie] = "$SESSION=${Globals.session}"
                     jzvdStd.setUp(jzDataSource, Jzvd.SCREEN_NORMAL, JZMediaIjk::class.java)
-                    Glide.with(context).load(baseUrl+videos[0].imageUrl).into(jzvdStd.posterImageView)
+                    Glide.with(context).load(baseUrl + videos[0].imageUrl)
+                        .into(jzvdStd.posterImageView)
                     jzvdStd.setClickUi {
                         Intent(context, targetClass).apply {
                             putExtra(Param, this@with)
@@ -61,20 +66,19 @@ class TopicAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(
             topic_image -> {
                 with(item as Topic) {
                     holder.setText(R.id.tvTitle, title)
-                    if (imageUrls.size > 0){
-                        val imageView = holder.getView<ImageView>(R.id.imageView1)
-                        imageView.visibility = View.VISIBLE
-                        Glide.with(context).load(imageUrls[0]).into(imageView)
-                    }
-                    if (imageUrls.size > 1){
-                        val imageView = holder.getView<ImageView>(R.id.imageView2)
-                        imageView.visibility = View.VISIBLE
-                        Glide.with(context).load(imageUrls[1]).into(imageView)
-                    }
-                    if (imageUrls.size > 2){
-                        val imageView = holder.getView<ImageView>(R.id.imageView3)
-                        imageView.visibility = View.VISIBLE
-                        Glide.with(context).load(imageUrls[2]).into(imageView)
+                    val recyclerView = holder.getView<RecyclerView>(R.id.recyclerView)
+                    recyclerView.run {
+                        layoutManager = LinearLayoutManager(context, RecyclerView.HORIZONTAL, false)
+                        MaterialDividerItemDecoration(
+                            context,
+                            LinearLayoutManager.HORIZONTAL
+                        ).apply {
+                            dividerColor = Color.WHITE
+                            dividerThickness = ConvertUtils.dp2px(8f)
+                        }.let { addItemDecoration(it) }
+                        val imageAdapter = ImageAdapter()
+                        adapter = imageAdapter
+                        imageAdapter.setList(item.imageUrls)
                     }
                 }
             }
