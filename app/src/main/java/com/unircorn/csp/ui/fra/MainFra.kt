@@ -7,20 +7,18 @@ import android.view.View
 import android.view.ViewGroup
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ColorUtils
-import com.hjq.bar.OnTitleBarListener
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.IIcon
 import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
 import com.mikepenz.iconics.utils.colorInt
 import com.mikepenz.iconics.utils.sizeDp
 import com.rxjava.rxlife.lifeOnMain
+import com.unicorn.sanre.icon.Fal
 import com.unircorn.csp.R
 import com.unircorn.csp.app.*
 import com.unircorn.csp.data.event.LogoutEvent
 import com.unircorn.csp.databinding.FraMainBinding
 import com.unircorn.csp.ui.act.LoginAct
-import com.unircorn.csp.ui.act.article.ArticleSearchAct
-import com.unircorn.csp.ui.act.my.MyAct
 import com.unircorn.csp.ui.base.BaseFra
 import com.unircorn.csp.ui.fraStateAdapter.MainFraStateAdapter
 import io.reactivex.rxjava3.functions.Consumer
@@ -47,7 +45,7 @@ class MainFra : BaseFra() {
         navigationController = tab.custom()
             .addItem(
                 newItem(
-                    FontAwesome.Icon.faw_graduation_cap,
+                    Fal.Icon.fal_graduation_cap,
                     MainFraStateAdapter.abbr[0]
                 )
             )

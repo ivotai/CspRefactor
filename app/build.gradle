@@ -87,6 +87,7 @@ dependencies {
     // rxlife & rxhttp
     implementation 'com.github.liujingxing.rxlife:rxlife-rxjava3:2.1.0'
     implementation 'com.github.liujingxing.rxhttp:rxhttp:2.6.5'
+    implementation project(path: ':Sanre')
     kapt 'com.github.liujingxing.rxhttp:rxhttp-compiler:2.6.5'
 
     // utilcodex
