@@ -1,18 +1,18 @@
-package com.unircorn.csp.ui.fraStateAdapter
+package com.unircorn.csp.ui.pagerAdapter
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.unircorn.csp.app.Param
+import com.unircorn.csp.ui.fra.ShowFra
 import com.unircorn.csp.ui.fra.article.ArticleFra
-import com.unircorn.csp.ui.fra.topic.TopicFra
 
 class MainFraStateAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     override fun getItemCount() = titles.size
 
     override fun createFragment(position: Int): Fragment =
-        if (position == 1) TopicFra() else ArticleFra().apply {
+        if (position == 1) ShowFra() else ArticleFra().apply {
             arguments = Bundle().apply {
                 putInt(Param, position)
             }

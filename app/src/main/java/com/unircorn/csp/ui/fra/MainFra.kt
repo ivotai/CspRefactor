@@ -20,7 +20,7 @@ import com.unircorn.csp.data.event.LogoutEvent
 import com.unircorn.csp.databinding.FraMainBinding
 import com.unircorn.csp.ui.act.LoginAct
 import com.unircorn.csp.ui.base.BaseFra
-import com.unircorn.csp.ui.fraStateAdapter.MainFraStateAdapter
+import com.unircorn.csp.ui.pagerAdapter.MainFraStateAdapter
 import io.reactivex.rxjava3.functions.Consumer
 import me.majiajie.pagerbottomtabstrip.NavigationController
 import me.majiajie.pagerbottomtabstrip.item.NormalItemView
@@ -57,7 +57,10 @@ class MainFra : BaseFra() {
             )
             .addItem(
                 newItem(
-                    FontAwesome.Icon.faw_balance_scale,
+                    Fal.Icon.fal_balance_scale,
+//                    Far.Icon.far_balance_scale,
+//                    Fas.Icon.fas_balance_scale,
+//                    Fad.Icon.fad_balance_scale,
                     MainFraStateAdapter.abbr[2]
                 )
             )

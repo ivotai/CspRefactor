@@ -18,7 +18,7 @@ import com.unircorn.csp.ui.act.article.ArticleSearchAct
 import com.unircorn.csp.ui.act.my.MyAct
 import com.unircorn.csp.ui.adapter.ArticleAdapter
 import com.unircorn.csp.ui.base.PageFra
-import com.unircorn.csp.ui.fraStateAdapter.MainFraStateAdapter
+import com.unircorn.csp.ui.pagerAdapter.MainFraStateAdapter
 import io.reactivex.rxjava3.core.Single
 
 class ArticleFra : PageFra<MultiItemEntity>() {

@@ -24,7 +24,7 @@ import com.unircorn.csp.ui.act.my.MyAct
 import com.unircorn.csp.ui.act.topic.CreateTopicAct
 import com.unircorn.csp.ui.adapter.TopicAdapter
 import com.unircorn.csp.ui.base.PageFra
-import com.unircorn.csp.ui.fraStateAdapter.MainFraStateAdapter
+import com.unircorn.csp.ui.pagerAdapter.MainFraStateAdapter
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.functions.Consumer
 
@@ -33,7 +33,6 @@ class TopicFra : PageFra<MultiItemEntity>() {
 
     override fun initViews() = with(binding) {
         super.initViews()
-        titleBar.title = MainFraStateAdapter.titles[1]
         initFloatingActionButton()
     }
 
@@ -47,19 +46,6 @@ class TopicFra : PageFra<MultiItemEntity>() {
 
     override fun initBindings() {
         super.initBindings()
-        binding.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
-            override fun onLeftClick(view: View?) {
-
-            }
-
-            override fun onTitleClick(view: View?) {
-
-            }
-
-            override fun onRightClick(view: View?) {
-                startAct(MyAct::class.java)
-            }
-        })
         addOnChildAttachStateChangeListener()
         binding.floatingActionButton.safeClicks().subscribe {
             startAct(CreateTopicAct::class.java)
