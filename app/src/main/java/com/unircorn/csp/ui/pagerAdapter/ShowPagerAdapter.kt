@@ -2,6 +2,7 @@ package com.unircorn.csp.ui.pagerAdapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.unircorn.csp.ui.fra.question.QuestionBankFra
 import com.unircorn.csp.ui.fra.topic.JustVideoTopicFra
 import com.unircorn.csp.ui.fra.topic.TopicFra
 
@@ -16,7 +17,7 @@ class ShowPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     override fun createFragment(position: Int): Fragment = when (position) {
         0 -> TopicFra()
         1 -> JustVideoTopicFra()
-        else -> TopicFra()
+        else -> QuestionBankFra()
     }
 
 }
