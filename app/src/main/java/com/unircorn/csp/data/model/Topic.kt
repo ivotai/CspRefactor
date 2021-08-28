@@ -18,6 +18,7 @@ data class Topic(
     val videos: List<Attachment>,
     val court: String,
     val replyCount: Int,
+    val type: Int
 ) : Serializable, MultiItemEntity {
 
     val imageUrls: List<String> get() = images.map { "$baseUrl$it" }

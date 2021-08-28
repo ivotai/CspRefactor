@@ -59,10 +59,9 @@ class CreateTopicFra : BaseFra() {
 
     private fun selectPicture() {
         PictureSelector.create(this)
-            .openGallery(PictureMimeType.ofAll())
+            .openGallery(if (justVideo) PictureMimeType.ofVideo() else PictureMimeType.ofAll())
             .imageEngine(GlideEngine.createGlideEngine())
             .videoMaxSecond(15)
-            .videoMinSecond(5)
             .maxSelectNum(5)
             .isCompress(true)
             .forResult(object : OnResultCallbackListener<LocalMedia> {
@@ -106,11 +105,15 @@ class CreateTopicFra : BaseFra() {
 
     private fun createTopicX() = with(binding) {
         if (etTitle.isEmpty()) {
-            ToastUtils.showShort("标题不能为空")
+            "标题不能为空".toast()
             return@with
         }
         if (etContent.isEmpty()) {
-            ToastUtils.showShort("内容不能为空")
+            "内容不能为空".toast()
+            return@with
+        }
+        if (justVideo && createTopicParam.videos.isEmpty()) {
+            "请上传视频".toast()
             return@with
         }
         createTopic()
@@ -135,6 +138,8 @@ class CreateTopicFra : BaseFra() {
     }
 
     private val createTopicParam = CreateTopicParam()
+
+    private val justVideo by lazy { requireArguments().getBoolean(Param) }
 
     //
 
