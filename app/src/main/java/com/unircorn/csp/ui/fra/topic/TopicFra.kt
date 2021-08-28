@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnChildAttachStateChangeListener
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -23,6 +24,7 @@ import com.unircorn.csp.databinding.FraTopicBinding
 import com.unircorn.csp.ui.act.topic.CreateTopicAct
 import com.unircorn.csp.ui.adapter.TopicAdapter
 import com.unircorn.csp.ui.base.PageFra
+import com.unircorn.csp.ui.header.TopicJustVideoHeaderView
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.functions.Consumer
 
@@ -31,9 +33,13 @@ open class TopicFra : PageFra<MultiItemEntity>() {
 
     protected open val justVideo = false
 
-    override fun initViews() = with(binding) {
+    override fun initViews(): Unit = with(binding) {
         super.initViews()
         initFloatingActionButton()
+
+        if (justVideo){
+            pageAdapter.addHeaderView(TopicJustVideoHeaderView(requireContext()))
+        }
     }
 
     private fun initFloatingActionButton() {
