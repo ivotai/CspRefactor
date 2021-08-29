@@ -14,16 +14,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.mikepenz.iconics.view.IconicsImageView
-            android:id="@+id/iconicsImageView"
-            android:layout_width="56dp"
-            app:iiv_size="24dp"
-            app:iiv_icon="fal-chevron-left"
-            android:layout_height="56dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:textSize="20dp"
             android:textColor="@color/md_white"
@@ -49,7 +39,7 @@
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
-        android:elevation="4dp"
+        android:elevation="2dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
