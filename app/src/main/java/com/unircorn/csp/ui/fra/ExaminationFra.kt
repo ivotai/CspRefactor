@@ -9,8 +9,9 @@ import com.unircorn.csp.ui.pagerAdapter.ExaminationPagerAdapter
 
 class ExaminationFra : BaseFra2<FraExaminationBinding>() {
 
-    override fun initViews() {
+    override fun initViews()= with(binding) {
         super.initViews()
+        tvTitle.text = "应知应会题库"
     }
 
     override fun initBindings() {

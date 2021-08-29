@@ -14,7 +14,7 @@ const val Param = "Param"
 
 const val Question = "Question"
 const val Position = "Position"
-
+const val Size = "Size"
 
 const val displayDateFormat = "yyyy年MM月dd日"
 

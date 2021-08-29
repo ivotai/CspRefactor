@@ -3,8 +3,11 @@ package com.unircorn.csp.app
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.util.TypedValue
 import android.view.View
 import android.widget.TextView
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorInt
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -73,3 +76,13 @@ fun RecyclerView.addDefaultItemDecoration() {
 fun Fragment.finishAct() = this.requireActivity().finish()
 
 fun Long.toDisplayDateFormat(): String = DateTime(this).toString(displayDateFormat)
+
+@ColorInt
+fun Context.getAttrColor(
+    @AttrRes attrColor: Int,
+    typedValue: TypedValue = TypedValue(),
+    resolveRefs: Boolean = true
+): Int {
+    theme.resolveAttribute(attrColor, typedValue, resolveRefs)
+    return typedValue.data
+}
