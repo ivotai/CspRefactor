@@ -50,7 +50,7 @@ class QuestionFra : BaseFra2<FraQuesionBinding>() {
     private fun submitX() = with(binding) {
         val optionsSelected = optionAdapter.data.filter { it.isSelected }.map { it.option }
         if (optionsSelected.isEmpty()) {
-            "还没选呢".toast()
+            "至少选择一项".toast()
             return
         }
 

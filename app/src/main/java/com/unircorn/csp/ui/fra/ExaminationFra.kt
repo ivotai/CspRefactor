@@ -20,10 +20,10 @@ class ExaminationFra : BaseFra2<FraExaminationBinding>() {
 
     override fun initBindings() {
         super.initBindings()
-        createExam()
+        getExamination()
     }
 
-    private fun createExam() {
+    private fun getExamination() {
         val single = if (justStudy) api.createExaminationJustStudy() else api.createExamination()
         single.lifeOnMain(this)
             .subscribe(
@@ -73,6 +73,7 @@ class ExaminationFra : BaseFra2<FraExaminationBinding>() {
                     MaterialDialog(requireContext()).show {
                         title(text = "学习小测试")
                         message(text = message)
+                        cancelOnTouchOutside(false)
                         positiveButton(text = "确认") { _ ->
                             finishAct()
                         }
@@ -91,6 +92,7 @@ class ExaminationFra : BaseFra2<FraExaminationBinding>() {
         offscreenPageLimit = examinationPagerAdapter.itemCount - 1
         adapter = examinationPagerAdapter
         removeEdgeEffect()
+        isUserInputEnabled = false
     }
 
 
