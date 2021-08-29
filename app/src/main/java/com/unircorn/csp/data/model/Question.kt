@@ -7,4 +7,8 @@ data class Question(
     val name: String,
     val optionList: List<Option>,
     var options: List<String>? = null,
-) : Serializable
+) : Serializable {
+
+    val optionsCorrect: List<String> get() = optionList.filter { it.isCorrect }.map { it.optionId }
+
+}

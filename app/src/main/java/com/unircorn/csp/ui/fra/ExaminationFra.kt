@@ -42,6 +42,20 @@ class ExaminationFra : BaseFra2<FraExaminationBinding>() {
                 examination.questionList.find { it.questionId == event.optionsSelected.first().questionId }!!
             question.options = event.optionsSelected.map { it.optionId }
 
+            //
+            val questionsAnswered = examination.questionList.filter { it.options != null }
+            val questionsCorrect = questionsAnswered.filter {
+                var isCorrect = true
+                it.options!!.forEachIndexed { index, option ->
+                    isCorrect = option == it.optionsCorrect[index]
+                }
+                return@filter isCorrect
+            }
+            RoundCornerProgressBar.max = questionsAnswered.size.toFloat()
+            RoundCornerProgressBar.progress = questionsCorrect.size.toFloat()
+            tvCorrect.text = questionsCorrect.size.toString()
+            tvWrong.text = (questionsAnswered.size-questionsCorrect.size).toString()
+
             val finish = examination.questionList.all { it.options != null }
             if (finish) {
                 if (justStudy) {
