@@ -48,6 +48,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ui.act.topic.TopicDetailImageAct" />
         <activity android:name=".ui.act.topic.MyTopicAct" />
+        <activity android:name=".ui.act.TestAct" />
     </application>
 
 </manifest>
