@@ -36,18 +36,20 @@ class ExaminationFra : BaseFra2<FraExaminationBinding>() {
     }
 
     override fun initEvents() {
-        // justStudy 全部完成提示 todo 您已学习完啦！
-        if (!justStudy) {
-            RxBus.registerEvent(this, OptionSubmitEvent::class.java, { event ->
-                val question =
-                    examination.questionList.find { it.questionId == event.optionsSelected[0].questionId }
-                question!!.options = event.optionsSelected.map { it.optionId }
+        RxBus.registerEvent(this, OptionSubmitEvent::class.java, { event ->
+            val question =
+                examination.questionList.find { it.questionId == event.optionsSelected.first().questionId }!!
+            question.options = event.optionsSelected.map { it.optionId }
 
-                //
-                val isAllFinish = examination.questionList.all { it.options != null }
-                if (isAllFinish) submitExamination()
-            })
-        }
+            val finish = examination.questionList.all { it.options != null }
+            if (finish) {
+                if (justStudy) {
+                    "您已学习完啦！".toast()
+                } else {
+                    submitExamination()
+                }
+            }
+        })
     }
 
     private fun submitExamination() {
