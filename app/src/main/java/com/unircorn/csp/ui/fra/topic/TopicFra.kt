@@ -88,7 +88,7 @@ open class TopicFra : PageFra<MultiItemEntity>() {
     }
 
     override fun loadPage(page: Int): Single<Response<Page<MultiItemEntity>>> =
-        api.getTopic(page = page)
+        api.getTopic(page = page,type = if (justVideo) 2 else 1)
             .map {
                 val page1 = Page(
                     content = it.data.content.map { topic ->

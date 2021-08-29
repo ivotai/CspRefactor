@@ -137,9 +137,10 @@ class CreateTopicFra : BaseFra() {
             )
     }
 
-    private val createTopicParam = CreateTopicParam()
-
     private val justVideo by lazy { requireArguments().getBoolean(Param) }
+
+    private val createTopicParam by lazy { CreateTopicParam(type = if (justVideo) 2 else 1) }
+
 
     //
 

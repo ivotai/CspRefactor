@@ -18,7 +18,7 @@ data class Topic(
     val videos: List<Attachment>,
     val court: String,
     val replyCount: Int,
-    val type: Int
+    val type: Int // 1 小心得，2 小视频
 ) : Serializable, MultiItemEntity {
 
     val imageUrls: List<String> get() = images.map { "$baseUrl$it" }
@@ -46,6 +46,7 @@ data class Topic(
 }
 
 data class CreateTopicParam(
+    val type: Int,
     var content: String = "",
     var images: List<UploadResponse> = ArrayList(),
     var title: String = "",
