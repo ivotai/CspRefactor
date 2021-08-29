@@ -18,14 +18,17 @@ import com.unircorn.csp.ui.act.article.ArticleSearchAct
 import com.unircorn.csp.ui.act.my.MyAct
 import com.unircorn.csp.ui.adapter.ArticleAdapter
 import com.unircorn.csp.ui.base.PageFra
-import com.unircorn.csp.ui.pagerAdapter.MainFraStateAdapter
+import com.unircorn.csp.ui.pagerAdapter.MainPagerAdapter
 import io.reactivex.rxjava3.core.Single
 
-class ArticleFra : PageFra<MultiItemEntity>() {
+open class ArticleFra : PageFra<MultiItemEntity>() {
+
+    protected open val hideTitleBar = false
 
     override fun initViews() = with(binding) {
         super.initViews()
         titleBar.title = mTitle
+        if (hideTitleBar) titleBar.visibility = View.GONE
     }
 
     override fun initBindings() {
@@ -67,8 +70,8 @@ class ArticleFra : PageFra<MultiItemEntity>() {
                 )
             }
 
-    private val mTitle by lazy { MainFraStateAdapter.titles[position] }
-    private val category by lazy { MainFraStateAdapter.categories[position] }
+    private val mTitle by lazy { MainPagerAdapter.titles[position] }
+    private val category by lazy { MainPagerAdapter.categories[position] }
     private val position by lazy { requireArguments().getInt(Param, 0) }
 
     override val mRecyclerView: RecyclerView

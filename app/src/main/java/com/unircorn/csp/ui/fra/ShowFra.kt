@@ -1,23 +1,18 @@
 package com.unircorn.csp.ui.fra
 
-import com.google.android.material.tabs.TabLayoutMediator
+import com.unircorn.csp.R
 import com.unircorn.csp.databinding.FraShowBinding
 import com.unircorn.csp.ui.base.BaseFra2
-import com.unircorn.csp.ui.pagerAdapter.MainFraStateAdapter
-import com.unircorn.csp.ui.pagerAdapter.ShowPagerAdapter
+import com.unircorn.csp.ui.fra.topic.TopicFra
 
 class ShowFra : BaseFra2<FraShowBinding>() {
 
-    override fun initViews() = with(binding) {
-        tvTitle.text = MainFraStateAdapter.titles[1]
-        initTabLayoutMediator()
-    }
+    override fun initViews(): Unit = with(binding) {
+        super.initViews()
 
-    private fun initTabLayoutMediator() = with(binding) {
-        viewPager2.adapter = ShowPagerAdapter(this@ShowFra)
-        TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
-            tab.text = ShowPagerAdapter.titles[position]
-        }.attach()
+        tvTitle.text = "晒一晒"
+        parentFragmentManager.beginTransaction().add(R.id.fragment_container_view, TopicFra())
+            .commit()
     }
 
 }

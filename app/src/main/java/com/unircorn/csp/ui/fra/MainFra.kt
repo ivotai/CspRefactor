@@ -20,7 +20,7 @@ import com.unircorn.csp.data.event.LogoutEvent
 import com.unircorn.csp.databinding.FraMainBinding
 import com.unircorn.csp.ui.act.LoginAct
 import com.unircorn.csp.ui.base.BaseFra
-import com.unircorn.csp.ui.pagerAdapter.MainFraStateAdapter
+import com.unircorn.csp.ui.pagerAdapter.MainPagerAdapter
 import io.reactivex.rxjava3.functions.Consumer
 import me.majiajie.pagerbottomtabstrip.NavigationController
 import me.majiajie.pagerbottomtabstrip.item.NormalItemView
@@ -35,8 +35,8 @@ class MainFra : BaseFra() {
     private fun initViewPager2() = with(binding.viewPager2) {
         removeEdgeEffect()
         isUserInputEnabled = false
-        offscreenPageLimit = MainFraStateAdapter.titles.size - 1
-        adapter = MainFraStateAdapter(this@MainFra)
+        offscreenPageLimit = MainPagerAdapter.titles.size - 1
+        adapter = MainPagerAdapter(this@MainFra)
     }
 
     private lateinit var navigationController: NavigationController
@@ -46,13 +46,13 @@ class MainFra : BaseFra() {
             .addItem(
                 newItem(
                     Fal.Icon.fal_graduation_cap,
-                    MainFraStateAdapter.abbr[0]
+                    MainPagerAdapter.abbr[0]
                 )
             )
             .addItem(
                 newItem(
                     FontAwesome.Icon.faw_comments1,
-                    MainFraStateAdapter.abbr[1]
+                    MainPagerAdapter.abbr[1]
                 )
             )
             .addItem(
@@ -61,19 +61,19 @@ class MainFra : BaseFra() {
 //                    Far.Icon.far_balance_scale,
 //                    Fas.Icon.fas_balance_scale,
 //                    Fad.Icon.fad_balance_scale,
-                    MainFraStateAdapter.abbr[2]
+                    MainPagerAdapter.abbr[2]
                 )
             )
             .addItem(
                 newItem(
                     FontAwesome.Icon.faw_calendar_check1,
-                    MainFraStateAdapter.abbr[3]
+                    MainPagerAdapter.abbr[3]
                 )
             )
             .addItem(
                 newItem(
                     FontAwesome.Icon.faw_book_open,
-                    MainFraStateAdapter.abbr[4]
+                    MainPagerAdapter.abbr[4]
                 )
             )
             .build()

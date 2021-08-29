@@ -5,18 +5,22 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.unircorn.csp.app.Param
 import com.unircorn.csp.ui.fra.ShowFra
+import com.unircorn.csp.ui.fra.StudyFra
 import com.unircorn.csp.ui.fra.article.ArticleFra
 
-class MainFraStateAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+class MainPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     override fun getItemCount() = titles.size
 
-    override fun createFragment(position: Int): Fragment =
-        if (position == 1) ShowFra() else ArticleFra().apply {
+    override fun createFragment(position: Int): Fragment = when (position) {
+        0 -> StudyFra()
+        1 -> ShowFra()
+        else -> ArticleFra().apply {
             arguments = Bundle().apply {
                 putInt(Param, position)
             }
         }
+    }
 
     companion object {
         val titles = listOf("学习园地", "晒一晒", "政策规定", "信息工作动态", "党史学习")
