@@ -12,6 +12,8 @@ import com.unircorn.csp.databinding.ItemOptionBinding
 
 class OptionAdapter : BaseBindingQuickAdapter<OptionSelector, ItemOptionBinding>() {
 
+    var isQuestionSubmit: Boolean = false
+
     @SuppressLint("NotifyDataSetChanged")
     override fun convert(holder: BaseBindingHolder, item: OptionSelector) {
         holder.getViewBinding<ItemOptionBinding>().run {
@@ -31,6 +33,8 @@ class OptionAdapter : BaseBindingQuickAdapter<OptionSelector, ItemOptionBinding>
             }
 
             root.safeClicks().subscribe {
+                if (isQuestionSubmit) return@subscribe
+
                 // 单选
                 data.forEach { it.isSelected = false }
                 item.isSelected = true

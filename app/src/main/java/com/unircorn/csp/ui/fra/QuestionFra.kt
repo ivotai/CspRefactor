@@ -2,7 +2,9 @@ package com.unircorn.csp.ui.fra
 
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.jakewharton.rxbinding4.view.clicks
 import com.unircorn.csp.app.*
+import com.unircorn.csp.data.event.NextQuestionEvent
 import com.unircorn.csp.data.event.OptionSubmitEvent
 import com.unircorn.csp.data.model.Question
 import com.unircorn.csp.data.model.base.OptionSelector
@@ -36,7 +38,13 @@ class QuestionFra : BaseFra2<FraQuesionBinding>() {
 
     override fun initBindings(): Unit = with(binding) {
         super.initBindings()
-        btnSubmit.safeClicks().subscribe { submitX() }
+        btnSubmit.clicks().subscribe {
+            if (optionAdapter.isQuestionSubmit){
+                RxBus.post(NextQuestionEvent())
+            }else{
+                submitX()
+            }
+        }
     }
 
     private fun submitX() = with(binding) {
@@ -54,13 +62,11 @@ class QuestionFra : BaseFra2<FraQuesionBinding>() {
             if (!isCorrect) break
         }
 
-        TvResult.text =
-            "回答${if (isCorrect) "正确" else "错误"}，正确答案是: ${
-                optionsCorrect.joinToString(",") { it.letter }
-            }"
+        TvResult.text = if (isCorrect) "回答正确" else "回答错误，正确答案是: ${optionsCorrect.joinToString(",") { it.letter }}"
         TvResult.visibility = View.VISIBLE
 
-        btnSubmit.isEnabled = false
+        btnSubmit.text = "下一题"
+        optionAdapter.isQuestionSubmit = true
         RxBus.post(OptionSubmitEvent(optionsSelected = optionsSelected))
     }
 
