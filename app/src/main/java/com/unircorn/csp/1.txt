@@ -63,12 +63,12 @@ FileUtil2 待优化 todo 不急
 全屏播放完成后按重播，闪退，可复现 todo 再换个内核试试 ？？
 视频压缩 todo
 自定义View 怎么继承 Material 主题 todo
+点赞功能要做吗 todo
 
 ----
 
-点赞功能要做吗 todo
-
-添加 icon
+提交后还能切换选项 todo
+正确率进度条 todo
 
 
 

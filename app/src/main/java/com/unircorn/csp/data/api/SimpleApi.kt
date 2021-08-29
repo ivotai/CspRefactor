@@ -100,4 +100,10 @@ interface SimpleApi {
     @POST("api/v1/app/examination")
     fun createExamination(): Single<Response<Examination>>
 
+    @POST("api/v1/app/examination/{examinationId}")
+    fun submitExamination(
+        @Path("examinationId") examinationId: String,
+        @Body submitExaminationParam: SubmitExaminationParam
+    ): Single<Response<ExaminationResult>>
+
 }

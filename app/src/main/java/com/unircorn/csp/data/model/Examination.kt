@@ -1,8 +1,11 @@
 package com.unircorn.csp.data.model
 
-import java.io.Serializable
-
 data class Examination(
+    val examinationId: String,
+    val passedScore: Int,
+    val perfectScore: Int,
+    val startTime: Long,
+    val stats: Int,
     val examinee: String,
     val questionList: List<Question>
-) : Serializable
+)
