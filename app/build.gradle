@@ -126,7 +126,7 @@ dependencies {
 
     implementation 'cn.jzvd:jiaozivideoplayer:7.5.0'
 
-    implementation 'io.github.lucksiege:pictureselector:v2.7.3-rc06'
+    implementation 'io.github.lucksiege:pictureselector:v2.7.3-rc07'
 
     implementation 'com.github.tbruyelle:rxpermissions:0.12'
 

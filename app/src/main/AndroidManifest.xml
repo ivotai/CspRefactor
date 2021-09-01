@@ -49,6 +49,7 @@
         <activity android:name=".ui.act.topic.TopicDetailImageAct" />
         <activity android:name=".ui.act.topic.MyTopicAct" />
         <activity android:name=".ui.act.TestAct" />
+        <activity android:name=".ui.act.article.YzyhArticleAct" />
     </application>
 
 </manifest>
