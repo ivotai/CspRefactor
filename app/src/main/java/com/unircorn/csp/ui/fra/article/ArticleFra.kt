@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.hjq.bar.OnTitleBarListener
+import com.unircorn.csp.app.Category
 import com.unircorn.csp.app.Param
+import com.unircorn.csp.app.Title
 import com.unircorn.csp.app.startAct
 import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
@@ -70,9 +72,8 @@ open class ArticleFra : PageFra<MultiItemEntity>() {
                 )
             }
 
-    private val mTitle by lazy { MainPagerAdapter.titles[position] }
-    private val category by lazy { MainPagerAdapter.categories[position] }
-    private val position by lazy { requireArguments().getInt(Param, 0) }
+    private val mTitle by lazy { requireArguments().getString(Title,"") }
+    private val category by lazy { requireArguments().getString(Category,"") }
 
     override val mRecyclerView: RecyclerView
         get() = binding.recyclerView
