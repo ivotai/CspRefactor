@@ -27,7 +27,12 @@ class StudyPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
             }
         }
         1 -> TopicFra()
-        2 -> JustVideoTopicFra()
+        2 -> StudyArticleFra().apply {
+            arguments = Bundle().apply {
+                putString(Title, "学习小视频")
+                putString(Category, "xxsp")
+            }
+        }
         else -> QuestionBankFra()
     }
 
