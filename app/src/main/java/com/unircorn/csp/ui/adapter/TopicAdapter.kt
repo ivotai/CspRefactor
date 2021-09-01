@@ -71,7 +71,7 @@ class TopicAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(
                     val jzDataSource = JZDataSource(fullUrl, title)
                     jzDataSource.headerMap[Cookie] = "$SESSION=${Globals.session}"
                     jzvdStd.setUp(jzDataSource, Jzvd.SCREEN_NORMAL, JZMediaIjk::class.java)
-                    Glide.with(context).load(baseUrl + videos[0].imageUrl)
+                    Glide.with(context).load(baseUrl + videos[0].imageUrl).centerCrop()
                         .into(jzvdStd.posterImageView)
                     jzvdStd.setClickUi {
                         Intent(context, targetClass).apply {
