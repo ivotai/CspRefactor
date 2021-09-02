@@ -12,6 +12,7 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.hjq.bar.TitleBar
 import com.unircorn.csp.app.*
+import com.unircorn.csp.app.third.JZMediaAliyun
 import com.unircorn.csp.app.third.JZMediaIjk
 import com.unircorn.csp.databinding.FraTopicDetailVideoBinding
 import com.unircorn.csp.ui.base.TopicDetailFra
@@ -27,7 +28,7 @@ class TopicDetailVideoFra : TopicDetailFra() {
     private fun setUpJzvdStd() = with(binding) {
         val jzDataSource = JZDataSource(topic.videos[0].fullUrl)
         jzDataSource.headerMap[Cookie] = "$SESSION=${Globals.session}"
-        binding.jzvdStd.setUp(jzDataSource, Jzvd.SCREEN_NORMAL, JZMediaIjk::class.java)
+        binding.jzvdStd.setUp(jzDataSource, Jzvd.SCREEN_NORMAL, JZMediaAliyun::class.java)
     }
 
     override val titleBar: TitleBar

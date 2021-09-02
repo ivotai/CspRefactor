@@ -13,6 +13,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.hjq.bar.TitleBar
 import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.app.*
+import com.unircorn.csp.app.third.JZMediaAliyun
 import com.unircorn.csp.app.third.JZMediaIjk
 import com.unircorn.csp.ui.base.ArticleDetailFra
 import com.unircorn.csp.databinding.FraArticleDetailVideoBinding
@@ -31,7 +32,7 @@ class ArticleDetailVideoFra : ArticleDetailFra() {
         val jzDataSource = JZDataSource(article.video.fullUrl)
         // todo headerMap 不生效
         jzDataSource.headerMap[Cookie] = "$SESSION=${Globals.session}"
-        binding.jzvdStd.setUp(jzDataSource, Jzvd.SCREEN_NORMAL, JZMediaIjk::class.java)
+        binding.jzvdStd.setUp(jzDataSource, Jzvd.SCREEN_NORMAL, JZMediaAliyun::class.java)
     }
 
     private fun getArticle() {

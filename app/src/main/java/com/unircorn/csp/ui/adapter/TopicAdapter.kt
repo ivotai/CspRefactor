@@ -16,6 +16,7 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.unircorn.csp.R
 import com.unircorn.csp.app.*
+import com.unircorn.csp.app.third.JZMediaAliyun
 import com.unircorn.csp.app.third.JZMediaIjk
 import com.unircorn.csp.app.third.JzvdStdRv
 import com.unircorn.csp.data.model.Topic
@@ -70,7 +71,7 @@ class TopicAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(
                     val fullUrl = videos[0].fullUrl
                     val jzDataSource = JZDataSource(fullUrl, title)
                     jzDataSource.headerMap[Cookie] = "$SESSION=${Globals.session}"
-                    jzvdStd.setUp(jzDataSource, Jzvd.SCREEN_NORMAL, JZMediaIjk::class.java)
+                    jzvdStd.setUp(jzDataSource, Jzvd.SCREEN_NORMAL, JZMediaAliyun::class.java)
                     Glide.with(context).load(baseUrl + videos[0].imageUrl).centerCrop()
                         .into(jzvdStd.posterImageView)
                     jzvdStd.setClickUi {
