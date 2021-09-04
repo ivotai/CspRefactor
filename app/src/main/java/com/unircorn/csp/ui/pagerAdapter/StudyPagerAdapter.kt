@@ -26,7 +26,7 @@ class StudyPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
                 putString(Category, "xxjy")
             }
         }
-        1 -> TopicFra()
+        1 -> JustVideoTopicFra()
         2 -> StudyArticleFra().apply {
             arguments = Bundle().apply {
                 putString(Title, "学习小视频")

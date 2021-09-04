@@ -12,6 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import rxhttp.RxHttpPlugins
 import java.util.concurrent.TimeUnit
 
+
 val networkModule = module {
 
     single {
@@ -40,16 +41,16 @@ val networkModule = module {
 
     single {
 
-        val client = OkHttpClient.Builder()
+        val builder = OkHttpClient.Builder()
             .readTimeout(timeout, TimeUnit.SECONDS)
             .connectTimeout(timeout, TimeUnit.SECONDS)
             .writeTimeout(timeout, TimeUnit.SECONDS)
             .callTimeout(timeout, TimeUnit.SECONDS)
-//            .addInterceptor(HttpLoggingInterceptor().apply {
-//                level = HttpLoggingInterceptor.Level.BODY
-//            })
-            .build()
+            .addInterceptor(HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            })
 
+        val client = builder.build()
         RxHttpPlugins.init(client)
 
         Retrofit.Builder()

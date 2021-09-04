@@ -1,6 +1,7 @@
 package com.unircorn.csp.ui.fra.topic
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -76,9 +77,11 @@ class CreateTopicFra : BaseFra() {
     }
 
     private fun upload(result: List<LocalMedia>) {
+        val progressMask = ProgressHelper.showMask(requireActivity())
+
+
         val isImage = result[0].mimeType == "image/jpeg"
 
-        val progressMask = ProgressHelper.showMask(requireActivity())
         RxHttp.postForm(uploadUrl)
             .addFiles(
                 attachments,
