@@ -18,8 +18,6 @@ val networkModule = module {
     single {
 
         OkHttpClient.Builder()
-//            .readTimeout(timeout, TimeUnit.SECONDS)
-//            .connectTimeout(timeout, TimeUnit.SECONDS)
             .addInterceptor { chain ->
                 if ("login" in chain.request().url.encodedPathSegments || "version" in chain.request().url.encodedPathSegments)
                     chain.proceed(chain.request())
@@ -46,9 +44,9 @@ val networkModule = module {
             .connectTimeout(timeout, TimeUnit.SECONDS)
             .writeTimeout(timeout, TimeUnit.SECONDS)
             .callTimeout(timeout, TimeUnit.SECONDS)
-            .addInterceptor(HttpLoggingInterceptor().apply {
-                level = HttpLoggingInterceptor.Level.BODY
-            })
+//            .addInterceptor(HttpLoggingInterceptor().apply {
+//                level = HttpLoggingInterceptor.Level.BODY
+//            })
 
         val client = builder.build()
         RxHttpPlugins.init(client)

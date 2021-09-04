@@ -4,12 +4,10 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.unircorn.csp.app.Category
-import com.unircorn.csp.app.Param
 import com.unircorn.csp.app.Title
-import com.unircorn.csp.ui.fra.article.StudyArticleFra
+import com.unircorn.csp.ui.fra.article.ArticleNtFra
 import com.unircorn.csp.ui.fra.question.QuestionBankFra
 import com.unircorn.csp.ui.fra.topic.JustVideoTopicFra
-import com.unircorn.csp.ui.fra.topic.TopicFra
 
 class StudyPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
@@ -20,14 +18,14 @@ class StudyPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     override fun getItemCount() = titles.size
 
     override fun createFragment(position: Int): Fragment = when (position) {
-        0 -> StudyArticleFra().apply {
+        0 -> ArticleNtFra().apply {
             arguments = Bundle().apply {
                 putString(Title, "学习小园地")
                 putString(Category, "xxjy")
             }
         }
         1 -> JustVideoTopicFra()
-        2 -> StudyArticleFra().apply {
+        2 -> ArticleNtFra().apply {
             arguments = Bundle().apply {
                 putString(Title, "学习小视频")
                 putString(Category, "xxsp")

@@ -1,55 +1,33 @@
 package com.unircorn.csp.ui.fra.article
 
-import android.content.Intent
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chad.library.adapter.base.entity.MultiItemEntity
-import com.hjq.bar.OnTitleBarListener
 import com.unircorn.csp.app.Category
-import com.unircorn.csp.app.Param
 import com.unircorn.csp.app.Title
-import com.unircorn.csp.app.startAct
 import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
-import com.unircorn.csp.databinding.FraArticleBinding
-import com.unircorn.csp.ui.act.article.ArticleSearchAct
-import com.unircorn.csp.ui.act.my.MyAct
+import com.unircorn.csp.databinding.UiPageBinding
 import com.unircorn.csp.ui.adapter.ArticleAdapter
-import com.unircorn.csp.ui.base.PageFra
-import com.unircorn.csp.ui.pagerAdapter.MainPagerAdapter
+import com.unircorn.csp.ui.base.PageFra2
 import io.reactivex.rxjava3.core.Single
 
-open class ArticleFra : PageFra<MultiItemEntity>() {
-
-    protected open val hideTitleBar = false
+open class ArticleFra : PageFra2<UiPageBinding, MultiItemEntity>() {
 
     override fun initViews() = with(binding) {
         super.initViews()
-        titleBar.title = mTitle
-        if (hideTitleBar) titleBar.visibility = View.GONE
+        tvTitle.text = title
     }
 
     override fun initBindings() {
         super.initBindings()
-        binding.titleBar.setOnTitleBarListener(object : OnTitleBarListener {
-            override fun onLeftClick(view: View?) {
-                Intent(requireContext(), ArticleSearchAct::class.java)
-                    .apply { putExtra(Param, category) }
-                    .let { requireContext().startActivity(it) }
-            }
+        // todo search and my
+//        Intent(requireContext(), ArticleSearchAct::class.java)
+//            .apply { putExtra(Param, category) }
+//            .let { requireContext().startActivity(it) }
 
-            override fun onTitleClick(view: View?) {
-
-            }
-
-            override fun onRightClick(view: View?) {
-                startAct(MyAct::class.java)
-            }
-        })
+//        startAct(MyAct::class.java)
     }
 
     override fun initPageAdapter() {
@@ -59,7 +37,7 @@ open class ArticleFra : PageFra<MultiItemEntity>() {
     override fun loadPage(page: Int): Single<Response<Page<MultiItemEntity>>> =
         api.getArticle(page = page, category = category)
             .map {
-                val page1 = Page(
+                val pageShadow = Page(
                     content = it.data.content.map { article ->
                         article as MultiItemEntity
                     },
@@ -68,12 +46,13 @@ open class ArticleFra : PageFra<MultiItemEntity>() {
                 return@map Response(
                     message = it.message,
                     success = it.success,
-                    data = page1
+                    data = pageShadow
                 )
             }
 
-    private val mTitle by lazy { requireArguments().getString(Title,"") }
-    private val category by lazy { requireArguments().getString(Category,"") }
+
+    private val title by lazy { requireArguments().getString(Title, "") }
+    private val category by lazy { requireArguments().getString(Category, "") }
 
     override val mRecyclerView: RecyclerView
         get() = binding.recyclerView
@@ -81,26 +60,7 @@ open class ArticleFra : PageFra<MultiItemEntity>() {
     override val mSwipeRefreshLayout: SwipeRefreshLayout
         get() = binding.swipeRefreshLayout
 
-    // ----
-
-    private var _binding: FraArticleBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FraArticleBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+    override val mTitleLayout: ConstraintLayout
+        get() = binding.titleLayout
 
 }
