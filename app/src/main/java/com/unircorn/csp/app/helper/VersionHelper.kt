@@ -21,7 +21,7 @@ object VersionHelper {
                     if (it.newVersion)
                         downloadApk(fragmentActivity = fragmentActivity, apkUrl = it.apkUrl)
                     else
-                        fragmentActivity.startAct(cls = MainAct::class.java, finishSelf = true)
+                        fragmentActivity.startAct(targetClass = MainAct::class.java, finishSelf = true)
                 },
                 { it.errorMsg().toast() }
             )

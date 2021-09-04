@@ -25,7 +25,7 @@ abstract class BaseAct : AppCompatActivity() {
 
         // Add the fragment to the 'fragment_container' FrameLayout
         supportFragmentManager.beginTransaction()
-            .add(R.id.fragment_container_view, fragment).commit()
+            .add(R.id.fragmentContainerView, fragment).commit()
     }
 
     abstract fun createFragment(): Fragment

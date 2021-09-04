@@ -13,7 +13,7 @@ import com.unircorn.csp.ui.adapter.ArticleAdapter
 import com.unircorn.csp.ui.base.PageFra2
 import io.reactivex.rxjava3.core.Single
 
-open class ArticleFra : PageFra2<UiPageBinding, MultiItemEntity>() {
+open class ArticlePageFra : PageFra2<UiPageBinding, MultiItemEntity>() {
 
     override fun initViews() = with(binding) {
         super.initViews()

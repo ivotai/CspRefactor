@@ -21,11 +21,13 @@ abstract class BaseAct2 : AppCompatActivity() {
 
         // In case this activity was started with special instructions from an
         // Intent, pass the Intent's extras to the fragment as arguments
-//        fragment.arguments = intent.extras
+        if (intent.extras != null && fragment.arguments == null) {
+            fragment.arguments = intent.extras
+        }
 
         // Add the fragment to the 'fragment_container' FrameLayout
         supportFragmentManager.beginTransaction()
-            .add(R.id.fragment_container_view, fragment).commit()
+            .add(R.id.fragmentContainerView, fragment).commit()
     }
 
     abstract fun createFragment(): Fragment

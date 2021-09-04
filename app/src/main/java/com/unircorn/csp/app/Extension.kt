@@ -25,8 +25,8 @@ import java.util.concurrent.TimeUnit
 fun View.safeClicks(): Observable<Unit> = this.clicks()
     .throttleFirst(2, TimeUnit.SECONDS)
 
-fun Activity.startAct(cls: Class<*>, finishSelf: Boolean = false) {
-    startActivity(Intent(this, cls))
+fun Activity.startAct(targetClass: Class<*>, finishSelf: Boolean = false) {
+    startActivity(Intent(this, targetClass))
     if (finishSelf) finish()
 }
 

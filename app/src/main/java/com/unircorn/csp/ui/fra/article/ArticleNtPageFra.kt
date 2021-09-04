@@ -1,6 +1,6 @@
 package com.unircorn.csp.ui.fra.article
 
-class ArticleNtFra : ArticleFra() {
+class ArticleNtPageFra : ArticlePageFra() {
 
     override val hideTitleLayout: Boolean = true
 
