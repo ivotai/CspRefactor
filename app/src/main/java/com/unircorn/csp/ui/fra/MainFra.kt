@@ -18,7 +18,7 @@ import com.unircorn.csp.R
 import com.unircorn.csp.app.*
 import com.unircorn.csp.data.event.LogoutEvent
 import com.unircorn.csp.databinding.FraMainBinding
-import com.unircorn.csp.ui.act.LoginAct
+import com.unircorn.csp.ui.act.LoginAct2
 import com.unircorn.csp.ui.base.BaseFra
 import com.unircorn.csp.ui.pagerAdapter.MainPagerAdapter
 import io.reactivex.rxjava3.functions.Consumer
@@ -117,7 +117,7 @@ class MainFra : BaseFra() {
                     { response ->
                         if (response.failed) return@subscribe
                         ActivityUtils.finishAllActivities()
-                        Intent(requireContext(), LoginAct::class.java).apply {
+                        Intent(requireContext(), LoginAct2::class.java).apply {
                             putExtra(Param, logoutEvent.clearPassword)
                         }.let { startActivity(it) }
                     },

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.unircorn.csp.R
 
+
 abstract class BaseAct2 : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

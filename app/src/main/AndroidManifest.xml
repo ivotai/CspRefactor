@@ -20,7 +20,7 @@
         android:theme="@style/Theme.CspRefactor"
         tools:replace="android:allowBackup,label">
         <activity
-            android:name=".ui.act.LoginAct"
+            android:name=".ui.act.LoginAct2"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

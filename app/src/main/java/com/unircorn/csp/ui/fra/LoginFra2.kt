@@ -2,37 +2,37 @@ package com.unircorn.csp.ui.fra
 
 import android.Manifest
 import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
 import com.mikepenz.iconics.utils.sizeDp
 import com.rxjava.rxlife.lifeOnMain
 import com.tbruyelle.rxpermissions3.RxPermissions
+import com.unicorn.sanre.icon.Fas
 import com.unircorn.csp.app.*
 import com.unircorn.csp.app.helper.VersionHelper
 import com.unircorn.csp.databinding.FraLoginBinding
 import com.unircorn.csp.ui.base.BaseFra2
 
-class LoginFra : BaseFra2<FraLoginBinding>() {
+class LoginFra2 : BaseFra2<FraLoginBinding>() {
 
     override fun initViews() = with(binding) {
         tilUsername.startIconDrawable =
-            IconicsDrawable(requireContext(), FontAwesome.Icon.faw_user1).apply {
+            IconicsDrawable(requireContext(), Fas.Icon.fas_user).apply {
                 sizeDp = 24
             }
         tilPassword.startIconDrawable =
-            IconicsDrawable(requireContext(), FontAwesome.Icon.faw_lock).apply {
+            IconicsDrawable(requireContext(), Fas.Icon.fas_lock).apply {
                 sizeDp = 24
             }
         with(UserInfo) {
             etUsername.setText(username)
             etPassword.setText(password)
         }
+
+        val clearPassword = arguments?.getBoolean(Param, false) ?: false
         if (clearPassword) {
             etPassword.setText("")
             etPassword.requestFocus()
         }
     }
-
-    private val clearPassword by lazy { arguments?.getBoolean(Param, false) ?: false }
 
     override fun initBindings() = with(binding) {
         btnLogin.safeClicks().subscribe { loginX() }
@@ -50,7 +50,7 @@ class LoginFra : BaseFra2<FraLoginBinding>() {
                 if (!granted)
                     finishAct()
                 else {
-//                    autoLogin()
+                    autoLogin()
                 }
             }
     }
@@ -69,7 +69,7 @@ class LoginFra : BaseFra2<FraLoginBinding>() {
 
     private fun login() = with(binding) {
         api.login(etUsername.trimText(), etPassword.trimText())
-            .lifeOnMain(this@LoginFra)
+            .lifeOnMain(this@LoginFra2)
             .subscribe(
                 {
                     if (it.failed) return@subscribe
@@ -82,7 +82,7 @@ class LoginFra : BaseFra2<FraLoginBinding>() {
                     VersionHelper.checkVersion(requireActivity())
                 },
                 {
-                    it.errorMsg().toast()
+                    it.toast()
                 }
             )
     }

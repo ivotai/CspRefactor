@@ -51,7 +51,7 @@ fun ViewPager2.removeEdgeEffect() {
 
 fun Throwable.errorMsg(): String {
     val errorMsg = when (this) {
-        is UnknownHostException -> "接口地址设置有误或无网络"
+        is UnknownHostException -> "没有网络"
         is SocketTimeoutException -> "超时了"
         is HttpException -> when (code()) {
             500 -> "服务器内部错误"
@@ -60,6 +60,10 @@ fun Throwable.errorMsg(): String {
         else -> toString()
     }
     return errorMsg
+}
+
+fun Throwable.toast(): Unit {
+    this.errorMsg().toast()
 }
 
 fun RecyclerView.addDefaultItemDecoration() {
