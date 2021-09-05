@@ -1,9 +1,6 @@
 package com.unircorn.csp.ui.fra.topic
 
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.blankj.utilcode.util.ToastUtils
 import com.hjq.bar.OnTitleBarListener
 import com.luck.picture.lib.PictureSelector
@@ -21,12 +18,12 @@ import com.unircorn.csp.data.event.RefreshTopicEvent
 import com.unircorn.csp.data.model.CreateTopicParam
 import com.unircorn.csp.data.model.UploadResponse
 import com.unircorn.csp.databinding.FraCreateTopicBinding
-import com.unircorn.csp.ui.base.BaseFra
+import com.unircorn.csp.ui.base.BaseFra2
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import rxhttp.RxHttp
 import java.io.File
 
-class CreateTopicFra : BaseFra() {
+class CreateTopicFra : BaseFra2<FraCreateTopicBinding>() {
 
     override fun initViews() {
         super.initViews()
@@ -35,7 +32,10 @@ class CreateTopicFra : BaseFra() {
 
     private fun initFloatingActionButton() {
         binding.floatingActionButton.setImageDrawable(
-            IconicsDrawable(requireContext(), Fas.Icon.fas_video).apply {
+            IconicsDrawable(
+                requireContext(),
+                if (studySmallVideo) Fas.Icon.fas_video else Fas.Icon.fas_image
+            ).apply {
                 sizeDp = 24
             }
         )
@@ -59,7 +59,7 @@ class CreateTopicFra : BaseFra() {
 
     private fun selectPicture() {
         PictureSelector.create(this)
-            .openGallery(if (justVideo) PictureMimeType.ofVideo() else PictureMimeType.ofAll())
+            .openGallery(if (studySmallVideo) PictureMimeType.ofVideo() else PictureMimeType.ofImage())
             .imageEngine(GlideEngine.createGlideEngine())
             .videoMaxSecond(15)
             .maxSelectNum(5)
@@ -114,7 +114,7 @@ class CreateTopicFra : BaseFra() {
             "内容不能为空".toast()
             return@with
         }
-        if (justVideo && createTopicParam.videos.isEmpty()) {
+        if (studySmallVideo && createTopicParam.videos.isEmpty()) {
             "请上传视频".toast()
             return@with
         }
@@ -139,30 +139,8 @@ class CreateTopicFra : BaseFra() {
             )
     }
 
-    private val justVideo by lazy { requireArguments().getBoolean(Param) }
+    private val studySmallVideo by lazy { arguments?.getBoolean(StudySmallVideo, false) ?: false }
 
-    private val createTopicParam by lazy { CreateTopicParam(type = if (justVideo) 2 else 1) }
+    private val createTopicParam by lazy { CreateTopicParam(type = if (studySmallVideo) 2 else 1) }
 
-
-    //
-
-    private var _binding: FraCreateTopicBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FraCreateTopicBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 }

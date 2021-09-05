@@ -27,19 +27,18 @@ import io.reactivex.rxjava3.functions.Consumer
 
 open class TopicPageFra : PageFra2<TopicPageFraBinding, MultiItemEntity>() {
 
-    protected open val justVideo = false
-
     override fun initViews(): Unit = with(binding) {
         super.initViews()
         tvTitle.text = title
 
         initFloatingActionButton()
 
-        if (justVideo) {
+        if (studySmallVideo) {
             pageAdapter.addHeaderView(TopicJustVideoHeaderView(requireContext()))
         }
     }
 
+    private val studySmallVideo by lazy { arguments?.getBoolean(StudySmallVideo, false) ?: false }
     private val title by lazy { arguments?.getString(Title, "") }
 
     private fun initFloatingActionButton() {
@@ -55,7 +54,7 @@ open class TopicPageFra : PageFra2<TopicPageFraBinding, MultiItemEntity>() {
         addOnChildAttachStateChangeListener()
         binding.floatingActionButton.safeClicks().subscribe {
             Intent(requireContext(), CreateTopicAct::class.java).apply {
-                putExtra(Param, justVideo)
+                putExtra(StudySmallVideo, studySmallVideo)
             }.let { startActivity(it) }
         }
     }
@@ -88,7 +87,7 @@ open class TopicPageFra : PageFra2<TopicPageFraBinding, MultiItemEntity>() {
     }
 
     override fun loadPage(page: Int): Single<Response<Page<MultiItemEntity>>> =
-        api.getTopic(page = page, type = if (justVideo) 2 else 1)
+        api.getTopic(page = page, type = if (studySmallVideo) 2 else 1)
             .map {
                 val page1 = Page(
                     content = it.data.content.map { topic ->

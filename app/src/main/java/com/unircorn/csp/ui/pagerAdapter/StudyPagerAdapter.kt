@@ -5,9 +5,10 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.unircorn.csp.app.Category
 import com.unircorn.csp.app.HideTitleLayout
+import com.unircorn.csp.app.StudySmallVideo
 import com.unircorn.csp.ui.fra.article.ArticlePageFra
 import com.unircorn.csp.ui.fra.question.QuestionBankFra
-import com.unircorn.csp.ui.fra.topic.JustVideoTopicFra
+import com.unircorn.csp.ui.fra.topic.TopicPageFra
 
 class StudyPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
@@ -25,15 +26,16 @@ class StudyPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
             }
         }
-        1 -> JustVideoTopicFra().apply {
+        1 -> TopicPageFra().apply {
             arguments = Bundle().apply {
                 putBoolean(HideTitleLayout, true)
+                putBoolean(StudySmallVideo, false)
             }
         }
-        2 -> ArticlePageFra().apply {
+        2 -> TopicPageFra().apply {
             arguments = Bundle().apply {
-                putString(Category, "xxsp")
                 putBoolean(HideTitleLayout, true)
+                putBoolean(StudySmallVideo, true)
             }
         }
         else -> QuestionBankFra()
