@@ -31,7 +31,7 @@ open class TopicPageFra : PageFra2<TopicPageFraBinding, MultiItemEntity>() {
 
     override fun initViews(): Unit = with(binding) {
         super.initViews()
-//        tvTitle.text = title
+        tvTitle.text = title
 
         initFloatingActionButton()
 
@@ -40,7 +40,7 @@ open class TopicPageFra : PageFra2<TopicPageFraBinding, MultiItemEntity>() {
         }
     }
 
-//    private val title by lazy { requireArguments().getString(Title, "") }
+    private val title by lazy { arguments?.getString(Title, "") }
 
     private fun initFloatingActionButton() {
         binding.floatingActionButton.setImageDrawable(

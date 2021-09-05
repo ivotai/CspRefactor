@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.unircorn.csp.app.Category
 import com.unircorn.csp.app.Title
-import com.unircorn.csp.ui.fra.ShowFra
 import com.unircorn.csp.ui.fra.StudyFra
 import com.unircorn.csp.ui.fra.article.ArticlePageFra
+import com.unircorn.csp.ui.fra.topic.TopicPageFra
 
 class MainPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
@@ -15,7 +15,11 @@ class MainPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     override fun createFragment(position: Int): Fragment = when (position) {
         0 -> StudyFra()
-        1 -> ShowFra()
+        1 -> TopicPageFra().apply {
+            arguments = Bundle().apply {
+                putString(Title, "晒一晒")
+            }
+        }
         2 -> ArticlePageFra().apply {
             arguments = Bundle().apply {
                 putString(Title, "政策规定")
