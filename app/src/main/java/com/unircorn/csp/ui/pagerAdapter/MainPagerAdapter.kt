@@ -11,7 +11,7 @@ import com.unircorn.csp.ui.fra.article.ArticlePageFra
 
 class MainPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
-    override fun getItemCount() = titles.size
+    override fun getItemCount() = abbr.size
 
     override fun createFragment(position: Int): Fragment = when (position) {
         0 -> StudyFra()
@@ -37,9 +37,7 @@ class MainPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     }
 
     companion object {
-        val titles = listOf("学习园地", "晒一晒", "政策规定", "信息工作动态", "党史学习")
         val abbr = listOf("学习", "晒晒", "政策", "信息", "党史")
-        val categories = listOf("xxjy", "", "zcgd", "gzdt", "dsxx")
     }
 
 }

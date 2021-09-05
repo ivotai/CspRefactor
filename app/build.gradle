@@ -129,8 +129,8 @@ dependencies {
 
     implementation 'com.github.tbruyelle:rxpermissions:0.12'
 
-    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
-    implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
+//    implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
+//    implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
 
     implementation 'com.gongwen:marqueelibrary:1.1.3'
 

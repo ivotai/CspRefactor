@@ -29,7 +29,7 @@ class MainFra2 : BaseFra2<FraMainBinding>() {
 
     private fun initViewPager2() = with(binding.viewPager2) {
         isUserInputEnabled = false
-        offscreenPageLimit = MainPagerAdapter.titles.size - 1
+        offscreenPageLimit = MainPagerAdapter.abbr.size - 1
         adapter = MainPagerAdapter(this@MainFra2)
         removeEdgeEffect()
     }
@@ -124,6 +124,5 @@ class MainFra2 : BaseFra2<FraMainBinding>() {
             logout(it)
         })
     }
-
 
 }

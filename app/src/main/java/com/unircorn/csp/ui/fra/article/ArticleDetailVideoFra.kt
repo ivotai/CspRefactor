@@ -14,7 +14,6 @@ import com.hjq.bar.TitleBar
 import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.app.*
 import com.unircorn.csp.app.third.JZMediaAliyun
-import com.unircorn.csp.app.third.JZMediaIjk
 import com.unircorn.csp.ui.base.ArticleDetailFra
 import com.unircorn.csp.databinding.FraArticleDetailVideoBinding
 import com.unircorn.csp.ui.header.WebViewHeaderView
