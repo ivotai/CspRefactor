@@ -25,7 +25,11 @@ class StudyPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
             }
         }
-        1 -> JustVideoTopicFra()
+        1 -> JustVideoTopicFra().apply {
+            arguments = Bundle().apply {
+                putBoolean(HideTitleLayout, true)
+            }
+        }
         2 -> ArticlePageFra().apply {
             arguments = Bundle().apply {
                 putString(Category, "xxsp")
