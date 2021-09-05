@@ -1,10 +1,8 @@
 package com.unircorn.csp.ui.fra.topic
 
 import android.content.Intent
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnChildAttachStateChangeListener
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -19,27 +17,30 @@ import com.unircorn.csp.data.event.RefreshTopicEvent
 import com.unircorn.csp.data.model.*
 import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
-import com.unircorn.csp.databinding.FraTopicBinding
+import com.unircorn.csp.databinding.TopicPageFraBinding
 import com.unircorn.csp.ui.act.topic.CreateTopicAct
 import com.unircorn.csp.ui.adapter.TopicAdapter
-import com.unircorn.csp.ui.base.PageFra
+import com.unircorn.csp.ui.base.PageFra2
 import com.unircorn.csp.ui.header.TopicJustVideoHeaderView
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.functions.Consumer
 
-
-open class TopicFra : PageFra<MultiItemEntity>() {
+open class TopicPageFra : PageFra2<TopicPageFraBinding, MultiItemEntity>() {
 
     protected open val justVideo = false
 
     override fun initViews(): Unit = with(binding) {
         super.initViews()
+//        tvTitle.text = title
+
         initFloatingActionButton()
 
         if (justVideo) {
             pageAdapter.addHeaderView(TopicJustVideoHeaderView(requireContext()))
         }
     }
+
+//    private val title by lazy { requireArguments().getString(Title, "") }
 
     private fun initFloatingActionButton() {
         binding.floatingActionButton.setImageDrawable(
@@ -108,26 +109,7 @@ open class TopicFra : PageFra<MultiItemEntity>() {
     override val mSwipeRefreshLayout: SwipeRefreshLayout
         get() = binding.swipeRefreshLayout
 
-// ----
-
-    private var _binding: FraTopicBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FraTopicBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+    override val mTitleLayout: ConstraintLayout
+        get() = binding.titleLayout
 
 }

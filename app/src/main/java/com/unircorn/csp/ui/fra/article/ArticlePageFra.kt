@@ -53,7 +53,7 @@ open class ArticlePageFra : PageFra2<FraArticlePageBinding, MultiItemEntity>() {
             }
 
 
-    private val title by lazy { requireArguments().getString(Title, "") }
+    private val title by lazy { arguments?.getString(Title, "") }
     private val category by lazy { requireArguments().getString(Category, "") }
 
     override val mRecyclerView: RecyclerView

@@ -3,7 +3,7 @@ package com.unircorn.csp.ui.fra
 import com.unircorn.csp.R
 import com.unircorn.csp.databinding.FraShowBinding
 import com.unircorn.csp.ui.base.BaseFra2
-import com.unircorn.csp.ui.fra.topic.TopicFra
+import com.unircorn.csp.ui.fra.topic.TopicPageFra
 
 class ShowFra : BaseFra2<FraShowBinding>() {
 
@@ -11,7 +11,7 @@ class ShowFra : BaseFra2<FraShowBinding>() {
         super.initViews()
 
         tvTitle.text = "晒一晒"
-        parentFragmentManager.beginTransaction().add(R.id.fragment_container_view, TopicFra())
+        parentFragmentManager.beginTransaction().add(R.id.fragment_container_view, TopicPageFra())
             .commit()
     }
 

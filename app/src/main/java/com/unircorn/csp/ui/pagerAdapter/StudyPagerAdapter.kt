@@ -20,14 +20,12 @@ class StudyPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     override fun createFragment(position: Int): Fragment = when (position) {
         0 -> ArticleNtPageFra().apply {
             arguments = Bundle().apply {
-                putString(Title, "学习小园地")
                 putString(Category, "xxjy")
             }
         }
         1 -> JustVideoTopicFra()
         2 -> ArticleNtPageFra().apply {
             arguments = Bundle().apply {
-                putString(Title, "学习小视频")
                 putString(Category, "xxsp")
             }
         }
