@@ -131,6 +131,6 @@ abstract class PageFra2<VB : ViewBinding, T> : BaseFra2<VB>() {
 
     abstract val mTitleLayout: ConstraintLayout
 
-    protected open val hideTitleLayout = false
+    private val hideTitleLayout by lazy { arguments?.getBoolean(HideTitleLayout, false) ?: false }
 
 }
