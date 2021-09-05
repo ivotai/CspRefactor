@@ -1,7 +1,6 @@
 package com.unircorn.csp.ui.fra.topic
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,9 +11,9 @@ import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.listener.OnResultCallbackListener
 import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
 import com.mikepenz.iconics.utils.sizeDp
 import com.rxjava.rxlife.lifeOnMain
+import com.unicorn.sanre.icon.Fas
 import com.unircorn.csp.app.*
 import com.unircorn.csp.app.helper.ProgressHelper
 import com.unircorn.csp.app.third.GlideEngine
@@ -36,7 +35,7 @@ class CreateTopicFra : BaseFra() {
 
     private fun initFloatingActionButton() {
         binding.floatingActionButton.setImageDrawable(
-            IconicsDrawable(requireContext(), FontAwesome.Icon.faw_video).apply {
+            IconicsDrawable(requireContext(), Fas.Icon.fas_video).apply {
                 sizeDp = 24
             }
         )

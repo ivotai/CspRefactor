@@ -5,15 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.OnChildAttachStateChangeListener
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.jzvd.Jzvd
 import com.chad.library.adapter.base.entity.MultiItemEntity
 import com.mikepenz.iconics.IconicsDrawable
-import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
 import com.mikepenz.iconics.utils.sizeDp
+import com.unicorn.sanre.icon.Fas
 import com.unircorn.csp.R
 import com.unircorn.csp.app.*
 import com.unircorn.csp.data.event.RefreshTopicEvent
@@ -37,14 +36,14 @@ open class TopicFra : PageFra<MultiItemEntity>() {
         super.initViews()
         initFloatingActionButton()
 
-        if (justVideo){
+        if (justVideo) {
             pageAdapter.addHeaderView(TopicJustVideoHeaderView(requireContext()))
         }
     }
 
     private fun initFloatingActionButton() {
         binding.floatingActionButton.setImageDrawable(
-            IconicsDrawable(requireContext(), FontAwesome.Icon.faw_plus).apply {
+            IconicsDrawable(requireContext(), Fas.Icon.fas_plus).apply {
                 sizeDp = 24
             }
         )
@@ -88,7 +87,7 @@ open class TopicFra : PageFra<MultiItemEntity>() {
     }
 
     override fun loadPage(page: Int): Single<Response<Page<MultiItemEntity>>> =
-        api.getTopic(page = page,type = if (justVideo) 2 else 1)
+        api.getTopic(page = page, type = if (justVideo) 2 else 1)
             .map {
                 val page1 = Page(
                     content = it.data.content.map { topic ->

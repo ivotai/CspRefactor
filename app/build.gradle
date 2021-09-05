@@ -99,7 +99,6 @@ dependencies {
     //
     implementation "com.mikepenz:iconics-core:5.3.0"
     implementation "com.mikepenz:iconics-views:5.3.0"
-    implementation 'com.mikepenz:fontawesome-typeface:5.9.0.2-kotlin@aar'
 
     //
     implementation 'com.github.getActivity:TitleBar:8.6'

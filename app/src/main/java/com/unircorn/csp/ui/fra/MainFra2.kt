@@ -1,31 +1,26 @@
 package com.unircorn.csp.ui.fra
 
 import android.content.Intent
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ColorUtils
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.typeface.IIcon
-import com.mikepenz.iconics.typeface.library.fontawesome.FontAwesome
 import com.mikepenz.iconics.utils.colorInt
 import com.mikepenz.iconics.utils.sizeDp
 import com.rxjava.rxlife.lifeOnMain
-import com.unicorn.sanre.icon.Fal
+import com.unicorn.sanre.icon.Fas
 import com.unircorn.csp.R
 import com.unircorn.csp.app.*
 import com.unircorn.csp.data.event.LogoutEvent
 import com.unircorn.csp.databinding.FraMainBinding
 import com.unircorn.csp.ui.act.LoginAct2
-import com.unircorn.csp.ui.base.BaseFra
+import com.unircorn.csp.ui.base.BaseFra2
 import com.unircorn.csp.ui.pagerAdapter.MainPagerAdapter
 import io.reactivex.rxjava3.functions.Consumer
 import me.majiajie.pagerbottomtabstrip.NavigationController
 import me.majiajie.pagerbottomtabstrip.item.NormalItemView
 
-class MainFra : BaseFra() {
+class MainFra2 : BaseFra2<FraMainBinding>() {
 
     override fun initViews() {
         initViewPager2()
@@ -33,10 +28,10 @@ class MainFra : BaseFra() {
     }
 
     private fun initViewPager2() = with(binding.viewPager2) {
-        removeEdgeEffect()
         isUserInputEnabled = false
         offscreenPageLimit = MainPagerAdapter.titles.size - 1
-        adapter = MainPagerAdapter(this@MainFra)
+        adapter = MainPagerAdapter(this@MainFra2)
+        removeEdgeEffect()
     }
 
     private lateinit var navigationController: NavigationController
@@ -45,34 +40,31 @@ class MainFra : BaseFra() {
         navigationController = tab.custom()
             .addItem(
                 newItem(
-                    Fal.Icon.fal_graduation_cap,
+                    Fas.Icon.fas_graduation_cap,
                     MainPagerAdapter.abbr[0]
                 )
             )
             .addItem(
                 newItem(
-                    FontAwesome.Icon.faw_comments1,
+                    Fas.Icon.fas_comments,
                     MainPagerAdapter.abbr[1]
                 )
             )
             .addItem(
                 newItem(
-                    Fal.Icon.fal_balance_scale,
-//                    Far.Icon.far_balance_scale,
-//                    Fas.Icon.fas_balance_scale,
-//                    Fad.Icon.fad_balance_scale,
+                    Fas.Icon.fas_balance_scale,
                     MainPagerAdapter.abbr[2]
                 )
             )
             .addItem(
                 newItem(
-                    FontAwesome.Icon.faw_calendar_check1,
+                    Fas.Icon.fas_calendar_check,
                     MainPagerAdapter.abbr[3]
                 )
             )
             .addItem(
                 newItem(
-                    FontAwesome.Icon.faw_book_open,
+                    Fas.Icon.fas_book_open,
                     MainPagerAdapter.abbr[4]
                 )
             )
@@ -104,8 +96,10 @@ class MainFra : BaseFra() {
 
     override fun initBindings() = with(binding) {
         navigationController.addSimpleTabItemSelectedListener { index, _ ->
-//            titleBar.title = MainFraStateAdapter.titles[index]
-            viewPager2.setCurrentItem(index, false)
+            viewPager2.setCurrentItem(
+                index,
+                false
+            )
         }
     }
 
@@ -121,7 +115,9 @@ class MainFra : BaseFra() {
                             putExtra(Param, logoutEvent.clearPassword)
                         }.let { startActivity(it) }
                     },
-                    { it.errorMsg().toast() }
+                    {
+                        it.toast()
+                    }
                 )
         }
         RxBus.registerEvent(this, LogoutEvent::class.java, Consumer {
@@ -129,26 +125,5 @@ class MainFra : BaseFra() {
         })
     }
 
-    // ----
-
-    private var _binding: FraMainBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FraMainBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
 }
