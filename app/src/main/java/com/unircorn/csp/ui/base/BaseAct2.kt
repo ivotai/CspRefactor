@@ -3,6 +3,7 @@ package com.unircorn.csp.ui.base
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import cn.jzvd.Jzvd
 import com.unircorn.csp.R
 
 
@@ -32,5 +33,19 @@ abstract class BaseAct2 : AppCompatActivity() {
     }
 
     abstract fun createFragment(): Fragment
+
+    //
+
+    override fun onBackPressed() {
+        if (Jzvd.backPress()) {
+            return
+        }
+        super.onBackPressed()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Jzvd.releaseAllVideos()
+    }
 
 }

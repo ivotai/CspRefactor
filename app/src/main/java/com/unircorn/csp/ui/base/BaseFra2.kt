@@ -6,8 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import cn.jzvd.Jzvd
 import com.dylanc.viewbinding.base.inflateBindingWithGeneric
 import com.unircorn.csp.app.MyComponent
+
 
 abstract class BaseFra2<VB : ViewBinding> : Fragment(), UI {
 
@@ -28,6 +30,8 @@ abstract class BaseFra2<VB : ViewBinding> : Fragment(), UI {
 
     val api by lazy { MyComponent().api }
 
+    //
+
     private var _binding: VB? = null
     val binding: VB get() = _binding!!
 
@@ -43,6 +47,13 @@ abstract class BaseFra2<VB : ViewBinding> : Fragment(), UI {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    //
+
+    override fun onPause() {
+        super.onPause()
+        Jzvd.releaseAllVideos()
     }
 
 }

@@ -124,7 +124,7 @@ dependencies {
 
     implementation 'com.afollestad.material-dialogs:core:3.3.0'
 
-    implementation 'cn.jzvd:jiaozivideoplayer:7.5.0'
+    implementation 'cn.jzvd:jiaozivideoplayer:7.7.0'
 
     implementation 'io.github.lucksiege:pictureselector:v2.7.3-rc07'
 

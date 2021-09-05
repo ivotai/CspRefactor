@@ -7,7 +7,7 @@ import com.unircorn.csp.app.MyComponent
 import com.unircorn.csp.app.errorMsg
 import com.unircorn.csp.app.startAct
 import com.unircorn.csp.app.toast
-import com.unircorn.csp.ui.act.MainAct
+import com.unircorn.csp.ui.act.MainAct2
 import rxhttp.RxHttp
 import java.io.File
 
@@ -21,7 +21,7 @@ object VersionHelper {
                     if (it.newVersion)
                         downloadApk(fragmentActivity = fragmentActivity, apkUrl = it.apkUrl)
                     else
-                        fragmentActivity.startAct(targetClass = MainAct::class.java, finishSelf = true)
+                        fragmentActivity.startAct(targetClass = MainAct2::class.java, finishSelf = true)
                 },
                 { it.errorMsg().toast() }
             )
