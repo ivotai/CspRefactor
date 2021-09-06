@@ -15,7 +15,7 @@ class ExaminationFra : BaseFra2<FraExaminationBinding>() {
 
     override fun initViews() = with(binding) {
         super.initViews()
-        tvTitle.text = if (justStudy) "学习小园地" else "学习小测试"
+        tvTitle.text = if (justStudy) "题库学习" else "随机测试"
     }
 
     override fun initBindings() {
@@ -54,7 +54,7 @@ class ExaminationFra : BaseFra2<FraExaminationBinding>() {
             RoundCornerProgressBar.max = questionsAnswered.size.toFloat()
             RoundCornerProgressBar.progress = questionsCorrect.size.toFloat()
             tvCorrect.text = questionsCorrect.size.toString()
-            tvWrong.text = (questionsAnswered.size-questionsCorrect.size).toString()
+            tvWrong.text = (questionsAnswered.size - questionsCorrect.size).toString()
 
             val finish = examination.questionList.all { it.options != null }
             if (finish) {
@@ -103,7 +103,8 @@ class ExaminationFra : BaseFra2<FraExaminationBinding>() {
     private fun initViewPager2() = with(binding.ViewPager2) {
         val examinationPagerAdapter =
             ExaminationPagerAdapter(fragment = this@ExaminationFra, examination = examination)
-        offscreenPageLimit = examinationPagerAdapter.itemCount - 1
+        // 这句话不使用看看
+//        offscreenPageLimit = examinationPagerAdapter.itemCount - 1
         adapter = examinationPagerAdapter
         removeEdgeEffect()
         isUserInputEnabled = false
