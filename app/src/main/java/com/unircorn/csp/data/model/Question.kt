@@ -7,8 +7,10 @@ data class Question(
     val name: String,
     val optionList: List<Option>,
     var options: List<String>? = null,
+    var isCorrect: Boolean? = null
 ) : Serializable {
 
     val optionsCorrect: List<String> get() = optionList.filter { it.isCorrect }.map { it.optionId }
+    val isSingleSelection: Boolean get() = optionsCorrect.size == 1
 
 }

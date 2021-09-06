@@ -7,10 +7,12 @@ import com.blankj.utilcode.util.ConvertUtils
 import com.unircorn.csp.R
 import com.unircorn.csp.app.getAttrColor
 import com.unircorn.csp.app.safeClicks
+import com.unircorn.csp.data.model.Question
 import com.unircorn.csp.data.model.base.OptionSelector
 import com.unircorn.csp.databinding.ItemOptionBinding
 
-class OptionAdapter : BaseBindingQuickAdapter<OptionSelector, ItemOptionBinding>() {
+class OptionAdapter(val question: Question) :
+    BaseBindingQuickAdapter<OptionSelector, ItemOptionBinding>() {
 
     var isQuestionSubmit: Boolean = false
 
@@ -34,10 +36,15 @@ class OptionAdapter : BaseBindingQuickAdapter<OptionSelector, ItemOptionBinding>
 
             root.safeClicks().subscribe {
                 if (isQuestionSubmit) return@subscribe
-
                 // 单选
-                data.forEach { it.isSelected = false }
-                item.isSelected = true
+                if (question.isSingleSelection) {
+                    data.forEach { it.isSelected = false }
+                    item.isSelected = true
+                }
+                // 多选
+                else {
+                    item.isSelected = !item.isSelected
+                }
                 notifyDataSetChanged()
             }
         }

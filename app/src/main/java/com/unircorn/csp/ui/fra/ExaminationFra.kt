@@ -4,7 +4,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.app.*
 import com.unircorn.csp.data.event.NextQuestionEvent
-import com.unircorn.csp.data.event.OptionSubmitEvent
+import com.unircorn.csp.data.event.QuestionSubmitEvent
 import com.unircorn.csp.data.model.Examination
 import com.unircorn.csp.data.model.SubmitExaminationParam
 import com.unircorn.csp.databinding.FraExaminationBinding
@@ -37,20 +37,16 @@ class ExaminationFra : BaseFra2<FraExaminationBinding>() {
     }
 
     override fun initEvents() = with(binding) {
-        RxBus.registerEvent(this@ExaminationFra, OptionSubmitEvent::class.java, { event ->
+        RxBus.registerEvent(this@ExaminationFra, QuestionSubmitEvent::class.java, { event ->
             val question =
                 examination.questionList.find { it.questionId == event.optionsSelected.first().questionId }!!
             question.options = event.optionsSelected.map { it.optionId }
+            question.isCorrect = event.isCorrect
 
             //
             val questionsAnswered = examination.questionList.filter { it.options != null }
-            val questionsCorrect = questionsAnswered.filter {
-                var isCorrect = true
-                it.options!!.forEachIndexed { index, option ->
-                    isCorrect = option == it.optionsCorrect[index]
-                }
-                return@filter isCorrect
-            }
+            val questionsCorrect = questionsAnswered.filter { it.isCorrect!! }
+
             RoundCornerProgressBar.max = questionsAnswered.size.toFloat()
             RoundCornerProgressBar.progress = questionsCorrect.size.toFloat()
             tvCorrect.text = questionsCorrect.size.toString()
