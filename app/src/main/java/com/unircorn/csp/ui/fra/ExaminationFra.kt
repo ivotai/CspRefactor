@@ -30,6 +30,13 @@ class ExaminationFra : BaseFra2<FraExaminationBinding>() {
                 {
                     if (it.failed) return@subscribe
                     this.examination = it.data
+
+                    // 排序，先单选后多选
+                    if (!justStudy) {
+                        this.examination.questionList =
+                            examination.questionList.sortedBy { question -> !question.isSingleSelection }
+                    }
+
                     initViewPager2()
                 },
                 { it.errorMsg().toast() }

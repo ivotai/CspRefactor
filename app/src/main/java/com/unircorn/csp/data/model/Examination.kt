@@ -7,5 +7,5 @@ data class Examination(
     val startTime: Long,
     val stats: Int,
     val examinee: String,
-    val questionList: List<Question>
+    var questionList: List<Question>
 )
