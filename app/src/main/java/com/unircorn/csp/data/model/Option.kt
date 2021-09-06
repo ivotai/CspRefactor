@@ -12,7 +12,7 @@ data class Option(
 ) : Serializable {
 
     companion object {
-        private val letters = listOf("A", "B", "C", "D")
+        private val letters = listOf("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L")
     }
 
     val letter: String get() = letters[position]
