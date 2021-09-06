@@ -88,7 +88,7 @@ class ExaminationFra : BaseFra2<FraExaminationBinding>() {
                     val message = "总分: 100\r\n题目数量: ${examination.questionList.size}\r\n" +
                             "测试分数: ${it.data.score}\r\n测试结果: ${if (it.data.isPassed) "通过" else "不通过"}"
                     MaterialDialog(requireContext()).show {
-                        title(text = "学习小测试")
+                        title(text = "随机测试")
                         message(text = message)
                         cancelOnTouchOutside(false)
                         positiveButton(text = "确认") { _ ->
