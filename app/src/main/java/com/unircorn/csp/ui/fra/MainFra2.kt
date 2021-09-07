@@ -46,26 +46,20 @@ class MainFra2 : BaseFra2<FraMainBinding>() {
             )
             .addItem(
                 newItem(
-                    Fas.Icon.fas_comments,
+                    Fas.Icon.fas_balance_scale,
                     MainPagerAdapter.abbr[1]
                 )
             )
             .addItem(
                 newItem(
-                    Fas.Icon.fas_balance_scale,
+                    Fas.Icon.fas_calendar_check,
                     MainPagerAdapter.abbr[2]
                 )
             )
             .addItem(
                 newItem(
-                    Fas.Icon.fas_calendar_check,
-                    MainPagerAdapter.abbr[3]
-                )
-            )
-            .addItem(
-                newItem(
                     Fas.Icon.fas_book_open,
-                    MainPagerAdapter.abbr[4]
+                    MainPagerAdapter.abbr[3]
                 )
             )
             .build()
