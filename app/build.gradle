@@ -12,7 +12,7 @@ android {
         minSdk 21
         targetSdk 30
         versionCode 1
-        versionName "1.2.3"
+        versionName "1.2.6"
 //        versionName "1.0"
 
         ndk {
@@ -138,5 +138,8 @@ dependencies {
     implementation 'com.github.RuffianZhong:RWidgetHelper:androidx.v0.0.4'
 
     implementation 'com.akexorcist:round-corner-progress-bar:2.1.2'
+    implementation 'com.aliyun.sdk.android:AliyunPlayer:5.4.2.0-full'
+
+    implementation 'cat.ereza:customactivityoncrash:2.3.0'
 
 }
