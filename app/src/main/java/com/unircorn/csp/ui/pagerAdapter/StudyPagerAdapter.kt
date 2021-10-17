@@ -6,6 +6,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.unircorn.csp.app.Category
 import com.unircorn.csp.app.HideTitleLayout
 import com.unircorn.csp.app.StudySmallVideo
+import com.unircorn.csp.app.XueXiXiaoXinDe
 import com.unircorn.csp.ui.fra.article.ArticlePageFra
 import com.unircorn.csp.ui.fra.question.QuestionBankFra
 import com.unircorn.csp.ui.fra.topic.TopicPageFra
@@ -17,8 +18,7 @@ class StudyPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     }
 
     override fun getItemCount() = titles.size
-
-    override fun createFragment(position: Int): Fragment = when (position) {
+   override fun createFragment(position: Int): Fragment = when (position) {
         0 -> ArticlePageFra().apply {
             arguments = Bundle().apply {
                 putString(Category, "xxjy")
@@ -30,6 +30,7 @@ class StudyPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
             arguments = Bundle().apply {
                 putBoolean(HideTitleLayout, true)
                 putBoolean(StudySmallVideo, false)
+                putBoolean(XueXiXiaoXinDe,true)
             }
         }
         2 -> TopicPageFra().apply {

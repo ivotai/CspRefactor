@@ -38,6 +38,7 @@ open class TopicPageFra : PageFra2<TopicPageFraBinding, MultiItemEntity>() {
         }
     }
 
+    private val xueXiXiaoXinDe by lazy { arguments?.getBoolean(XueXiXiaoXinDe, false) ?: false }
     private val studySmallVideo by lazy { arguments?.getBoolean(StudySmallVideo, false) ?: false }
     private val title by lazy { arguments?.getString(Title, "") }
 
@@ -83,7 +84,9 @@ open class TopicPageFra : PageFra2<TopicPageFraBinding, MultiItemEntity>() {
     }
 
     override fun initPageAdapter() {
-        pageAdapter = TopicAdapter()
+        val topicAdapter = TopicAdapter()
+        topicAdapter.xueXiXiaoXinDe = xueXiXiaoXinDe
+        pageAdapter = topicAdapter
     }
 
     override fun loadPage(page: Int): Single<Response<Page<MultiItemEntity>>> =

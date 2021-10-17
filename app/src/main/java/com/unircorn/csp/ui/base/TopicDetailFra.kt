@@ -15,7 +15,14 @@ abstract class TopicDetailFra : CommentPageFra() {
     override fun initViews() {
         super.initViews()
         titleBar.title = topic.title
+
+        if (xueXiXiaoXinDe){
+            etContent.hint = "领导点评"
+            btnCreateComment.text = "点评"
+        }
     }
+
+    private val xueXiXiaoXinDe by lazy { arguments?.getBoolean(XueXiXiaoXinDe, false) ?: false }
 
     override fun initBindings() {
         super.initBindings()
