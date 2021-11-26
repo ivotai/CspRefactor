@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.unircorn.csp.app.Category
 import com.unircorn.csp.app.Title
+import com.unircorn.csp.ui.fra.HandbookFra
 import com.unircorn.csp.ui.fra.StudyFra
 import com.unircorn.csp.ui.fra.article.ArticlePageFra
 
@@ -26,16 +27,17 @@ class MainPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
                 putString(Category, "gzdt")
             }
         }
-        else -> ArticlePageFra().apply {
+        3 -> ArticlePageFra().apply {
             arguments = Bundle().apply {
                 putString(Title, "党史学习")
                 putString(Category, "dsxx")
             }
         }
+        else -> HandbookFra()
     }
 
     companion object {
-        val abbr = listOf("学习", "政策", "信息", "党史")
+        val abbr = listOf("学习", "政策", "信息", "党史", "手编书")
     }
 
 }

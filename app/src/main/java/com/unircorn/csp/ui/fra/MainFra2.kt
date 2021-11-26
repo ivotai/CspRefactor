@@ -62,6 +62,12 @@ class MainFra2 : BaseFra2<FraMainBinding>() {
                     MainPagerAdapter.abbr[3]
                 )
             )
+            .addItem(
+                newItem(
+                    Fas.Icon.fas_file_signature,
+                    MainPagerAdapter.abbr[4]
+                )
+            )
             .build()
     }
 
