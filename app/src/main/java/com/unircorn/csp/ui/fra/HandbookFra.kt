@@ -4,6 +4,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.unircorn.csp.databinding.FraHandbookBinding
 import com.unircorn.csp.databinding.FraStudyBinding
 import com.unircorn.csp.ui.base.BaseFra2
+import com.unircorn.csp.ui.pagerAdapter.HandbookPagerAdapter
 import com.unircorn.csp.ui.pagerAdapter.StudyPagerAdapter
 
 class HandbookFra : BaseFra2<FraHandbookBinding>() {
@@ -14,10 +15,10 @@ class HandbookFra : BaseFra2<FraHandbookBinding>() {
     }
 
     private fun initTabLayoutMediator() = with(binding) {
-        viewPager2.adapter = StudyPagerAdapter(this@HandbookFra)
-        viewPager2.offscreenPageLimit = StudyPagerAdapter.titles.size - 1
+        viewPager2.adapter = HandbookPagerAdapter(this@HandbookFra)
+        viewPager2.offscreenPageLimit = HandbookPagerAdapter.titles.size - 1
         TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
-            tab.text = StudyPagerAdapter.titles[position]
+            tab.text = HandbookPagerAdapter.titles[position]
         }.attach()
     }
 
