@@ -1,7 +1,8 @@
 package com.unircorn.csp.ui.fra
 
 import android.content.Intent
-import com.ruffian.library.widget.RTextView
+import android.widget.TextView
+import com.ruffian.library.widget.RConstraintLayout
 import com.unircorn.csp.app.Category
 import com.unircorn.csp.app.Title
 import com.unircorn.csp.app.safeClicks
@@ -22,7 +23,9 @@ class HandbookFra : BaseFra2<FraHandbookBinding>() {
         "sbs_zxgl"
     )
 
-    private lateinit var tvLabels: List<RTextView>
+    private lateinit var tvLabels: List<TextView>
+    private lateinit var constraintLayouts: List<RConstraintLayout>
+
 
     override fun initViews() = with(binding) {
         tvLabels = listOf(
@@ -33,8 +36,21 @@ class HandbookFra : BaseFra2<FraHandbookBinding>() {
         tvLabels.forEachIndexed { index, rTextView -> rTextView.text = mTitles[index] }
     }
 
-    override fun initBindings() {
-        tvLabels.forEachIndexed { index, rTextView ->
+    override fun initBindings() = with(binding) {
+        constraintLayouts = listOf(
+            constraintLayout1,
+            constraintLayout2,
+            constraintLayout3,
+            constraintLayout4,
+            constraintLayout5,
+            constraintLayout6,
+            constraintLayout7,
+            constraintLayout8,
+            constraintLayout9,
+            constraintLayout10,
+            constraintLayout11
+        )
+        constraintLayouts.forEachIndexed { index, rTextView ->
             rTextView.safeClicks().subscribe {
                 startActivity(Intent(requireContext(), HandbookArticleAct::class.java).apply {
                     putExtra(Title, mTitles[index])
