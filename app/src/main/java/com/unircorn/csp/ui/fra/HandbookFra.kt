@@ -11,7 +11,7 @@ import com.unircorn.csp.ui.base.BaseFra2
 
 class HandbookFra : BaseFra2<FraHandbookBinding>() {
 
-    private val titles = listOf(
+    private val mTitles = listOf(
         "机关作风", "三个规定", "\"两违\"\"两官\"", "立案信访", "审限管理",
         "减刑假释", "暂予监外执行", "民事审判", "破产管理", "行政审判",
         "执行管理"
@@ -25,17 +25,19 @@ class HandbookFra : BaseFra2<FraHandbookBinding>() {
     private lateinit var tvLabels: List<RTextView>
 
     override fun initViews() = with(binding) {
-        tvLabels = listOf(tvLabel1, tvLabel2, tvLabel3, tvLabel4)
-        tvLabels.forEachIndexed { index, rTextView ->
-            rTextView.text = titles[index]
-        }
+        tvLabels = listOf(
+            tvLabel1, tvLabel2, tvLabel3, tvLabel4, tvLabel5,
+            tvLabel6, tvLabel7, tvLabel8, tvLabel9, tvLabel10,
+            tvLabel11
+        )
+        tvLabels.forEachIndexed { index, rTextView -> rTextView.text = mTitles[index] }
     }
 
     override fun initBindings() {
         tvLabels.forEachIndexed { index, rTextView ->
             rTextView.safeClicks().subscribe {
                 startActivity(Intent(requireContext(), HandbookArticleAct::class.java).apply {
-                    putExtra(Title, titles[index])
+                    putExtra(Title, mTitles[index])
                     putExtra(Category, mCategories[index])
                 })
             }

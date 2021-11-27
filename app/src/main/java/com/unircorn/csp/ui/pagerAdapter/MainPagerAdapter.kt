@@ -37,7 +37,7 @@ class MainPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     }
 
     companion object {
-        val abbr = listOf("学习", "政策", "信息", "党史", "手编书")
+        val abbr = listOf("学习", "政策", "信息", "党史", "手边书")
     }
 
 }
