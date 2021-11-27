@@ -37,6 +37,8 @@ data class Article(
     override val itemType: Int
         get() = if (cover.isEmpty()) article_normal else article_image
 
+    val hasAttachments: Boolean get() = attachments.isNotEmpty()
+
 }
 
 

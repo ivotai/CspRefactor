@@ -31,21 +31,20 @@ abstract class ArticleDetailFra : CommentPageFra() {
 
     override fun initBindings() {
         super.initBindings()
-        if (article.attachments.isNotEmpty()) {
-            titleBar.rightTitle = "附件"
-            titleBar.setOnTitleBarListener(object : OnTitleBarListener {
-                override fun onLeftClick(v: View?) {
-                    finishAct()
-                }
+        if (article.hasAttachments) titleBar.rightTitle = "附件"
+        titleBar.setOnTitleBarListener(object : OnTitleBarListener {
+            override fun onLeftClick(v: View?) {
+                finishAct()
+            }
 
-                override fun onRightClick(v: View?) {
+            override fun onRightClick(v: View?) {
+                if (article.hasAttachments)
                     showAttachmentsDialog()
-                }
+            }
 
-                override fun onTitleClick(v: View?) {
-                }
-            })
-        }
+            override fun onTitleClick(v: View?) {
+            }
+        })
     }
 
     @SuppressLint("CheckResult")
