@@ -10,11 +10,9 @@ import com.github.barteksc.pdfviewer.PDFView
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.hjq.bar.TitleBar
-import com.unircorn.csp.app.Cookie
-import com.unircorn.csp.app.Globals
-import com.unircorn.csp.app.SESSION
+import com.rxjava.rxlife.lifeOnMain
+import com.unircorn.csp.app.*
 import com.unircorn.csp.app.helper.ProgressHelper
-import com.unircorn.csp.app.toast
 import com.unircorn.csp.data.model.Attachment
 import com.unircorn.csp.databinding.FraArticleDetailPdfBinding
 import com.unircorn.csp.ui.base.ArticleDetailFra
@@ -27,6 +25,18 @@ class ArticleDetailPdfFra : ArticleDetailFra() {
     override fun initViews() {
         super.initViews()
         initPdfView()
+
+        // 为了统计 readCount 再调用一次 getArticle
+        getArticle()
+    }
+
+    private fun getArticle() {
+        api.getArticle(objectId = article.objectId)
+            .lifeOnMain(this)
+            .subscribe(
+                { if (it.failed) return@subscribe },
+                { it.errorMsg().toast() }
+            )
     }
 
     private fun initPdfView() = with(binding) {
