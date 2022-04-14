@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.jzvd.JZDataSource
 import cn.jzvd.Jzvd
+import com.blankj.utilcode.util.ToastUtils
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.hjq.bar.TitleBar
@@ -30,8 +31,10 @@ class ArticleDetailVideoFra : ArticleDetailFra() {
 //        val url = "http://8.136.101.204" + "/v/饺子主动.mp4"
         val jzDataSource = JZDataSource(article.video.fullUrl)
         // todo headerMap 不生效
-        jzDataSource.headerMap[Cookie] = "$SESSION=${Globals.session}"
+//        jzDataSource.headerMap[Cookie] = "$SESSION=${Globals.session}"
         binding.jzvdStd.setUp(jzDataSource, Jzvd.SCREEN_NORMAL, JZMediaAliyun::class.java)
+        // 自动播放
+        binding.jzvdStd.startVideoAfterPreloading()
     }
 
     private fun getArticle() {
@@ -76,11 +79,13 @@ class ArticleDetailVideoFra : ArticleDetailFra() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FraArticleDetailVideoBinding.inflate(inflater, container, false)
+        ToastUtils.showShort("开始学习")
         return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        ToastUtils.showShort("结束学习")
         _binding = null
     }
 

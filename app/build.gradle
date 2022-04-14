@@ -12,7 +12,7 @@ android {
         minSdk 21
         targetSdk 30
         versionCode 1
-        versionName "1.2.8"
+        versionName "1.2.9"
 //        versionName "1.0"
 
         ndk {
@@ -118,8 +118,9 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.12.0'
     implementation 'joda-time:joda-time:2.10.10'
     implementation 'org.ocpsoft.prettytime:prettytime:4.0.4.Final'
-
-    implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'
+//    implementation("com.github.barteksc:pdfium-android:1.9.0")
+    implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
+//    implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'
 
     implementation 'com.afollestad.material-dialogs:core:3.3.0'
 
