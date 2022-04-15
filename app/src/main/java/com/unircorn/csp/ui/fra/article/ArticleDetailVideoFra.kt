@@ -14,9 +14,13 @@ import com.hjq.bar.TitleBar
 import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.app.*
 import com.unircorn.csp.app.third.JZMediaAliyun
+import com.unircorn.csp.data.model.MediaPlayStatus
 import com.unircorn.csp.databinding.FraArticleDetailVideoBinding
 import com.unircorn.csp.ui.base.ArticleDetailFra
 import com.unircorn.csp.ui.header.WebViewHeaderView
+import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 
 class ArticleDetailVideoFra : ArticleDetailFra() {
 
@@ -43,6 +47,7 @@ class ArticleDetailVideoFra : ArticleDetailFra() {
                 {
                     if (it.failed) return@subscribe
                     pageAdapter.addHeaderView(WebViewHeaderView(content = it.data.content))
+                    articleId = it.data.objectId
                     createMediaPlay(articleId = it.data.objectId)
                 },
                 { it.errorMsg().toast() }
@@ -50,6 +55,7 @@ class ArticleDetailVideoFra : ArticleDetailFra() {
     }
 
     private var mediaPlayId = ""
+    private var articleId = ""
 
     private fun createMediaPlay(articleId: String) {
         api.createMediaPlay(articleId = articleId)
@@ -59,17 +65,20 @@ class ArticleDetailVideoFra : ArticleDetailFra() {
                     if (it.failed) return@subscribe
                     mediaPlayId = it.data.mediaPlayId
 
-//                    Observable.interval(5, TimeUnit.SECONDS)
-//                        .lifeOnMain(this)
-//                        .subscribe { keepStudy() }
+                    Observable.interval(5, TimeUnit.SECONDS)
+                        .lifeOnMain(this)
+                        .subscribe { keepMediaPlay() }
                 },
                 { it.errorMsg().toast() }
             )
     }
 
-    private fun keepStudy() {
+    private fun keepMediaPlay() {
         if (mediaPlayId.isEmpty()) return
-        api.keepStudy(studyId = mediaPlayId)
+        api.mediaPlayStatus(
+            articleId = articleId,
+            mediaPlayStatus = MediaPlayStatus(mediaPlayId = mediaPlayId, type = 1)
+        )
             .lifeOnMain(this)
             .subscribe(
                 {
@@ -79,10 +88,14 @@ class ArticleDetailVideoFra : ArticleDetailFra() {
             )
     }
 
-    private fun finishStudy() {
+    private fun finishMediaPlay() {
         if (mediaPlayId.isEmpty()) return
-        api.finishStudy(studyId = mediaPlayId)
-            .lifeOnMain(this)
+        api.mediaPlayStatus(
+            articleId = articleId,
+            mediaPlayStatus = MediaPlayStatus(mediaPlayId = mediaPlayId, type = 2)
+        )
+                // 没有用 onMain 没有用自动取消
+            .subscribeOn(Schedulers.io())
             .subscribe(
                 {
                     if (it.failed) return@subscribe
@@ -90,7 +103,6 @@ class ArticleDetailVideoFra : ArticleDetailFra() {
                 { it.errorMsg().toast() }
             )
     }
-
 
     override val titleBar: TitleBar
         get() = binding.titleBar
@@ -126,7 +138,7 @@ class ArticleDetailVideoFra : ArticleDetailFra() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        finishStudy()
+        finishMediaPlay()
         _binding = null
     }
 

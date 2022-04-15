@@ -55,15 +55,11 @@ interface SimpleApi {
         @Body any: Any = Any()
     ): Single<Response<MediaPlayResponse>>
 
-    @DELETE("api/v1/app/topic/{articleId}")
-    fun keepStudy(
-        @Path("studyId") studyId: String,
-    ): Single<Response<Any>>
-
-    @DELETE("api/v1/app/topic/{articleId}")
-    fun finishStudy(
-        @Path("studyId") studyId: String,
-    ): Single<Response<Any>>
+    @POST("api/v1/app/article/{articleId}/media-play")
+    fun mediaPlayStatus(
+        @Path("articleId") articleId: String,
+        @Body mediaPlayStatus: MediaPlayStatus
+    ): Single<Response<MediaPlayResponse>>
 
     //
 
