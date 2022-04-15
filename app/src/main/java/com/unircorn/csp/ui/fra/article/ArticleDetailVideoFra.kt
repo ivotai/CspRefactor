@@ -8,15 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.jzvd.JZDataSource
 import cn.jzvd.Jzvd
-import com.blankj.utilcode.util.ToastUtils
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.hjq.bar.TitleBar
 import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.app.*
 import com.unircorn.csp.app.third.JZMediaAliyun
-import com.unircorn.csp.ui.base.ArticleDetailFra
 import com.unircorn.csp.databinding.FraArticleDetailVideoBinding
+import com.unircorn.csp.ui.base.ArticleDetailFra
 import com.unircorn.csp.ui.header.WebViewHeaderView
 
 class ArticleDetailVideoFra : ArticleDetailFra() {
@@ -44,11 +43,54 @@ class ArticleDetailVideoFra : ArticleDetailFra() {
                 {
                     if (it.failed) return@subscribe
                     pageAdapter.addHeaderView(WebViewHeaderView(content = it.data.content))
-
+                    createMediaPlay(articleId = it.data.objectId)
                 },
                 { it.errorMsg().toast() }
             )
     }
+
+    private var mediaPlayId = ""
+
+    private fun createMediaPlay(articleId: String) {
+        api.createMediaPlay(articleId = articleId)
+            .lifeOnMain(this)
+            .subscribe(
+                {
+                    if (it.failed) return@subscribe
+                    mediaPlayId = it.data.mediaPlayId
+
+//                    Observable.interval(5, TimeUnit.SECONDS)
+//                        .lifeOnMain(this)
+//                        .subscribe { keepStudy() }
+                },
+                { it.errorMsg().toast() }
+            )
+    }
+
+    private fun keepStudy() {
+        if (mediaPlayId.isEmpty()) return
+        api.keepStudy(studyId = mediaPlayId)
+            .lifeOnMain(this)
+            .subscribe(
+                {
+                    if (it.failed) return@subscribe
+                },
+                { it.errorMsg().toast() }
+            )
+    }
+
+    private fun finishStudy() {
+        if (mediaPlayId.isEmpty()) return
+        api.finishStudy(studyId = mediaPlayId)
+            .lifeOnMain(this)
+            .subscribe(
+                {
+                    if (it.failed) return@subscribe
+                },
+                { it.errorMsg().toast() }
+            )
+    }
+
 
     override val titleBar: TitleBar
         get() = binding.titleBar
@@ -79,13 +121,12 @@ class ArticleDetailVideoFra : ArticleDetailFra() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FraArticleDetailVideoBinding.inflate(inflater, container, false)
-        ToastUtils.showShort("开始学习")
         return binding.root
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        ToastUtils.showShort("结束学习")
+        finishStudy()
         _binding = null
     }
 

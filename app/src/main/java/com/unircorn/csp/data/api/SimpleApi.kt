@@ -47,6 +47,26 @@ interface SimpleApi {
     @GET("api/v1/app/article/{objectId}")
     fun getArticle(@Path("objectId") objectId: String): Single<Response<Article>>
 
+    // media play
+
+    @POST("api/v1/app/article/{articleId}/media-play")
+    fun createMediaPlay(
+        @Path("articleId") articleId: String,
+        @Body any: Any = Any()
+    ): Single<Response<MediaPlayResponse>>
+
+    @DELETE("api/v1/app/topic/{articleId}")
+    fun keepStudy(
+        @Path("studyId") studyId: String,
+    ): Single<Response<Any>>
+
+    @DELETE("api/v1/app/topic/{articleId}")
+    fun finishStudy(
+        @Path("studyId") studyId: String,
+    ): Single<Response<Any>>
+
+    //
+
     @GET("api/v1/app/article/{articleId}/comment")
     fun getComment(
         @Path("articleId") articleId: String,
@@ -67,7 +87,7 @@ interface SimpleApi {
     fun getTopic(
         @Query("page") page: Int,
         @Query("pageSize") pageSize: Int = defaultPageSize,
-        @Query("type") type:Int
+        @Query("type") type: Int
     ): Single<Response<Page<Topic>>>
 
     @GET("api/v1/app/topic")
