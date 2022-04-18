@@ -12,7 +12,7 @@ android {
         minSdk 21
         targetSdk 30
         versionCode 1
-        versionName "1.2.9"
+        versionName "1.2.10"
 //        versionName "1.0"
 
         ndk {
@@ -51,6 +51,12 @@ android {
             arg("rxhttp_rxjava", "rxjava3")
             arg("rxhttp_package", "rxhttp")
         }
+    }
+    lintOptions {
+        /*表示不需要检查错误，生成的隐患文件错误，不需要检查,生成文件不停止*/
+        checkReleaseBuilds false
+        /*关于错误信息，不需要打印错误，忽略错误信息*/
+        abortOnError false
     }
 }
 

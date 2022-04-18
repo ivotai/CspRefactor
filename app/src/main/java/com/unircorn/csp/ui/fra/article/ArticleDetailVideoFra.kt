@@ -65,7 +65,7 @@ class ArticleDetailVideoFra : ArticleDetailFra() {
                     if (it.failed) return@subscribe
                     mediaPlayId = it.data.mediaPlayId
 
-                    Observable.interval(5, TimeUnit.SECONDS)
+                    Observable.interval(5, TimeUnit.MINUTES)
                         .lifeOnMain(this)
                         .subscribe { keepMediaPlay() }
                 },
