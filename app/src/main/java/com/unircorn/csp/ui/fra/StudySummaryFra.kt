@@ -1,5 +1,8 @@
 package com.unircorn.csp.ui.fra
 
+import android.annotation.SuppressLint
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.list.listItems
 import com.blankj.utilcode.util.ColorUtils
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.Legend
@@ -25,8 +28,41 @@ import kotlin.collections.ArrayList
 
 class StudySummaryFra : BaseFra2<FraStudySummaryBinding>() {
 
+    private val dateFormat = "yyyy-MM-dd"
+    private var timeUnit = TimeUnit.day.toString()
+    private var startDate = DateTime().minusWeeks(1).toString(dateFormat)
+    private var endDate = DateTime().toString(dateFormat)
+
+    @SuppressLint("CheckResult")
     override fun initBindings() = with(binding) {
         ivBack.safeClicks().subscribe { finishAct() }
+        ivOperation.safeClicks().subscribe {
+            MaterialDialog(requireContext()).show {
+                val now = DateTime()
+                listItems(items = listOf("近一周", "近一月", "近一年")) { _, index, _ ->
+                    when (index) {
+                        0 -> {
+                            timeUnit = TimeUnit.day.toString()
+                            startDate = now.minusWeeks(1).toString(dateFormat)
+                            endDate = now.toString(dateFormat)
+                            getMediaPlaySummary()
+                        }
+                        1 -> {
+                            timeUnit = TimeUnit.week.toString()
+                            startDate = now.minusMonths(1).toString(dateFormat)
+                            endDate = now.toString(dateFormat)
+                            getMediaPlaySummary()
+                        }
+                        else -> {
+                            timeUnit = TimeUnit.month.toString()
+                            startDate = now.minusYears(1).toString(dateFormat)
+                            endDate = now.toString(dateFormat)
+                            getMediaPlaySummary()
+                        }
+                    }
+                }
+            }
+        }
         getMediaPlaySummary()
     }
 
@@ -53,23 +89,19 @@ class StudySummaryFra : BaseFra2<FraStudySummaryBinding>() {
         legend.horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
     }
 
-    private val dateFormat = "yyyy-MM-dd"
 
     private fun getMediaPlaySummary() {
-        val now = DateTime()
         api.mediaPlaySummary(
-            timeUnit = TimeUnit.day.toString(),
-            startDate = now.minusDays(6).toString(dateFormat),
-            endDate = now.toString(dateFormat)
+            timeUnit = timeUnit,
+            startDate = startDate,
+            endDate = endDate
+        ).lifeOnMain(this).subscribe(
+            {
+                if (it.failed) return@subscribe
+                refreshChart(it.data)
+            },
+            { it.errorMsg().toast() }
         )
-            .lifeOnMain(this)
-            .subscribe(
-                {
-                    if (it.failed) return@subscribe
-                    refreshChart(it.data)
-                },
-                { it.errorMsg().toast() }
-            )
     }
 
     private fun refreshChart(response: MediaPlaySummaryResponse) = with(binding) {
@@ -108,7 +140,7 @@ class StudySummaryFra : BaseFra2<FraStudySummaryBinding>() {
 
                 val decimalFormat = DecimalFormat("0.00")
                 override fun getFormattedValue(value: Float): String {
-                    return decimalFormat.format(value) + "小时"
+                    return decimalFormat.format(value)
                 }
             }
         )

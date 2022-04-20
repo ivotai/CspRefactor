@@ -35,6 +35,17 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:id="@+id/ivOperation"
+            android:layout_width="56dp"
+            android:layout_height="0dp"
+            app:iiv_color="@color/md_white"
+            app:iiv_icon="fal-ellipsis-v"
+            app:iiv_size="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.github.mikephil.charting.charts.BarChart
