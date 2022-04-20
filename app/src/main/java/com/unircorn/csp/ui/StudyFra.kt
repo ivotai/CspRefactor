@@ -1,10 +1,11 @@
 package com.unircorn.csp.ui
 
 import com.google.android.material.tabs.TabLayoutMediator
-import com.unircorn.csp.databinding.FraExchangeBinding
+import com.unircorn.csp.app.safeClicks
+import com.unircorn.csp.app.startAct
 import com.unircorn.csp.databinding.FraStudyBinding
+import com.unircorn.csp.ui.act.StudySummaryAct2
 import com.unircorn.csp.ui.base.BaseFra2
-import com.unircorn.csp.ui.pagerAdapter.ExchangePagerAdapter
 import com.unircorn.csp.ui.pagerAdapter.StudyPagerAdapter
 
 class StudyFra : BaseFra2<FraStudyBinding>() {
@@ -20,6 +21,11 @@ class StudyFra : BaseFra2<FraStudyBinding>() {
         TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
             tab.text = StudyPagerAdapter.titles[position]
         }.attach()
+    }
+
+    override fun initBindings() = with(binding) {
+        tvStudySummary.safeClicks().subscribe { startAct(StudySummaryAct2::class.java) }
+        Unit
     }
 
 }

@@ -22,10 +22,10 @@ abstract class BaseFra2<VB : ViewBinding> : Fragment(), UI {
     override fun initViews() = with(binding) {
     }
 
-    override fun initBindings(): Unit {
+    override fun initBindings()= with(binding) {
     }
 
-    override fun initEvents() {
+    override fun initEvents() = with(binding) {
     }
 
     val api by lazy { MyComponent().api }

@@ -1,7 +1,6 @@
 package com.unircorn.csp.ui.adapter
 
 import android.view.View
-import android.view.ViewGroup
 import com.afollestad.materialdialogs.MaterialDialog
 import com.blankj.utilcode.util.FileUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -10,6 +9,7 @@ import com.unircorn.csp.R
 import com.unircorn.csp.app.*
 import com.unircorn.csp.data.event.LogoutEvent
 import com.unircorn.csp.data.model.MyMenu
+import com.unircorn.csp.ui.act.StudySummaryAct2
 import com.unircorn.csp.ui.act.my.ModifyPasswordAct
 
 class MyAdapter : BaseQuickAdapter<MyMenu, BaseViewHolder>(R.layout.item_my) {
@@ -34,6 +34,7 @@ class MyAdapter : BaseQuickAdapter<MyMenu, BaseViewHolder>(R.layout.item_my) {
                             negativeButton(text = "取消")
                         }
                     }
+                    MyMenu.StudySummary -> context.startAct(StudySummaryAct2::class.java)
                     else -> {
                     }
                 }
