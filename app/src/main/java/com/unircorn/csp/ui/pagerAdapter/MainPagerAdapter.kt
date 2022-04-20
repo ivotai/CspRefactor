@@ -23,21 +23,21 @@ class MainPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
         }
         2 -> ArticlePageFra().apply {
             arguments = Bundle().apply {
-                putString(Title, "信息工作动态")
-                putString(Category, "gzdt")
+                putString(Title, "党史学习")
+                putString(Category, "dsxx")
             }
         }
         3 -> ArticlePageFra().apply {
             arguments = Bundle().apply {
-                putString(Title, "党史学习")
-                putString(Category, "dsxx")
+                putString(Title, "信息工作动态")
+                putString(Category, "gzdt")
             }
         }
         else -> HandbookFra()
     }
 
     companion object {
-        val abbr = listOf("交流", "政策", "信息", "党史", "手边书")
+        val abbr = listOf("交流", "政策", "党史", "信息", "手边书")
     }
 
 }
