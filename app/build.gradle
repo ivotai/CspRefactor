@@ -148,5 +148,5 @@ dependencies {
     implementation 'com.aliyun.sdk.android:AliyunPlayer:5.4.2.0-full'
 
     implementation 'cat.ereza:customactivityoncrash:2.3.0'
-
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
 }
