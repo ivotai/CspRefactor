@@ -13,6 +13,8 @@ import com.github.mikephil.charting.formatter.ValueFormatter
 import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.R
 import com.unircorn.csp.app.errorMsg
+import com.unircorn.csp.app.finishAct
+import com.unircorn.csp.app.safeClicks
 import com.unircorn.csp.app.toast
 import com.unircorn.csp.data.model.MediaPlaySummaryResponse
 import com.unircorn.csp.data.model.TimeUnit
@@ -23,6 +25,11 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class StudySummaryFra : BaseFra2<FraStudySummaryBinding>() {
+
+    override fun initBindings() = with(binding) {
+        ivBack.safeClicks().subscribe { finishAct() }
+        Unit
+    }
 
     override fun initViews() = with(binding) {
         tvTitle.text = "学习统计"
@@ -104,7 +111,7 @@ class StudySummaryFra : BaseFra2<FraStudySummaryBinding>() {
             }
 
         }
-        
+
         set1.setColors(
             ColorUtils.getColor(R.color.md_teal_400),
             ColorUtils.getColor(R.color.md_red_400),
