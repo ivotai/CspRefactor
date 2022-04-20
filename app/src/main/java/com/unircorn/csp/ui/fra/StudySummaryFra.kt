@@ -19,6 +19,7 @@ import com.unircorn.csp.data.model.TimeUnit
 import com.unircorn.csp.databinding.FraStudySummaryBinding
 import com.unircorn.csp.ui.base.BaseFra2
 import org.joda.time.DateTime
+import java.text.DecimalFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -89,7 +90,7 @@ class StudySummaryFra : BaseFra2<FraStudySummaryBinding>() {
                 barEntrys.add(
                     BarEntry(
                         dateIndex.toFloat(),
-                        response.value[categoryIndex][dateIndex]
+                        response.value[categoryIndex][dateIndex] / 3600f
                     )
                 )
             }
@@ -98,11 +99,16 @@ class StudySummaryFra : BaseFra2<FraStudySummaryBinding>() {
             barData.addDataSet(set)
         }
 
-        // 隐藏数值为 0 的 Label
         barData.setValueFormatter(
             object : ValueFormatter() {
                 override fun getBarLabel(barEntry: BarEntry): String {
+                    // 隐藏数值为 0 的 Label
                     return if (barEntry.y == 0.0f) "" else super.getBarLabel(barEntry)
+                }
+
+                val decimalFormat = DecimalFormat("0.00")
+                override fun getFormattedValue(value: Float): String {
+                    return decimalFormat.format(value) + "小时"
                 }
             }
         )
