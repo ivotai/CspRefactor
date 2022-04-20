@@ -5,13 +5,16 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.unircorn.csp.app.Category
 import com.unircorn.csp.app.HideTitleLayout
-import com.unircorn.csp.app.Title
+import com.unircorn.csp.app.StudySmallVideo
+import com.unircorn.csp.app.XueXiXiaoXinDe
 import com.unircorn.csp.ui.fra.article.ArticlePageFra
+import com.unircorn.csp.ui.fra.question.QuestionBankFra
+import com.unircorn.csp.ui.fra.topic.TopicPageFra
 
-class StudyPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
+class ExchangePagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     companion object {
-        val titles = listOf("党员培训", "日常学习", "党史学习")
+        val titles = listOf("学习小园地", "学习小心得", "学习小视频", "学习小测试")
     }
 
     override fun getItemCount() = titles.size
@@ -19,25 +22,25 @@ class StudyPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     override fun createFragment(position: Int): Fragment = when (position) {
         0 -> ArticlePageFra().apply {
             arguments = Bundle().apply {
-                putString(Title, "党史学习")
-                putString(Category, "dsxx")
+                putString(Category, "xxjy")
                 putBoolean(HideTitleLayout, true)
+
             }
         }
-        1 -> ArticlePageFra().apply {
+        1 -> TopicPageFra().apply {
             arguments = Bundle().apply {
-                putString(Title, "党史学习")
-                putString(Category, "dsxx")
                 putBoolean(HideTitleLayout, true)
+                putBoolean(StudySmallVideo, false)
+                putBoolean(XueXiXiaoXinDe, true)
             }
         }
-        else -> ArticlePageFra().apply {
+        2 -> TopicPageFra().apply {
             arguments = Bundle().apply {
-                putString(Title, "党史学习")
-                putString(Category, "dsxx")
                 putBoolean(HideTitleLayout, true)
+                putBoolean(StudySmallVideo, true)
             }
         }
+        else -> QuestionBankFra()
     }
 
 }
