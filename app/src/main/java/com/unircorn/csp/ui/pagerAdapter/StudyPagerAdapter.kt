@@ -19,21 +19,18 @@ class StudyPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     override fun createFragment(position: Int): Fragment = when (position) {
         0 -> ArticlePageFra().apply {
             arguments = Bundle().apply {
-                putString(Title, "党史学习")
-                putString(Category, "dsxx")
+                putString(Category, "dypx")
                 putBoolean(HideTitleLayout, true)
             }
         }
         1 -> ArticlePageFra().apply {
             arguments = Bundle().apply {
-                putString(Title, "党史学习")
-                putString(Category, "dsxx")
+                putString(Category, "rcxx")
                 putBoolean(HideTitleLayout, true)
             }
         }
         else -> ArticlePageFra().apply {
             arguments = Bundle().apply {
-                putString(Title, "党史学习")
                 putString(Category, "dsxx")
                 putBoolean(HideTitleLayout, true)
             }
