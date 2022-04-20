@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.unircorn.csp.app.Category
 import com.unircorn.csp.app.HideTitleLayout
-import com.unircorn.csp.app.Title
+import com.unircorn.csp.ui.fra.DypxFra
 import com.unircorn.csp.ui.fra.article.ArticlePageFra
 
 class StudyPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
@@ -17,12 +17,7 @@ class StudyPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     override fun getItemCount() = titles.size
 
     override fun createFragment(position: Int): Fragment = when (position) {
-        0 -> ArticlePageFra().apply {
-            arguments = Bundle().apply {
-                putString(Category, "dypx")
-                putBoolean(HideTitleLayout, true)
-            }
-        }
+        0 -> DypxFra()
         1 -> ArticlePageFra().apply {
             arguments = Bundle().apply {
                 putString(Category, "rcxx")
