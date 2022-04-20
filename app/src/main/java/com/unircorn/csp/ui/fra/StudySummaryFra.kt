@@ -1,6 +1,5 @@
 package com.unircorn.csp.ui.fra
 
-import android.graphics.Color
 import com.blankj.utilcode.util.ColorUtils
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.components.Legend
@@ -8,7 +7,6 @@ import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
-import com.github.mikephil.charting.formatter.StackedValueFormatter
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.R
@@ -28,91 +26,112 @@ class StudySummaryFra : BaseFra2<FraStudySummaryBinding>() {
 
     override fun initBindings() = with(binding) {
         ivBack.safeClicks().subscribe { finishAct() }
-        Unit
+        getMediaPlaySummary()
     }
 
     override fun initViews() = with(binding) {
         tvTitle.text = "学习统计"
         initChart()
-        s()
     }
 
     private fun initChart() = with(binding.barChart) {
         //
         description.isEnabled = false
-        // no touch
-        setTouchEnabled(false)
-        // 横坐标设置
-        with(xAxis) {
-            setDrawGridLines(false)
-            position = XAxis.XAxisPosition.BOTTOM
-        }
+        //
+        isScaleYEnabled = false
 
-        setDrawValueAboveBar(false)
+        // 横坐标设置
+        xAxis.position = XAxis.XAxisPosition.BOTTOM
 
         // 隐藏右边坐标
         axisRight.isEnabled = false
         axisLeft.axisMinimum = 0f
 
         // legend
-        with(legend) {
-            verticalAlignment = Legend.LegendVerticalAlignment.TOP
-            horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
-        }
+        legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
+        legend.horizontalAlignment = Legend.LegendHorizontalAlignment.CENTER
     }
 
-    private fun s() {
+    private val dateFormat = "yyyy-MM-dd"
+
+    private fun getMediaPlaySummary() {
         val now = DateTime()
-        val dateFormat = "yyyy-MM-dd"
         api.mediaPlaySummary(
             timeUnit = TimeUnit.day.toString(),
-            startDate = now.minusDays(10).toString(dateFormat),
+            startDate = now.minusDays(6).toString(dateFormat),
             endDate = now.toString(dateFormat)
         )
             .lifeOnMain(this)
             .subscribe(
                 {
                     if (it.failed) return@subscribe
-                    chart(it.data)
+                    refreshChart(it.data)
                 },
                 { it.errorMsg().toast() }
             )
     }
 
-    private fun chart(response: MediaPlaySummaryResponse) {
+    private fun refreshChart(response: MediaPlaySummaryResponse) = with(binding) {
 
-        // 展示横坐标
+        // 横坐标显示
         binding.barChart.xAxis.valueFormatter = object : ValueFormatter() {
-            override fun getAxisLabel(value: Float, axis: AxisBase?): String {
-                return response.date[value.toInt()]
+            override fun getAxisLabel(value: Float, axis: AxisBase): String {
+                val index = value.toInt()
+                return if (index < 0 || index > response.date.size - 1) "" else response.date[index]
             }
         }
 
-
-        val barEntrys = ArrayList<BarEntry>()
-        response.date.forEachIndexed { dateIndex, _ ->
-            val floatList = ArrayList<Float>()
-            response.category.forEachIndexed { categoryIndex, _ ->
-                floatList.add(response.value[categoryIndex][dateIndex])
+        // create barData
+        val barData = BarData()
+        response.category.forEachIndexed { categoryIndex, category ->
+            val barEntrys = ArrayList<BarEntry>()
+            response.date.forEachIndexed { dateIndex, _ ->
                 barEntrys.add(
                     BarEntry(
                         dateIndex.toFloat(),
-                        floatList.toFloatArray()
+                        response.value[categoryIndex][dateIndex]
                     )
                 )
             }
+            val set = BarDataSet(barEntrys, category)
+            set.color = ColorUtils.getRandomColor()
+            barData.addDataSet(set)
         }
 
-        val set1 = BarDataSet(barEntrys, "")
-        set1.valueFormatter = object : StackedValueFormatter(true, "秒", 2) {
-            override fun getBarStackedLabel(value: Float, entry: BarEntry?): String {
-                if (value == 0.0f) return ""
-                return super.getBarStackedLabel(value, entry)
+        // 隐藏数值为 0 的 Label
+        barData.setValueFormatter(
+            object : ValueFormatter() {
+                override fun getBarLabel(barEntry: BarEntry): String {
+                    return if (barEntry.y == 0.0f) "" else super.getBarLabel(barEntry)
+                }
             }
+        )
+        barChart.data = barData
 
-        }
+        //  搞不清楚，弄不明白的分组
+        val groupSpace = 0.08f
+        val barSpace = 0.00f
+        val barWidth = 0.92f / response.category.size.toFloat()
 
-        set1.setColors(
+        // (barWidth + barSpace) * groupCount + groupSpace = 1.00 -> interval per "group"
+
+        barData.barWidth = barWidth
+
+        // restrict the x-axis range
+        barChart.xAxis.axisMinimum = 0f
+        barChart.xAxis.setCenterAxisLabels(true)
+        barChart.xAxis.granularity = 1f
+        barChart.xAxis.axisMaximum = response.date.size.toFloat()
+        barChart.xAxis.labelCount = response.date.size;
+
+        //
+        barChart.groupBars(0.0f, groupSpace, barSpace)
+        binding.barChart.animateY(1000)
+        binding.barChart.invalidate()
+    }
+
+    private val colors by lazy {
+        listOf(
             ColorUtils.getColor(R.color.md_yellow_400),
             ColorUtils.getColor(R.color.md_red_400),
             ColorUtils.getColor(R.color.md_blue_400),
@@ -120,14 +139,6 @@ class StudySummaryFra : BaseFra2<FraStudySummaryBinding>() {
             ColorUtils.getColor(R.color.md_pink_400),
             ColorUtils.getColor(R.color.md_green_400)
         )
-        set1.stackLabels = response.category.toTypedArray()
-        set1.valueTextColor = Color.WHITE
-
-        binding.barChart.data = BarData(set1)
-
-
-//        binding.barChart.setFitBars(true)
-        binding.barChart.invalidate()
     }
 
 }
