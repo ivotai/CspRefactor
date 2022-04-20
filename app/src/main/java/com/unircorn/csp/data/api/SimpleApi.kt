@@ -61,6 +61,13 @@ interface SimpleApi {
         @Body mediaPlayStatus: MediaPlayStatus
     ): Single<Response<MediaPlayResponse>>
 
+    @GET("api/v1/app/article/media-play/summary")
+    fun mediaPlaySummary(
+        @Query("timeUnit") timeUnit: String,
+        @Query("startDate") startDate: String,
+        @Query("endDate") endDate: String
+    ): Single<Response<MediaPlaySummaryResponse>>
+
     //
 
     @GET("api/v1/app/article/{articleId}/comment")

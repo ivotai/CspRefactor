@@ -1,124 +1,32 @@
 {
-  "data": {
-    "content": [
-      {
-        "objectId": "915015070914707456",
-        "title": "关于进一步加强督促检查扎实推进各项工作落实到位的办法",
-        "type": 3,
-        "category": "机关作风",
-        "publishTime": 1638198193000,
-        "cover": "",
-        "pdf": {
-          "filename": "关于进一步加强督促检查扎实推进各项工作落实到位的办法.pdf",
-          "attachmentId": "915015070960844801",
-          "url": "/content/download?id=915015070960844801"
-        },
-        "attachments": [
-          {
-            "filename": "关于进一步加强督促检查扎实推进各项工作落实到位的办法.pdf",
-            "attachmentId": "915015070977622017",
-            "url": "/content/download?id=915015070977622017"
-          }
-        ],
-        "readCount": 0,
-        "commentCount": 1,
-        "likeCount": 0
-      },
-      {
-        "objectId": "915014901670346752",
-        "title": "贵州省高级人民法院关于进一步加强机关作风顽疾整治措施的通知",
-        "type": 3,
-        "category": "机关作风",
-        "publishTime": 1638198153000,
-        "cover": "",
-        "pdf": {
-          "filename": "贵州省高级人民法院关于进一步加强机关作风顽疾整治措施的通知.pdf",
-          "attachmentId": "915014901716484096",
-          "url": "/content/download?id=915014901716484096"
-        },
-        "attachments": [
-          {
-            "filename": "贵州省高级人民法院关于进一步加强机关作风顽疾整治措施的通知.pdf",
-            "attachmentId": "915014901733261312",
-            "url": "/content/download?id=915014901733261312"
-          }
-        ],
-        "readCount": 0,
-        "commentCount": 0,
-        "likeCount": 0
-      },
-      {
-        "objectId": "915014707503431680",
-        "title": "贵州省高级人民法院关于进一步改进文风提高行文质效的意见",
-        "type": 3,
-        "category": "机关作风",
-        "publishTime": 1638198106000,
-        "cover": "",
-        "pdf": {
-          "filename": "贵州省高级人民法院关于进一步改进文风提高行文质效的意见.pdf",
-          "attachmentId": "915014707549569024",
-          "url": "/content/download?id=915014707549569024"
-        },
-        "attachments": [
-          {
-            "filename": "贵州省高级人民法院关于进一步改进文风提高行文质效的意见.pdf",
-            "attachmentId": "915014707562151937",
-            "url": "/content/download?id=915014707562151937"
-          }
-        ],
-        "readCount": 0,
-        "commentCount": 0,
-        "likeCount": 0
-      },
-      {
-        "objectId": "915014548769996800",
-        "title": "贵州省高级人民法院关于关于进一步强化院机关日常监督管理的实施办法",
-        "type": 3,
-        "category": "机关作风",
-        "publishTime": 1638198069000,
-        "cover": "",
-        "pdf": {
-          "filename": "贵州省高级人民法院关于关于进一步强化院机关日常监督管理的实施办法.pdf",
-          "attachmentId": "915014548811939841",
-          "url": "/content/download?id=915014548811939841"
-        },
-        "attachments": [
-          {
-            "filename": "贵州省高级人民法院关于关于进一步强化院机关日常监督管理的实施办法.pdf",
-            "attachmentId": "915014548832911360",
-            "url": "/content/download?id=915014548832911360"
-          }
-        ],
-        "readCount": 0,
-        "commentCount": 0,
-        "likeCount": 0
-      }
+  "date": [
+    "2022-03-14",
+    "2022-03-21",
+    "2022-03-28",
+    "2022-04-04",
+    "2022-04-11",
+    "2022-04-18"
+  ],
+  "category": [
+    "学习教育",
+    "党史学习"
+  ],
+  "value": [
+    [
+      0,
+      0,
+      0,
+      0,
+      245,
+      519
     ],
-    "pageable": {
-      "sort": {
-        "sorted": true,
-        "unsorted": false,
-        "empty": false
-      },
-      "offset": "0",
-      "pageNumber": 0,
-      "pageSize": 10,
-      "unpaged": false,
-      "paged": true
-    },
-    "last": true,
-    "totalElements": "4",
-    "totalPages": 1,
-    "number": 0,
-    "sort": {
-      "sorted": true,
-      "unsorted": false,
-      "empty": false
-    },
-    "size": 10,
-    "first": true,
-    "numberOfElements": 4,
-    "empty": false
-  },
-  "success": true
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ]
 }
