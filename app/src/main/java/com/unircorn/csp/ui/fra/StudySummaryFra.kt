@@ -65,8 +65,8 @@ class StudySummaryFra : BaseFra2<FraStudySummaryBinding>() {
         val now = DateTime()
         val dateFormat = "yyyy-MM-dd"
         api.mediaPlaySummary(
-            timeUnit = TimeUnit.week.toString(),
-            startDate = now.minusMonths(1).toString(dateFormat),
+            timeUnit = TimeUnit.day.toString(),
+            startDate = now.minusDays(10).toString(dateFormat),
             endDate = now.toString(dateFormat)
         )
             .lifeOnMain(this)
@@ -93,7 +93,7 @@ class StudySummaryFra : BaseFra2<FraStudySummaryBinding>() {
         response.date.forEachIndexed { dateIndex, _ ->
             val floatList = ArrayList<Float>()
             response.category.forEachIndexed { categoryIndex, _ ->
-                floatList.add(response.value[categoryIndex][dateIndex] / 3600)
+                floatList.add(response.value[categoryIndex][dateIndex])
                 barEntrys.add(
                     BarEntry(
                         dateIndex.toFloat(),
@@ -104,7 +104,7 @@ class StudySummaryFra : BaseFra2<FraStudySummaryBinding>() {
         }
 
         val set1 = BarDataSet(barEntrys, "")
-        set1.valueFormatter = object : StackedValueFormatter(true, "小时", 2) {
+        set1.valueFormatter = object : StackedValueFormatter(true, "秒", 2) {
             override fun getBarStackedLabel(value: Float, entry: BarEntry?): String {
                 if (value == 0.0f) return ""
                 return super.getBarStackedLabel(value, entry)
@@ -113,7 +113,7 @@ class StudySummaryFra : BaseFra2<FraStudySummaryBinding>() {
         }
 
         set1.setColors(
-            ColorUtils.getColor(R.color.md_teal_400),
+            ColorUtils.getColor(R.color.md_yellow_400),
             ColorUtils.getColor(R.color.md_red_400),
             ColorUtils.getColor(R.color.md_blue_400),
             ColorUtils.getColor(R.color.md_cyan_400),
