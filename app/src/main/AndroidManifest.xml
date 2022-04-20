@@ -50,8 +50,7 @@
         <activity android:name=".ui.act.topic.TopicDetailImageAct" />
         <activity android:name=".ui.act.topic.MyTopicAct" />
         <activity android:name=".ui.act.TestAct" />
-        <activity android:name=".ui.act.article.YzyhArticleAct" />
-        <activity android:name=".ui.act.article.HandbookArticleAct" />
+        <activity android:name=".ui.act.article.ArticlePageAct" />
         <activity
             android:name=".ui.act.StudySummaryAct2"
             android:screenOrientation="landscape"/>

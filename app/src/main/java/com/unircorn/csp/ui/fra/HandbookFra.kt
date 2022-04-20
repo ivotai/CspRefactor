@@ -7,7 +7,7 @@ import com.unircorn.csp.app.Category
 import com.unircorn.csp.app.Title
 import com.unircorn.csp.app.safeClicks
 import com.unircorn.csp.databinding.FraHandbookBinding
-import com.unircorn.csp.ui.act.article.HandbookArticleAct
+import com.unircorn.csp.ui.act.article.ArticlePageAct
 import com.unircorn.csp.ui.base.BaseFra2
 
 class HandbookFra : BaseFra2<FraHandbookBinding>() {
@@ -52,7 +52,7 @@ class HandbookFra : BaseFra2<FraHandbookBinding>() {
         )
         constraintLayouts.forEachIndexed { index, rTextView ->
             rTextView.safeClicks().subscribe {
-                startActivity(Intent(requireContext(), HandbookArticleAct::class.java).apply {
+                startActivity(Intent(requireContext(), ArticlePageAct::class.java).apply {
                     putExtra(Title, mTitles[index])
                     putExtra(Category, mCategories[index])
                 })

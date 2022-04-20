@@ -7,15 +7,18 @@ import com.unircorn.csp.app.Title
 import com.unircorn.csp.ui.base.BaseAct2
 import com.unircorn.csp.ui.fra.article.ArticlePageFra
 
-class YzyhArticleAct : BaseAct2() {
+class ArticlePageAct : BaseAct2() {
 
     override fun createFragment(): Fragment {
         return ArticlePageFra().apply {
             arguments = Bundle().apply {
-                putString(Title, "应知应会")
-                putString(Category, "yzyh")
+                putString(Title, title)
+                putString(Category, category)
             }
         }
     }
+
+    private val title by lazy { intent.getStringExtra(Title) }
+    private val category by lazy { intent.getStringExtra(Category) }
 
 }
