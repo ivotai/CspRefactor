@@ -83,6 +83,7 @@ class StudySummaryFra : BaseFra2<FraStudySummaryBinding>() {
         // 隐藏右边坐标
         axisRight.isEnabled = false
         axisLeft.axisMinimum = 0f
+        axisLeft.setDrawGridLines(false)
 
         // legend
         legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
@@ -122,7 +123,7 @@ class StudySummaryFra : BaseFra2<FraStudySummaryBinding>() {
                 barEntrys.add(
                     BarEntry(
                         dateIndex.toFloat(),
-                        response.value[categoryIndex][dateIndex] / 3600f
+                        response.value[categoryIndex][dateIndex]
                     )
                 )
             }

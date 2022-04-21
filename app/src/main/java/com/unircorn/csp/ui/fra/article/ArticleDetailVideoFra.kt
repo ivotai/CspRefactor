@@ -47,58 +47,6 @@ class ArticleDetailVideoFra : ArticleDetailFra() {
                 {
                     if (it.failed) return@subscribe
                     pageAdapter.addHeaderView(WebViewHeaderView(content = it.data.content))
-                    articleId = it.data.objectId
-                    createMediaPlay(articleId = it.data.objectId)
-                },
-                { it.errorMsg().toast() }
-            )
-    }
-
-    private var mediaPlayId = ""
-    private var articleId = ""
-
-    private fun createMediaPlay(articleId: String) {
-        api.createMediaPlay(articleId = articleId)
-            .lifeOnMain(this)
-            .subscribe(
-                {
-                    if (it.failed) return@subscribe
-                    mediaPlayId = it.data.mediaPlayId
-
-                    Observable.interval(5, TimeUnit.MINUTES)
-                        .lifeOnMain(this)
-                        .subscribe { keepMediaPlay() }
-                },
-                { it.errorMsg().toast() }
-            )
-    }
-
-    private fun keepMediaPlay() {
-        if (mediaPlayId.isEmpty()) return
-        api.mediaPlayStatus(
-            articleId = articleId,
-            mediaPlayStatus = MediaPlayStatus(mediaPlayId = mediaPlayId, type = 1)
-        )
-            .lifeOnMain(this)
-            .subscribe(
-                {
-                    if (it.failed) return@subscribe
-                },
-                { it.errorMsg().toast() }
-            )
-    }
-
-    private fun finishMediaPlay() {
-        if (mediaPlayId.isEmpty()) return
-        api.mediaPlayStatus(
-            articleId = articleId,
-            mediaPlayStatus = MediaPlayStatus(mediaPlayId = mediaPlayId, type = 2)
-        )
-                // 没有用 onMain 没有用自动取消
-            .subscribeOn(Schedulers.io())
-            .subscribe(
-                {
-                    if (it.failed) return@subscribe
                 },
                 { it.errorMsg().toast() }
             )
@@ -136,10 +84,6 @@ class ArticleDetailVideoFra : ArticleDetailFra() {
         return binding.root
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        finishMediaPlay()
-        _binding = null
-    }
+
 
 }

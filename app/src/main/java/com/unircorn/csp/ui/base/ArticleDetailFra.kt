@@ -22,7 +22,11 @@ import rxhttp.RxHttp
 import rxhttp.wrapper.exception.HttpStatusCodeException
 import java.io.File
 
-abstract class ArticleDetailFra : CommentPageFra() {
+abstract class ArticleDetailFra : MediaOwnerFra() {
+
+    override fun getMediaOwnerId(): String {
+        return article.objectId
+    }
 
     override fun initViews() {
         super.initViews()
