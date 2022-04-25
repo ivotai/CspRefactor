@@ -1,6 +1,5 @@
 package com.unircorn.csp.data.model
 
-import com.blankj.utilcode.util.ToastUtils
 import com.unircorn.csp.app.toast
 
 // LoginResponse 比较特别，不继承自 Response。
@@ -25,5 +24,6 @@ data class User(
     val roleTag: String,
     val roles: List<String>,
     val username: String,
-    val courtName: String
+    val courtName: String,
+    val department: String
 )
