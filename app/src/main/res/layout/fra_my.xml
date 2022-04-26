@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -15,17 +14,17 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.hjq.bar.TitleBar
-            app:lineVisible="false"
             android:id="@+id/titleBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
+            app:barStyle="night"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/constraintLayout1"
-            app:title="我的"
-            app:barStyle="night"
             app:leftColor="@color/md_white"
+            app:lineVisible="false"
+            app:title="我的"
             app:titleColor="@color/md_white" />
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -45,8 +44,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:textColor="@color/md_white"
             android:text="用户名"
+            android:textColor="@color/md_white"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="@+id/circleImageView"
             app:layout_constraintStart_toEndOf="@+id/circleImageView"
@@ -87,25 +86,18 @@
                 android:id="@+id/tvReadCount"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:gravity="center"
                 android:text="0"
                 android:textColor="?attr/colorPrimary"
                 android:textSize="28dp"
-                app:layout_constraintEnd_toStartOf="@+id/divider1"
+                app:layout_constraintEnd_toStartOf="@+id/tvTopicCount"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <View
-                android:id="@+id/divider1"
-                android:layout_width="1px"
-                android:layout_height="16dp"
-                android:background="@color/md_grey_400"
-                app:layout_constraintBottom_toBottomOf="@+id/tvReadCount"
-                app:layout_constraintEnd_toStartOf="@+id/tvTopicCount"
-                app:layout_constraintStart_toEndOf="@+id/tvReadCount"
-                app:layout_constraintTop_toTopOf="@+id/tvReadCount" />
 
             <TextView
                 android:id="@+id/tvTopicCount"
@@ -115,20 +107,12 @@
                 android:text="0"
                 android:textColor="?attr/colorPrimary"
                 android:textSize="28dp"
-                app:layout_constraintEnd_toStartOf="@+id/divider2"
-                app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toEndOf="@+id/divider1"
-                app:layout_constraintTop_toTopOf="@+id/tvReadCount" />
-
-            <View
-                android:id="@+id/divider2"
-                android:layout_width="1px"
-                android:layout_height="16dp"
-                android:background="@color/md_grey_400"
-                app:layout_constraintBottom_toBottomOf="@+id/tvTopicCount"
+                app:layout_constraintBottom_toBottomOf="@+id/tvReadCount"
                 app:layout_constraintEnd_toStartOf="@+id/tvReplyCount"
-                app:layout_constraintStart_toEndOf="@+id/tvTopicCount"
-                app:layout_constraintTop_toTopOf="@+id/tvTopicCount" />
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@+id/tvReadCount"
+                app:layout_constraintTop_toTopOf="@+id/tvReadCount" />
 
             <TextView
                 android:id="@+id/tvReplyCount"
@@ -138,10 +122,29 @@
                 android:text="0"
                 android:textColor="?attr/colorPrimary"
                 android:textSize="28dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/tvTopicCount"
+                app:layout_constraintEnd_toStartOf="@+id/tvTraining"
+                app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_weight="1"
-                app:layout_constraintStart_toEndOf="@+id/divider2"
+                app:layout_constraintStart_toEndOf="@+id/tvTopicCount"
                 app:layout_constraintTop_toTopOf="@+id/tvTopicCount" />
+
+
+            <TextView
+                android:id="@+id/tvTraining"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="?attr/colorPrimary"
+                android:textSize="28dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvReplyCount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@+id/tvReplyCount"
+                app:layout_constraintTop_toTopOf="@+id/tvReplyCount" />
 
             <TextView
                 android:id="@+id/tvLabel1"
@@ -178,6 +181,17 @@
                 app:layout_constraintEnd_toEndOf="@+id/tvReplyCount"
                 app:layout_constraintStart_toStartOf="@+id/tvReplyCount"
                 app:layout_constraintTop_toTopOf="@+id/tvLabel2" />
+
+            <TextView
+                android:id="@+id/tvLabel4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="培训情况"
+                android:textColor="@color/md_grey_400"
+                android:textSize="14dp"
+                app:layout_constraintEnd_toEndOf="@+id/tvTraining"
+                app:layout_constraintStart_toStartOf="@+id/tvTraining"
+                app:layout_constraintTop_toTopOf="@+id/tvLabel3" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

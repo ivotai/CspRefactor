@@ -66,6 +66,9 @@ class MyFra : BaseFra() {
                 )
 
             tvTopicCount.safeClicks().subscribe { startAct(MyTopicAct::class.java) }
+
+            // todo 跳转到培训情况
+            tvTraining.safeClicks().subscribe {  }
         }
     }
 
