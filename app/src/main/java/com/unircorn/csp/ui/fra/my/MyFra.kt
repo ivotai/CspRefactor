@@ -1,9 +1,6 @@
 package com.unircorn.csp.ui.fra.my
 
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
@@ -14,9 +11,9 @@ import com.unircorn.csp.data.model.MyMenu
 import com.unircorn.csp.databinding.FraMyBinding
 import com.unircorn.csp.ui.act.topic.MyTopicAct
 import com.unircorn.csp.ui.adapter.MyAdapter
-import com.unircorn.csp.ui.base.BaseFra
+import com.unircorn.csp.ui.base.BaseFra2
 
-class MyFra : BaseFra() {
+class MyFra : BaseFra2<FraMyBinding>() {
 
     override fun initViews() = with(binding) {
         tvUsername.text = Globals.user.username
@@ -68,32 +65,10 @@ class MyFra : BaseFra() {
             tvTopicCount.safeClicks().subscribe { startAct(MyTopicAct::class.java) }
 
             // todo 跳转到培训情况
-            tvTraining.safeClicks().subscribe {  }
+            tvTraining.safeClicks().subscribe { }
         }
     }
 
     private val simpleAdapter = MyAdapter()
-
-// ----
-
-    private var _binding: FraMyBinding? = null
-
-    // This property is only valid between onCreateView and
-// onDestroyView.
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FraMyBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
 
 }

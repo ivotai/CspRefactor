@@ -16,7 +16,9 @@ class MyAdapter : BaseQuickAdapter<MyMenu, BaseViewHolder>(R.layout.item_my) {
 
     override fun convert(holder: BaseViewHolder, item: MyMenu) {
         holder.apply {
-            setText(R.id.tvText, item.text)
+            val text =
+                if (item == MyMenu.Department) Globals.loginResponse.user.department else item.text
+            setText(R.id.tvText, text)
             getView<View>(R.id.root).safeClicks().subscribe {
                 when (item) {
                     MyMenu.Logout -> {
