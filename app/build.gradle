@@ -129,6 +129,7 @@ dependencies {
 //    implementation 'com.github.barteksc:android-pdf-viewer:3.2.0-beta.1'
 
     implementation 'com.afollestad.material-dialogs:core:3.3.0'
+    implementation 'com.afollestad.material-dialogs:input:3.3.0'
 
     implementation 'cn.jzvd:jiaozivideoplayer:7.7.0'
 

@@ -13,4 +13,6 @@ object Globals {
 
     var isLogout = false
 
+    val department: String get() = user.department
+
 }

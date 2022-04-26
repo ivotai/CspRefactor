@@ -7,6 +7,7 @@ import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.hjq.bar.OnTitleBarListener
 import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.app.*
+import com.unircorn.csp.data.event.ModifyDepartmentEvent
 import com.unircorn.csp.data.model.MyMenu
 import com.unircorn.csp.databinding.FraMyBinding
 import com.unircorn.csp.ui.act.topic.MyTopicAct
@@ -67,6 +68,13 @@ class MyFra : BaseFra2<FraMyBinding>() {
             // todo 跳转到培训情况
             tvTraining.safeClicks().subscribe { }
         }
+    }
+
+    override fun initEvents() {
+        RxBus.registerEvent(this, ModifyDepartmentEvent::class.java, {
+            Globals.loginResponse.user.department = it.department
+            simpleAdapter.notifyDataSetChanged()
+        })
     }
 
     private val simpleAdapter = MyAdapter()

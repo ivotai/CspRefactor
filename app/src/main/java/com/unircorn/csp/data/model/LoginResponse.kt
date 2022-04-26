@@ -25,5 +25,5 @@ data class User(
     val roles: List<String>,
     val username: String,
     val courtName: String,
-    val department: String
+    var department: String
 )

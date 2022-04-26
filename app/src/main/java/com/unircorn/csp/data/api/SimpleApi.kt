@@ -133,4 +133,7 @@ interface SimpleApi {
         @Body submitExaminationParam: SubmitExaminationParam
     ): Single<Response<ExaminationResult>>
 
+    @POST("api/v1/app/i/profile")
+    fun modifyProfile(@Body profileParam: ProfileParam): Single<Response<Any>>
+
 }
