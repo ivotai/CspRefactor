@@ -60,8 +60,8 @@ open class ArticlePageFra : PageFra2<FraArticlePageBinding, MultiItemEntity>() {
             }
 
 
-    private val title by lazy { arguments?.getString(Title, "") }
-    protected val category by lazy { requireArguments().getString(Category, "") }
+    protected val title by lazy { arguments?.getString(Title, "") }
+    protected val category: String by lazy { requireArguments().getString(Category, "") }
 
     override val mRecyclerView: RecyclerView
         get() = binding.recyclerView

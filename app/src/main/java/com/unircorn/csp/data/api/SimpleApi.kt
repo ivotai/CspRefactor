@@ -122,10 +122,12 @@ interface SimpleApi {
     ): Single<Response<Any>>
 
     @POST("api/v1/app/examination?test=1")
-    fun createExaminationJustStudy(): Single<Response<Examination>>
+    fun createExaminationTKXX(): Single<Response<Examination>>
 
     @POST("api/v1/app/examination")
-    fun createExamination(): Single<Response<Examination>>
+    fun createExamination(
+        @Query("specialId") specialId: String?
+    ): Single<Response<Examination>>
 
     @POST("api/v1/app/examination/{examinationId}")
     fun submitExamination(

@@ -26,7 +26,7 @@ abstract class MediaOwnerFra : CommentPageFra() {
                     if (it.failed) return@subscribe
                     mediaPlayId = it.data.mediaPlayId
 
-                    Observable.interval(5, TimeUnit.SECONDS)
+                    Observable.interval(1, TimeUnit.MINUTES)
                         .lifeOnMain(this)
                         .subscribe { keepMediaPlay() }
                 },

@@ -2,7 +2,7 @@ package com.unircorn.csp.ui.fra.question
 
 import android.content.Intent
 import com.unircorn.csp.app.Category
-import com.unircorn.csp.app.Param
+import com.unircorn.csp.app.TKXX
 import com.unircorn.csp.app.Title
 import com.unircorn.csp.app.safeClicks
 import com.unircorn.csp.databinding.FraQuestionBankBinding
@@ -14,20 +14,25 @@ class QuestionBankFra : BaseFra2<FraQuestionBankBinding>() {
 
     override fun initBindings(): Unit = with(binding) {
         super.initBindings()
-        constraintLayout1.safeClicks().subscribe { startTestAct(justStudy = true) }
-        constraintLayout2.safeClicks().subscribe { startTestAct(justStudy = false) }
+        // 题库学习
+        constraintLayout1.safeClicks().subscribe {
+            startActivity(Intent(requireContext(), ExaminationAct::class.java).apply {
+                putExtra(TKXX, true)
+            })
+        }
+        // 随机测试
+        constraintLayout2.safeClicks().subscribe {
+            startActivity(Intent(requireContext(), ExaminationAct::class.java).apply {
+                putExtra(Title, "随机测试")
+            })
+        }
+        // 应知应会
         constraintLayout3.safeClicks().subscribe {
             startActivity(Intent(requireContext(), ArticlePageAct::class.java).apply {
                 putExtra(Title, "应知应会")
                 putExtra(Category, "yzyh")
             })
         }
-    }
-
-    private fun startTestAct(justStudy: Boolean) {
-        Intent(requireContext(), ExaminationAct::class.java).apply {
-            putExtra(Param, justStudy)
-        }.let { startActivity(it) }
     }
 
 }

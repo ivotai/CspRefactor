@@ -21,6 +21,9 @@ const val HideTitleLayout = "HideTitleLayout"
 const val StudySmallVideo = "StudySmallVideo"
 const val XueXiXiaoXinDe = "XueXiXiaoXinDe"
 
+const val TKXX = "TKXX"
+const val SpecialId = "SpecialId"
+
 const val displayDateFormat = "yyyy年MM月dd日"
 
 const val defaultPageSize = 10

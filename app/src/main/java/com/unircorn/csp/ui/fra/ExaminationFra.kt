@@ -15,7 +15,11 @@ class ExaminationFra : BaseFra2<FraExaminationBinding>() {
 
     override fun initViews() = with(binding) {
         super.initViews()
-        tvTitle.text = if (justStudy) "题库学习" else "随机测试"
+        tvTitle.text = when {
+            TKXX -> "题库学习"
+            specialId == null -> "随机测试"
+            else -> title
+        }
     }
 
     override fun initBindings() {
@@ -24,7 +28,8 @@ class ExaminationFra : BaseFra2<FraExaminationBinding>() {
     }
 
     private fun getExamination() {
-        val single = if (justStudy) api.createExaminationJustStudy() else api.createExamination()
+        val single =
+            if (TKXX) api.createExaminationTKXX() else api.createExamination(specialId = specialId)
         single.lifeOnMain(this)
             .subscribe(
                 {
@@ -32,10 +37,10 @@ class ExaminationFra : BaseFra2<FraExaminationBinding>() {
                     this.examination = it.data
 
                     // 排序，先单选后多选
-                    if (!justStudy) {
-                        this.examination.questionList =
-                            examination.questionList.sortedBy { question -> !question.isSingleSelection }
-                    }
+//                    if (!TKXX) {
+//                        this.examination.questionList =
+//                            examination.questionList.sortedBy { question -> !question.isSingleSelection }
+//                    }
 
                     initViewPager2()
                 },
@@ -61,7 +66,7 @@ class ExaminationFra : BaseFra2<FraExaminationBinding>() {
 
             val finish = examination.questionList.all { it.options != null }
             if (finish) {
-                if (justStudy) {
+                if (TKXX) {
                     "您已学习完啦！".toast()
                 } else {
                     submitExamination()
@@ -88,7 +93,7 @@ class ExaminationFra : BaseFra2<FraExaminationBinding>() {
                     val message = "总分: 100\r\n题目数量: ${examination.questionList.size}\r\n" +
                             "测试分数: ${it.data.score}\r\n测试结果: ${if (it.data.isPassed) "通过" else "不通过"}"
                     MaterialDialog(requireContext()).show {
-                        title(text = "随机测试")
+                        title(text = title)
                         message(text = message)
                         cancelOnTouchOutside(false)
                         positiveButton(text = "确认") { _ ->
@@ -107,13 +112,15 @@ class ExaminationFra : BaseFra2<FraExaminationBinding>() {
         val examinationPagerAdapter =
             ExaminationPagerAdapter(fragment = this@ExaminationFra, examination = examination)
         // 这句话不使用看看
-//        offscreenPageLimit = examinationPagerAdapter.itemCount - 1
+        offscreenPageLimit = examinationPagerAdapter.itemCount - 1
         adapter = examinationPagerAdapter
         removeEdgeEffect()
         isUserInputEnabled = false
     }
 
 
-    private val justStudy by lazy { requireArguments().getBoolean(Param) }
+    private val TKXX by lazy { requireArguments().getBoolean(com.unircorn.csp.app.TKXX) }
+    private val specialId: String? by lazy { requireArguments().getString(SpecialId, null) }
+    private val title by lazy { requireArguments().getString(Title, "") }
 
 }
