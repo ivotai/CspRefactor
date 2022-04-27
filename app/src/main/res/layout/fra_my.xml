@@ -123,7 +123,7 @@
                 android:textColor="?attr/colorPrimary"
                 android:textSize="28dp"
                 app:layout_constraintBottom_toBottomOf="@+id/tvTopicCount"
-                app:layout_constraintEnd_toStartOf="@+id/tvTraining"
+                app:layout_constraintEnd_toStartOf="@+id/tv_class_hour_count"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toEndOf="@+id/tvTopicCount"
@@ -131,7 +131,7 @@
 
 
             <TextView
-                android:id="@+id/tvTraining"
+                android:id="@+id/tv_class_hour_count"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -189,8 +189,8 @@
                 android:text="培训情况"
                 android:textColor="@color/md_grey_400"
                 android:textSize="14dp"
-                app:layout_constraintEnd_toEndOf="@+id/tvTraining"
-                app:layout_constraintStart_toStartOf="@+id/tvTraining"
+                app:layout_constraintEnd_toEndOf="@+id/tv_class_hour_count"
+                app:layout_constraintStart_toStartOf="@+id/tv_class_hour_count"
                 app:layout_constraintTop_toTopOf="@+id/tvLabel3" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

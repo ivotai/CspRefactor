@@ -1,5 +1,6 @@
 package com.unircorn.csp.ui.fra.my
 
+import android.annotation.SuppressLint
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -59,6 +60,7 @@ class MyFra : BaseFra2<FraMyBinding>() {
                         tvReadCount.text = it.data.readCount
                         tvTopicCount.text = it.data.topicCount
                         tvReplyCount.text = it.data.replyCount
+                        tvClassHourCount.text = it.data.classHourCount.toString()
                     },
                     { it.errorMsg().toast() }
                 )
@@ -66,10 +68,11 @@ class MyFra : BaseFra2<FraMyBinding>() {
             tvTopicCount.safeClicks().subscribe { startAct(MyTopicAct::class.java) }
 
             // todo 跳转到培训情况
-            tvTraining.safeClicks().subscribe { }
+            tvClassHourCount.safeClicks().subscribe { }
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun initEvents() {
         RxBus.registerEvent(this, ModifyDepartmentEvent::class.java, {
             Globals.loginResponse.user.department = it.department
