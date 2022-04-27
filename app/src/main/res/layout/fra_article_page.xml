@@ -23,7 +23,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
@@ -35,13 +34,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.mikepenz.iconics.view.IconicsImageView
-            android:id="@+id/ivMy"
-            android:layout_width="56dp"
-            android:layout_height="0dp"
-            app:iiv_color="@color/md_white"
-            app:iiv_icon="fal-user-circle"
-            app:iiv_size="24dp"
+        <TextView
+            android:id="@+id/tvOperation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:text="我的"
+            android:textColor="@color/md_white"
+            android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

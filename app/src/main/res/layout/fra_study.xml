@@ -25,13 +25,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <TextView
             android:id="@+id/tv_training"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
-            android:text="我的"
+            android:text="培训情况"
             android:textColor="@color/md_white"
             android:textSize="16dp"
             app:layout_constraintBottom_toBottomOf="parent"

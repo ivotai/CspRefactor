@@ -29,7 +29,12 @@ open class ArticlePageFra : PageFra2<FraArticlePageBinding, MultiItemEntity>() {
                 .apply { putExtra(Param, category) }
                 .let { requireContext().startActivity(it) }
         }
-        ivMy.safeClicks().subscribe { startAct(MyAct::class.java) }
+        initOperationBinding()
+    }
+
+    protected fun initOperationBinding(): Any = binding.apply {
+        tvOperation.text = "我的"
+        tvOperation.safeClicks().subscribe { startAct(MyAct::class.java) }
     }
 
     override fun initPageAdapter() {
