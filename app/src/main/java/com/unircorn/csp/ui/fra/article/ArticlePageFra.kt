@@ -32,7 +32,9 @@ open class ArticlePageFra : PageFra2<FraArticlePageBinding, MultiItemEntity>() {
         initOperationBinding()
     }
 
-    protected fun initOperationBinding(): Any = binding.apply {
+    protected val tvOperation get() = binding.tvOperation
+
+    open fun initOperationBinding(): Any = binding.apply {
         tvOperation.text = "我的"
         tvOperation.safeClicks().subscribe { startAct(MyAct::class.java) }
     }
@@ -59,7 +61,7 @@ open class ArticlePageFra : PageFra2<FraArticlePageBinding, MultiItemEntity>() {
 
 
     private val title by lazy { arguments?.getString(Title, "") }
-    private val category by lazy { requireArguments().getString(Category, "") }
+    protected val category by lazy { requireArguments().getString(Category, "") }
 
     override val mRecyclerView: RecyclerView
         get() = binding.recyclerView

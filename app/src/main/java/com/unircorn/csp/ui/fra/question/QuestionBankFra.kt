@@ -6,7 +6,7 @@ import com.unircorn.csp.app.Param
 import com.unircorn.csp.app.Title
 import com.unircorn.csp.app.safeClicks
 import com.unircorn.csp.databinding.FraQuestionBankBinding
-import com.unircorn.csp.ui.act.TestAct
+import com.unircorn.csp.ui.act.ExaminationAct
 import com.unircorn.csp.ui.act.article.ArticlePageAct
 import com.unircorn.csp.ui.base.BaseFra2
 
@@ -25,7 +25,7 @@ class QuestionBankFra : BaseFra2<FraQuestionBankBinding>() {
     }
 
     private fun startTestAct(justStudy: Boolean) {
-        Intent(requireContext(), TestAct::class.java).apply {
+        Intent(requireContext(), ExaminationAct::class.java).apply {
             putExtra(Param, justStudy)
         }.let { startActivity(it) }
     }

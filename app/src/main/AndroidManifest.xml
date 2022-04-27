@@ -49,12 +49,13 @@
             android:screenOrientation="portrait" />
         <activity android:name=".ui.act.topic.TopicDetailImageAct" />
         <activity android:name=".ui.act.topic.MyTopicAct" />
-        <activity android:name=".ui.act.TestAct" />
+        <activity android:name=".ui.act.ExaminationAct" />
         <activity android:name=".ui.act.article.ArticlePageAct" />
         <activity
             android:name=".ui.act.StudySummaryAct2"
             android:screenOrientation="landscape" />
         <activity android:name=".ui.act.TrainingAct" />
+        <activity android:name=".ui.act.article.ArticlePageActForDypx" />
     </application>
 
 </manifest>
