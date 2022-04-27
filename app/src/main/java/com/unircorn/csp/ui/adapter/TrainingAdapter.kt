@@ -10,7 +10,7 @@ class TrainingAdapter : BaseQuickAdapter<Training, BaseViewHolder>(R.layout.item
     override fun convert(holder: BaseViewHolder, item: Training) {
         holder.apply {
             setText(R.id.tvName, item.name)
-            setText(R.id.tvClassHour, item.classHour.toString())
+            setText(R.id.tvClassHour, "${item.classHour}学时")
             setText(R.id.tvIsCompleted, item.isCompleted)
         }
     }

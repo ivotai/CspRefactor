@@ -4,7 +4,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.unircorn.csp.app.safeClicks
 import com.unircorn.csp.app.startAct
 import com.unircorn.csp.databinding.FraStudyBinding
-import com.unircorn.csp.ui.act.StudySummaryAct2
+import com.unircorn.csp.ui.act.TrainingAct
 import com.unircorn.csp.ui.base.BaseFra2
 import com.unircorn.csp.ui.pagerAdapter.StudyPagerAdapter
 
@@ -24,7 +24,7 @@ class StudyFra : BaseFra2<FraStudyBinding>() {
     }
 
     override fun initBindings() = with(binding) {
-        tvStudySummary.safeClicks().subscribe { startAct(StudySummaryAct2::class.java) }
+        tvTraining.safeClicks().subscribe { startAct(TrainingAct::class.java) }
         Unit
     }
 

@@ -12,12 +12,12 @@ import com.unircorn.csp.ui.base.BaseFra2
 
 class DypxFra : BaseFra2<FraDypxBinding>() {
 
-    private val dypxAdapter = DypxAdapter()
+    private val simpleAdapter = DypxAdapter()
 
     override fun initViews() = with(binding) {
         recyclerView.run {
             layoutManager = LinearLayoutManager(context)
-            adapter = dypxAdapter
+            adapter = simpleAdapter
             addItemDecoration(GridSpacingItemDecoration(1, ConvertUtils.dp2px(16f), true))
         }
     }
@@ -30,7 +30,7 @@ class DypxFra : BaseFra2<FraDypxBinding>() {
         api.getCode(tag = "dypx").lifeOnMain(this).subscribe(
             {
                 if (it.failed) return@subscribe
-                dypxAdapter.setNewInstance(it.data.toMutableList())
+                simpleAdapter.setNewInstance(it.data.toMutableList())
             },
             { it.errorMsg().toast() }
         )

@@ -12,6 +12,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <com.mikepenz.iconics.view.IconicsImageView
+            android:id="@+id/ivBack"
+            android:layout_width="56dp"
+            android:layout_height="0dp"
+            app:iiv_color="@color/md_white"
+            app:iiv_icon="fal-angle-left"
+            app:iiv_size="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"

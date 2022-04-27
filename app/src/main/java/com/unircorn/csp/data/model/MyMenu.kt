@@ -13,7 +13,15 @@ enum class MyMenu(val text: String) {
     ;
 
     companion object {
-        val all get() = listOf(Department, ChangePassword, ClearDownloads, Logout, VersionName)
+        val all
+            get() = listOf(
+                Department,
+                StudySummary,
+                ChangePassword,
+                ClearDownloads,
+                Logout,
+                VersionName
+            )
     }
 
 }
