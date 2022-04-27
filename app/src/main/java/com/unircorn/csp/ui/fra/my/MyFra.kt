@@ -11,6 +11,7 @@ import com.unircorn.csp.app.*
 import com.unircorn.csp.data.event.ModifyDepartmentEvent
 import com.unircorn.csp.data.model.MyMenu
 import com.unircorn.csp.databinding.FraMyBinding
+import com.unircorn.csp.ui.act.TrainingAct
 import com.unircorn.csp.ui.act.topic.MyTopicAct
 import com.unircorn.csp.ui.adapter.MyAdapter
 import com.unircorn.csp.ui.base.BaseFra2
@@ -67,8 +68,7 @@ class MyFra : BaseFra2<FraMyBinding>() {
 
             tvTopicCount.safeClicks().subscribe { startAct(MyTopicAct::class.java) }
 
-            // todo 跳转到培训情况
-            tvClassHourCount.safeClicks().subscribe { }
+            tvClassHourCount.safeClicks().subscribe { startAct(TrainingAct::class.java) }
         }
     }
 

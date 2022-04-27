@@ -136,4 +136,7 @@ interface SimpleApi {
     @POST("api/v1/app/i/profile")
     fun modifyProfile(@Body profileParam: ProfileParam): Single<Response<Any>>
 
+    @GET("api/v1/app/i/training")
+    fun getTraining(): Single<Response<List<Training>>>
+
 }
