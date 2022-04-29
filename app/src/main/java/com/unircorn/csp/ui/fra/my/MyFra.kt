@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import com.hjq.bar.OnTitleBarListener
+import com.jakewharton.rxbinding4.view.clicks
 import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.app.*
 import com.unircorn.csp.data.event.ModifyDepartmentEvent
@@ -68,7 +69,8 @@ class MyFra : BaseFra2<FraMyBinding>() {
 
             tvTopicCount.safeClicks().subscribe { startAct(MyTopicAct::class.java) }
 
-            tvClassHourCount.safeClicks().subscribe { startAct(TrainingAct::class.java) }
+            tvClassHourCount.clicks().mergeWith(tvLabel4.clicks())
+                .subscribe { startAct(TrainingAct::class.java) }
         }
     }
 
