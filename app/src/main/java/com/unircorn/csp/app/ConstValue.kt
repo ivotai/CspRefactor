@@ -13,6 +13,7 @@ const val SESSION = "SESSION"
 const val Param = "Param"
 const val Title = "Title"
 const val Category = "Category"
+const val Training = "Training"
 
 const val Question = "Question"
 const val Position = "Position"

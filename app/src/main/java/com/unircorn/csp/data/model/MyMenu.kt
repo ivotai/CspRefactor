@@ -16,7 +16,6 @@ enum class MyMenu(val text: String) {
         val all
             get() = listOf(
                 Department,
-                StudySummary,
                 ChangePassword,
                 ClearDownloads,
                 Logout,

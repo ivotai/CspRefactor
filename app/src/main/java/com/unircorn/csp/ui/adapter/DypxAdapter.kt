@@ -7,10 +7,9 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.unircorn.csp.R
 import com.unircorn.csp.app.Category
 import com.unircorn.csp.app.Title
+import com.unircorn.csp.app.Training
 import com.unircorn.csp.app.safeClicks
-import com.unircorn.csp.data.model.Code
 import com.unircorn.csp.data.model.Training
-import com.unircorn.csp.ui.act.article.ArticlePageAct
 import com.unircorn.csp.ui.act.article.ArticlePageActForDypx
 
 class DypxAdapter : BaseQuickAdapter<Training, BaseViewHolder>(R.layout.item_dypx) {
@@ -23,6 +22,7 @@ class DypxAdapter : BaseQuickAdapter<Training, BaseViewHolder>(R.layout.item_dyp
                 context.startActivity(Intent(context, ArticlePageActForDypx::class.java).apply {
                     putExtra(Title, item.name)
                     putExtra(Category, item.objectId)
+                    putExtra(Training, item)
                 })
             }
         }
