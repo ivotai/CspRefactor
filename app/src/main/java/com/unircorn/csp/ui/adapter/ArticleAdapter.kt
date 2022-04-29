@@ -3,6 +3,7 @@ package com.unircorn.csp.ui.adapter
 import android.content.Intent
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.entity.MultiItemEntity
@@ -41,9 +42,16 @@ class ArticleAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder
                     putExtra(Param, this@with)
                 }.let { context.startActivity(it) }
             }
+
+            // 已完成，未完成
+            if (itemType == article_normal) {
+                val tvCompleted = holder.getView<TextView>(R.id.tvCompleted)
+                tvCompleted.visibility = if (item.completed == null) View.GONE else View.VISIBLE
+                if (item.completed != null) tvCompleted.text =
+                    if (item.completed == 0) "未完成" else "已完成"
+            }
         }
     }
-
 
 }
 

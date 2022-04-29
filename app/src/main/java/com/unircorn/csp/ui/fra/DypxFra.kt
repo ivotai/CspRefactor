@@ -27,7 +27,7 @@ class DypxFra : BaseFra2<FraDypxBinding>() {
     }
 
     private fun getCode() {
-        api.getCode(tag = "dypx").lifeOnMain(this).subscribe(
+        api.getTraining().lifeOnMain(this).subscribe(
             {
                 if (it.failed) return@subscribe
                 simpleAdapter.setNewInstance(it.data.toMutableList())

@@ -68,8 +68,8 @@ interface SimpleApi {
         @Query("endDate") endDate: String
     ): Single<Response<MediaPlaySummaryResponse>>
 
-    @GET("api/v1/app/code")
-    fun getCode(@Query("tag") tag: String): Single<Response<List<Code>>>
+//    @GET("api/v1/app/code")
+//    fun getCode(@Query("tag") tag: String): Single<Response<List<Code>>>
 
     //
 

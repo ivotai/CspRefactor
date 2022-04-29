@@ -19,7 +19,8 @@ data class Article(
     val pdf: Attachment,
     val video: Attachment,
     val readCount: Int,
-    val commentCount: Int
+    val commentCount: Int,
+    val completed: Int?
 ) : Serializable, MultiItemEntity {
 
     companion object {
