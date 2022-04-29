@@ -17,6 +17,7 @@ class DypxAdapter : BaseQuickAdapter<Training, BaseViewHolder>(R.layout.item_dyp
     override fun convert(holder: BaseViewHolder, item: Training) {
         holder.apply {
             setText(R.id.tvName, item.name)
+            setText(R.id.tvCompleted, if (item.completed == 0) "未完成" else "已完成")
 
             getView<View>(R.id.root).safeClicks().subscribe {
                 context.startActivity(Intent(context, ArticlePageActForDypx::class.java).apply {
