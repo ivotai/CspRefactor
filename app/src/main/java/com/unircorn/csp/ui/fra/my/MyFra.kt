@@ -59,6 +59,7 @@ class MyFra : BaseFra2<FraMyBinding>() {
                 .lifeOnMain(this@MyFra)
                 .subscribe(
                     {
+                        if (it.failed) return@subscribe
                         tvReadCount.text = it.data.readCount
                         tvTopicCount.text = it.data.topicCount
                         tvReplyCount.text = it.data.replyCount
