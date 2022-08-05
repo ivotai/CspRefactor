@@ -1,5 +1,6 @@
 package com.unircorn.csp.data.model
 
+import android.text.BoringLayout
 import com.unircorn.csp.app.toast
 
 // LoginResponse 比较特别，不继承自 Response。
@@ -8,7 +9,8 @@ data class LoginResponse(
     val session: String,
     val success: Boolean,
     val user: User,
-    val message: String
+    val message: String,
+    val weakCipher:Boolean
 ) {
     val failed: Boolean
         get() {
