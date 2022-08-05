@@ -1,6 +1,7 @@
 package com.unircorn.csp.ui.fra
 
 import android.Manifest
+import com.blankj.utilcode.util.ToastUtils
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.utils.sizeDp
 import com.rxjava.rxlife.lifeOnMain
@@ -9,6 +10,7 @@ import com.unicorn.sanre.icon.Fas
 import com.unircorn.csp.app.*
 import com.unircorn.csp.app.helper.VersionHelper
 import com.unircorn.csp.databinding.FraLoginBinding
+import com.unircorn.csp.ui.act.my.ModifyPasswordAct
 import com.unircorn.csp.ui.base.BaseFra2
 
 class LoginFra2 : BaseFra2<FraLoginBinding>() {
@@ -79,7 +81,13 @@ class LoginFra2 : BaseFra2<FraLoginBinding>() {
                         username = etUsername.trimText()
                         password = etPassword.trimText()
                     }
-                    VersionHelper.checkVersion(requireActivity())
+
+                    // 如果密码太简单
+                    if (it.weakCipher) {
+                        ToastUtils.showLong("密码至少同时包含大写字母、小写字母、数字和特殊字符，长度8-16位")
+                        startAct(ModifyPasswordAct::class.java)
+                    } else
+                        VersionHelper.checkVersion(requireActivity())
                 },
                 {
                     it.toast()
