@@ -47,6 +47,7 @@ class ModifyPasswordFra : BaseFra() {
                         if (it.failed) return@subscribe
                         ToastUtils.showShort("修改密码成功，请重新登录")
                         // 因为登录时因为密码太简单，无法把 LogoutEvent 发给 MainFra2，所以自己来 Logout
+                        Globals.isLogout = true
                         logout(LogoutEvent(clearPassword = true))
                     },
                     { it.errorMsg().toast() }
@@ -65,11 +66,22 @@ class ModifyPasswordFra : BaseFra() {
             ToastUtils.showShort("确认密码不能为空")
             return
         }
+        if (!isPwdValid(etNewPwd.trimText())) {
+            ToastUtils.showShort("密码至少同时包含大写字母、小写字母、数字和特殊字符，长度8-16位")
+            return
+        }
         if (etConfirmPwd.trimText() != etNewPwd.trimText()) {
             ToastUtils.showShort("密码不一致")
             return
         }
         changePassword()
+    }
+
+    private fun isPwdValid(pwd: String): Boolean {
+        val pattern =
+            "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~!@&%#\$^_])[a-zA-Z0-9~!@&%#\$^_]{8,16}\$"
+        val regex = pattern.toRegex()
+        return regex.matches(pwd)
     }
 
     private fun logout(logoutEvent: LogoutEvent) {
