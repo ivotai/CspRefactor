@@ -1,9 +1,11 @@
 package com.unircorn.csp.ui.fra.my
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.hjq.bar.OnTitleBarListener
 import com.rxjava.rxlife.lifeOnMain
@@ -11,6 +13,7 @@ import com.unircorn.csp.app.*
 import com.unircorn.csp.data.event.LogoutEvent
 import com.unircorn.csp.data.model.ModifyPasswordParam
 import com.unircorn.csp.databinding.FraModifyPasswordBinding
+import com.unircorn.csp.ui.act.LoginAct2
 import com.unircorn.csp.ui.base.BaseFra
 
 class ModifyPasswordFra : BaseFra() {
@@ -43,7 +46,8 @@ class ModifyPasswordFra : BaseFra() {
                     {
                         if (it.failed) return@subscribe
                         ToastUtils.showShort("修改密码成功，请重新登录")
-                        RxBus.post(LogoutEvent(clearPassword = true))
+                        // 因为登录时因为密码太简单，无法把 LogoutEvent 发给 MainFra2，所以自己来 Logout
+                        logout(LogoutEvent(clearPassword = true))
                     },
                     { it.errorMsg().toast() }
                 )
@@ -66,6 +70,23 @@ class ModifyPasswordFra : BaseFra() {
             return
         }
         changePassword()
+    }
+
+    private fun logout(logoutEvent: LogoutEvent) {
+        api.logout()
+            .lifeOnMain(this)
+            .subscribe(
+                { response ->
+                    if (response.failed) return@subscribe
+                    ActivityUtils.finishAllActivities()
+                    Intent(requireContext(), LoginAct2::class.java).apply {
+                        putExtra(Param, logoutEvent.clearPassword)
+                    }.let { startActivity(it) }
+                },
+                {
+                    it.toast()
+                }
+            )
     }
 
 
