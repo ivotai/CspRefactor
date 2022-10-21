@@ -16,10 +16,10 @@ abstract class TopicDetailFra : CommentPageFra() {
         super.initViews()
         titleBar.title = topic.title
 
-        if (xueXiXiaoXinDe){
-            etContent.hint = "领导点评"
-            btnCreateComment.text = "点评"
-        }
+//        if (xueXiXiaoXinDe){
+//            etContent.hint = "领导点评"
+//            btnCreateComment.text = "点评"
+//        }
     }
 
     private val xueXiXiaoXinDe by lazy { arguments?.getBoolean(XueXiXiaoXinDe, false) ?: false }

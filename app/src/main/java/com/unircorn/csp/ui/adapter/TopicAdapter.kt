@@ -60,7 +60,7 @@ class TopicAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(
                     holder.setText(R.id.tvIssueTime, issueTime.toDisplayDateFormat())
                     holder.setText(
                         R.id.tvCommentCount,
-                        "${if (xueXiXiaoXinDe) "领导点评" else "评论"} $commentCount"
+                        "评论 $commentCount"
                     )
                     holder.getView<View>(R.id.root).safeClicks().subscribe {
                         Intent(context, targetClass).apply {
