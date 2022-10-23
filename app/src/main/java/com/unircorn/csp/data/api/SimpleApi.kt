@@ -141,4 +141,9 @@ interface SimpleApi {
     @GET("api/v1/app/i/training")
     fun getTraining(): Single<Response<List<Training>>>
 
+    @POST("api/v1/app/article/{articleId}/like")
+    fun like(
+        @Path("articleId") articleId: String,
+    ): Single<Any>
+
 }
