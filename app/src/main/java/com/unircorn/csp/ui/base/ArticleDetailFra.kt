@@ -98,6 +98,17 @@ abstract class ArticleDetailFra : MediaOwnerFra() {
         )
     }
 
+    override fun like() {
+        api.like(article.objectId)
+            .lifeOnMain(this)
+            .subscribe(
+                {
+                    ToastUtils.showShort("点赞成功")
+                },
+                { it.errorMsg().toast() }
+            )
+    }
+
     override fun loadPage(page: Int): Single<Response<Page<Comment>>> =
         api.getComment(articleId = article.objectId, page = page)
 
