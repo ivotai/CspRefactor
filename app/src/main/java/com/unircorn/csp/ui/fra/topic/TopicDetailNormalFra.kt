@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import com.hjq.bar.TitleBar
 import com.unircorn.csp.databinding.FraTopicDetailNormalBinding
@@ -34,6 +35,9 @@ class TopicDetailNormalFra : TopicDetailFra() {
 
     override val mSwipeRefreshLayout: SwipeRefreshLayout
         get() = binding.swipeRefreshLayout
+
+    override val floatingActionButton: FloatingActionButton
+        get() = binding.floatingActionButton
 
 // ----
 

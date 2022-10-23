@@ -6,13 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.blankj.utilcode.util.ToastUtils
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import com.hjq.bar.TitleBar
 import com.rxjava.rxlife.lifeOnMain
-import com.unircorn.csp.app.*
-import com.unircorn.csp.ui.base.ArticleDetailFra
+import com.unircorn.csp.app.errorMsg
+import com.unircorn.csp.app.toast
 import com.unircorn.csp.databinding.FraArticleDetailNormalBinding
+import com.unircorn.csp.ui.base.ArticleDetailFra
 import com.unircorn.csp.ui.header.WebViewHeaderView
 
 class ArticleDetailNormalFra : ArticleDetailFra() {
@@ -49,7 +52,10 @@ class ArticleDetailNormalFra : ArticleDetailFra() {
     override val mSwipeRefreshLayout: SwipeRefreshLayout
         get() = binding.swipeRefreshLayout
 
-// ----
+    override val floatingActionButton: FloatingActionButton
+        get() = binding.floatingActionButton
+
+    // ----
 
     private var _binding: FraArticleDetailNormalBinding? = null
 

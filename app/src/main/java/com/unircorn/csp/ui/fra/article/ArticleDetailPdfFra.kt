@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.github.barteksc.pdfviewer.PDFView
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import com.hjq.bar.TitleBar
 import com.rxjava.rxlife.lifeOnMain
@@ -81,6 +82,9 @@ class ArticleDetailPdfFra : ArticleDetailFra() {
 
     override val mSwipeRefreshLayout: SwipeRefreshLayout
         get() = binding.swipeRefreshLayout
+
+    override val floatingActionButton: FloatingActionButton
+        get() = binding.floatingActionButton
 
 // ----
 

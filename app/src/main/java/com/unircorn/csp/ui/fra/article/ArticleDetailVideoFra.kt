@@ -9,6 +9,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.jzvd.JZDataSource
 import cn.jzvd.Jzvd
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.textfield.TextInputEditText
 import com.hjq.bar.TitleBar
 import com.rxjava.rxlife.lifeOnMain
@@ -66,6 +67,9 @@ class ArticleDetailVideoFra : ArticleDetailFra() {
 
     override val mSwipeRefreshLayout: SwipeRefreshLayout
         get() = binding.swipeRefreshLayout
+
+    override val floatingActionButton: FloatingActionButton
+        get() = binding.floatingActionButton
 
 // ----
 
