@@ -79,7 +79,7 @@ class ModifyPasswordFra : BaseFra() {
 
     private fun isPwdValid(pwd: String): Boolean {
         val pattern =
-            "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~!@&%#\$^_])[a-zA-Z0-9~!@&%#\$^_]{8,16}\$"
+            "^(?![a-zA-Z]+\$)(?![A-Z0-9]+\$)(?![A-Z\\W_!@#\$%^&*`~()-+=]+\$)(?![a-z0-9]+\$)(?![a-z\\W_!@#\$%^&*`~()-+=]+\$)(?![0-9\\W_!@#\$%^&*`~()-+=]+\$)[a-zA-Z0-9\\W_!@#\$%^&*`~()-+=]{8,16}\$"
         val regex = pattern.toRegex()
         return regex.matches(pwd)
     }
