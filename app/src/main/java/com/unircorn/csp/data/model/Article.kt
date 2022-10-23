@@ -20,6 +20,7 @@ data class Article(
     val video: Attachment,
     val readCount: Int,
     val commentCount: Int,
+    val likeCount: Int,
     val completed: Int?
 ) : Serializable, MultiItemEntity {
 
