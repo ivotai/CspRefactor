@@ -67,7 +67,7 @@ class ModifyPasswordFra : BaseFra() {
             return
         }
         if (!isPwdValid(etNewPwd.trimText())) {
-            ToastUtils.showShort("密码至少同时包含大写字母、小写字母、数字和特殊字符，长度8-16位")
+            ToastUtils.showShort("密码至少包含大写字母、小写字母、数字、特殊字符的其中三种，长度8-16位")
             return
         }
         if (etConfirmPwd.trimText() != etNewPwd.trimText()) {
