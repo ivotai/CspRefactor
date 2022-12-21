@@ -96,6 +96,9 @@ interface SimpleApi {
         @Query("type") type: Int
     ): Single<Response<Page<Topic>>>
 
+    @GET("api/v1/app/topic/{objectId}")
+    fun getTopic(@Path("objectId") objectId: String): Single<Response<Topic>>
+
     @GET("api/v1/app/topic")
     fun getMyTopic(
         @Query("page") page: Int,
@@ -142,8 +145,13 @@ interface SimpleApi {
     fun getTraining(): Single<Response<List<Training>>>
 
     @POST("api/v1/app/article/{articleId}/like")
-    fun like(
+    fun likeArticle(
         @Path("articleId") articleId: String,
+    ): Single<Any>
+
+    @POST("api/v1/app/topic/{topicId}/like")
+    fun likeTopic(
+        @Path("topicId") topicId: String,
     ): Single<Any>
 
 }

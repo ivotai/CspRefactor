@@ -34,14 +34,37 @@
         app:layout_constraintTop_toTopOf="@+id/tvCommentCount" />
 
     <TextView
-        android:id="@+id/tvCommentCount"
+        android:id="@+id/tvReadCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="已评论数"
+        android:text="阅读数"
         android:textColor="@color/md_grey_500"
         android:textSize="14dp"
         app:layout_constraintStart_toStartOf="@+id/tvTitle"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+
+    <TextView
+        android:id="@+id/tvLikeCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="点赞数"
+        android:textColor="@color/md_grey_500"
+        android:textSize="14dp"
+        app:layout_constraintStart_toEndOf="@+id/tvReadCount"
+        app:layout_constraintTop_toTopOf="@+id/tvReadCount" />
+
+    <TextView
+        android:id="@+id/tvCommentCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="评论数"
+        android:textColor="@color/md_grey_500"
+        android:textSize="14dp"
+        app:layout_constraintStart_toEndOf="@+id/tvLikeCount"
+        app:layout_constraintTop_toTopOf="@+id/tvLikeCount" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

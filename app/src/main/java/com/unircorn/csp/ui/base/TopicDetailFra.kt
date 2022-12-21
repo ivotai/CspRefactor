@@ -1,6 +1,7 @@
 package com.unircorn.csp.ui.base
 
 import android.view.View
+import com.blankj.utilcode.util.ToastUtils
 import com.hjq.bar.OnTitleBarListener
 import com.hjq.bar.TitleBar
 import com.rxjava.rxlife.lifeOnMain
@@ -8,6 +9,7 @@ import com.unircorn.csp.app.*
 import com.unircorn.csp.data.model.*
 import com.unircorn.csp.data.model.base.Page
 import com.unircorn.csp.data.model.base.Response
+import com.unircorn.csp.ui.header.WebViewHeaderView
 import io.reactivex.rxjava3.core.Single
 
 abstract class TopicDetailFra : CommentPageFra() {
@@ -39,8 +41,20 @@ abstract class TopicDetailFra : CommentPageFra() {
             override fun onTitleClick(v: View?) {
             }
         })
+
+        getTopic()
     }
 
+    private fun getTopic() {
+        api.getTopic(objectId = topic.objectId)
+            .lifeOnMain(this)
+            .subscribe(
+                {
+                    if (it.failed) return@subscribe
+                },
+                { it.errorMsg().toast() }
+            )
+    }
 
     override fun createComment() {
         api.createCommentT(
@@ -53,6 +67,18 @@ abstract class TopicDetailFra : CommentPageFra() {
             },
             { it.errorMsg().toast() }
         )
+    }
+
+    override fun like() {
+        api.likeTopic(topic.objectId)
+            .lifeOnMain(this)
+            .subscribe(
+                {
+                    topic.likeToggle()
+                    ToastUtils.showShort(if (topic.isLiked) "点赞成功" else "已取消点赞")
+                },
+                { it.errorMsg().toast() }
+            )
     }
 
     override fun loadPage(page: Int): Single<Response<Page<Comment>>> =

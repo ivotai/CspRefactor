@@ -18,8 +18,17 @@ data class Topic(
     val videos: List<Attachment>,
     val court: String,
     val replyCount: Int,
+    val readCount:Int,
+    val likeCount:Int,
+    var liked:Int,
     val type: Int // 1 小心得，2 小视频
 ) : Serializable, MultiItemEntity {
+
+    val isLiked get() = liked == 1
+
+    fun likeToggle() {
+        liked = if (liked == 1) 0 else 1
+    }
 
     val imageUrls: List<String> get() = images.map { "$baseUrl$it" }
 

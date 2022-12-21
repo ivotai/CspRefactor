@@ -23,6 +23,9 @@ class TopicDetailVideoFra : TopicDetailFra() {
         super.initViews()
         binding.titleBar.title = topic.title
         setUpJzvdStd()
+
+        // 学习小视频 隐藏点赞按钮
+        binding.floatingActionButton.visibility = View.INVISIBLE
     }
 
     private fun setUpJzvdStd() = with(binding) {

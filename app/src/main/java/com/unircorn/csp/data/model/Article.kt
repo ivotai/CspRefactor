@@ -21,8 +21,15 @@ data class Article(
     val readCount: Int,
     val commentCount: Int,
     val likeCount: Int,
+    var liked: Int,
     val completed: Int?
 ) : Serializable, MultiItemEntity {
+
+    val isLiked get() = liked == 1
+
+    fun likeToggle() {
+        liked = if (liked == 1) 0 else 1
+    }
 
     companion object {
         const val article_normal = 0

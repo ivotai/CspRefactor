@@ -13,6 +13,7 @@
         <entry key="..\:/Users/13276/StudioProjects/CspRefactor/app/src/main/res/layout/fra_exchange.xml" value="0.3" />
         <entry key="..\:/Users/13276/StudioProjects/CspRefactor/app/src/main/res/layout/fra_handbook.xml" value="0.3125" />
         <entry key="..\:/Users/13276/StudioProjects/CspRefactor/app/src/main/res/layout/fra_handbook2.xml" value="0.3" />
+        <entry key="..\:/Users/13276/StudioProjects/CspRefactor/app/src/main/res/layout/fra_modify_password.xml" value="0.296875" />
         <entry key="..\:/Users/13276/StudioProjects/CspRefactor/app/src/main/res/layout/fra_my.xml" value="0.6666666666666666" />
         <entry key="..\:/Users/13276/StudioProjects/CspRefactor/app/src/main/res/layout/fra_question_bank.xml" value="0.3" />
         <entry key="..\:/Users/13276/StudioProjects/CspRefactor/app/src/main/res/layout/fra_study.xml" value="0.3" />
@@ -72,7 +73,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.6666666666666666" />
+        <option name="scale" value="0.296875" />
       </ProjectState>
     </option>
   </component>

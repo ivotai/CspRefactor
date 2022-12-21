@@ -22,7 +22,6 @@ import com.unircorn.csp.data.model.Topic
 import com.unircorn.csp.data.model.Topic.Companion.topic_image
 import com.unircorn.csp.data.model.Topic.Companion.topic_normal
 import com.unircorn.csp.data.model.Topic.Companion.topic_video
-import java.util.*
 
 class TopicAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(ArrayList()),
     LoadMoreModule {
@@ -58,14 +57,13 @@ class TopicAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(
                 with(item as Topic) {
                     holder.setText(R.id.tvTitle, title)
                     holder.setText(R.id.tvIssueTime, issueTime.toDisplayDateFormat())
-                    holder.setText(
-                        R.id.tvCommentCount,
-                        "评论 $commentCount"
-                    )
+                    holder.setText(R.id.tvReadCount, "阅读 $readCount")
+                    holder.setText(R.id.tvLikeCount, "点赞 $likeCount")
+                    holder.setText(R.id.tvCommentCount, "评论 $commentCount")
                     holder.getView<View>(R.id.root).safeClicks().subscribe {
                         Intent(context, targetClass).apply {
                             putExtra(Param, this@with)
-                            putExtra(XueXiXiaoXinDe,xueXiXiaoXinDe)
+                            putExtra(XueXiXiaoXinDe, xueXiXiaoXinDe)
                         }.let { context.startActivity(it) }
                     }
                 }
@@ -82,7 +80,7 @@ class TopicAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(
                     jzvdStd.setClickUi {
                         Intent(context, targetClass).apply {
                             putExtra(Param, this@with)
-                            putExtra(XueXiXiaoXinDe,xueXiXiaoXinDe)
+                            putExtra(XueXiXiaoXinDe, xueXiXiaoXinDe)
                         }.let { context.startActivity(it) }
                     }
                 }
@@ -96,13 +94,13 @@ class TopicAdapter : BaseMultiItemQuickAdapter<MultiItemEntity, BaseViewHolder>(
                     holder.getView<View>(R.id.root).safeClicks().subscribe {
                         Intent(context, targetClass).apply {
                             putExtra(Param, this@with)
-                            putExtra(XueXiXiaoXinDe,xueXiXiaoXinDe)
+                            putExtra(XueXiXiaoXinDe, xueXiXiaoXinDe)
                         }.let { context.startActivity(it) }
                     }
                     holder.getView<View>(R.id.recyclerView).safeClicks().subscribe {
                         Intent(context, targetClass).apply {
                             putExtra(Param, this@with)
-                            putExtra(XueXiXiaoXinDe,xueXiXiaoXinDe)
+                            putExtra(XueXiXiaoXinDe, xueXiXiaoXinDe)
                         }.let { context.startActivity(it) }
                     }
                 }

@@ -99,11 +99,12 @@ abstract class ArticleDetailFra : MediaOwnerFra() {
     }
 
     override fun like() {
-        api.like(article.objectId)
+        api.likeArticle(article.objectId)
             .lifeOnMain(this)
             .subscribe(
                 {
-                    ToastUtils.showShort("点赞成功")
+                    article.likeToggle()
+                    ToastUtils.showShort(if (article.isLiked) "点赞成功" else "已取消点赞")
                 },
                 { it.errorMsg().toast() }
             )
