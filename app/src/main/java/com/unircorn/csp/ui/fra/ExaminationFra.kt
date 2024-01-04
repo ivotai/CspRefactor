@@ -1,5 +1,6 @@
 package com.unircorn.csp.ui.fra
 
+import android.graphics.Color
 import com.afollestad.materialdialogs.MaterialDialog
 import com.rxjava.rxlife.lifeOnMain
 import com.unircorn.csp.app.*
@@ -20,6 +21,8 @@ class ExaminationFra : BaseFra2<FraExaminationBinding>() {
             specialId == null -> "随机测试"
             else -> title
         }
+
+
     }
 
     override fun initBindings() {

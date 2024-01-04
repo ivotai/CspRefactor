@@ -1,6 +1,8 @@
 package com.unircorn.csp.ui.fra
 
 import android.Manifest
+import com.blankj.utilcode.util.EncodeUtils
+import com.blankj.utilcode.util.EncryptUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.mikepenz.iconics.IconicsDrawable
 import com.mikepenz.iconics.utils.sizeDp
@@ -8,10 +10,13 @@ import com.rxjava.rxlife.lifeOnMain
 import com.tbruyelle.rxpermissions3.RxPermissions
 import com.unicorn.sanre.icon.Fas
 import com.unircorn.csp.app.*
+import com.unircorn.csp.app.UserInfo.password
+import com.unircorn.csp.app.UserInfo.username
 import com.unircorn.csp.app.helper.VersionHelper
 import com.unircorn.csp.databinding.FraLoginBinding
 import com.unircorn.csp.ui.act.my.ModifyPasswordAct
 import com.unircorn.csp.ui.base.BaseFra2
+import java.util.Base64
 
 class LoginFra2 : BaseFra2<FraLoginBinding>() {
 
@@ -70,7 +75,15 @@ class LoginFra2 : BaseFra2<FraLoginBinding>() {
     }
 
     private fun login() = with(binding) {
-        api.login(etUsername.trimText(), etPassword.trimText())
+        val originalUsername = etUsername.trimText()
+        val originalPassword = etPassword.trimText()
+        val key = "GVUPOU3rO4oStHw59gmwVkzMwPhZMfaJzWBwwESiVoE="
+        val iv = "NU8dqRenATFfrEhekZ5hDA=="
+        val base64Key = EncodeUtils.base64Decode(key)
+        val base64iv = EncodeUtils.base64Decode(iv)
+        val encryptedUsername = EncryptUtils.encryptAES2Base64(originalUsername.toByteArray(), base64Key, "AES/CBC/PKCS7Padding", base64iv)
+        val encryptedPassword = EncryptUtils.encryptAES2Base64(originalPassword.toByteArray(), base64Key, "AES/CBC/PKCS7Padding", base64iv)
+        api.login(String(encryptedUsername), String(encryptedPassword))
             .lifeOnMain(this@LoginFra2)
             .subscribe(
                 {

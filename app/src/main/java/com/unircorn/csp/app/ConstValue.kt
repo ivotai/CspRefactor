@@ -2,6 +2,7 @@ package com.unircorn.csp.app
 
 
 //const val baseUrl = "http://csp.lefz.kjgk.xyz/"
+//const val baseUrl = "http://192.168.7.50:8088/csp/"
 const val baseUrl = "http://117.187.141.201"
 
 const val uploadUrl = "$baseUrl/public/file/upload"
